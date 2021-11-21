@@ -10,7 +10,7 @@ export enum RenderType {
 export enum GenderType {
   UNSET = "0",
   MALE = "1",
-  FEMAL = "2",
+  FEMALE = "2",
 }
 
 export enum LAYER_ID {

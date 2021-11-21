@@ -1,5 +1,8 @@
 <template>
-  <div id="avatar-creator" :class="{ exporting }">
+  <div
+    id="avatar-creator"
+    :class="{ exporting }"
+  >
     <div
       :style="{
         width: `100%`,
@@ -9,14 +12,12 @@
       }"
       id="avatar-preview-outter-wrapper"
     >
-      <div
-        :style="{
+      <div :style="{
           overflow: 'hidden',
           width: `${width}px`,
           height: exporting ? 0 : `${height}px`,
           '--bg': backgroundColor,
-        }"
-      >
+        }">
         <div
           id="avatar-preview"
           :class="{ exporting }"
@@ -49,7 +50,10 @@
       </div>
     </div>
 
-    <div class="btns" style="margin-top: 40px;">
+    <div
+      class="btns"
+      style="margin-top: 40px;"
+    >
       <!-- 随机按钮 -->
       <button
         id="refresh-btn"
@@ -75,7 +79,10 @@
       </button>
     </div>
 
-    <div class="btns" style="margin-top: 10px;">
+    <div
+      class="btns"
+      style="margin-top: 10px;"
+    >
       <input
         v-model="ammount"
         type="number"
@@ -343,7 +350,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     const centerOfBtnXPercent = centerOfBtnX / clientWidth;
     const centerOfBtnYPercent = centerOfBtnY / clientHeight;
 
-    const _confetti = function(opt = {}) {
+    const _confetti = function (opt = {}) {
       confetti({
         particleCount: Math.floor(100 + Math.random() * 100),
         angle: 80,
@@ -549,7 +556,7 @@ $primary: #0067b6;
       background-color: transparent;
       border: 1px solid $primary;
       color: $primary;
-      width: calc(50% - 5px);
+      // width: calc(50% - 5px);
 
       &:hover {
         background-color: $primary;

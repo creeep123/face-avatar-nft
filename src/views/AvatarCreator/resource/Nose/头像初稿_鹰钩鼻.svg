@@ -1,0 +1,22 @@
+<svg
+  id="图层_2"
+  data-name="图层 2"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1000 1000"
+>
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+    </style>
+  </defs>
+  <path
+    class="cls-1"
+    d="M567.44,506.32a321.44,321.44,0,0,1,16.11,31.74c2.79,6.36,5.43,13.27,4.13,20.1-.89,4.73-3.61,8.92-6.7,12.61A63.32,63.32,0,0,1,562.23,586"
+  />
+</svg>

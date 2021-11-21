@@ -1,39 +1,50 @@
 <template>
   <main id="app">
-    <PageHeader />
+    <!-- <PageHeader /> -->
     <router-view
       @multiple-start="multipleExporting = true"
       @multiple-end="multipleExporting = false"
     />
     <PageFooter />
-    <ipad-mouse
+    <!-- <ipad-mouse
       v-if="showIpadMouse"
       :force-show-cursor="multipleExporting"
       rectSelector=".__cursor_rect"
       textSelector=".__cursor_text"
-    />
+    /> -->
   </main>
 </template>
 
 <script>
 export default {
-  data() {
+  provide () {
+    return {
+      faceInfo: { test: "tests" },
+      changeFaceInfo: this.changeFaceInfo
+    }
+  },
+  data () {
     return {
       multipleExporting: false,
     };
   },
+  methods: {
+    changeFaceInfo (newInfo) {
+      this.faceInfo = newInfo
+    },
+  },
   components: {
-    IpadMouse: () => import("@/components/IpadMouse"),
-    PageHeader: () => import("./views/PageHeader"),
+    // IpadMouse: () => import("@/components/IpadMouse"),
+    // PageHeader: () => import("./views/PageHeader"),
     PageFooter: () => import("./views/PageFooter"),
   },
 
   computed: {
-    showIpadMouse() {
-      return !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(
-        navigator.userAgent
-      );
-    },
+    // showIpadMouse () {
+    //   return !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(
+    //     navigator.userAgent
+    //   );
+    // },
   },
 };
 </script>
@@ -45,6 +56,10 @@ html {
   height: 100%;
   background-color: #eee;
   overflow: hidden;
+}
+
+.smart-engineering {
+  transform: translateX(-10px) scale(0.4, 0.4);
 }
 
 #app {

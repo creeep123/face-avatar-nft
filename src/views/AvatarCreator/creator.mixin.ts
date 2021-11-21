@@ -18,6 +18,7 @@ export default class AvatarCreatorMixin extends Vue {
   ): Promise<string> {
     const { size, gender } = config;
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
+    console.log('layerList :>> ', layerList);
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
     // 1. 获取随机的 layer 组合
     let randomLayerList = ls
@@ -51,7 +52,7 @@ export default class AvatarCreatorMixin extends Vue {
       if (!layer.avaiableColorGroups || !layer.avaiableColorGroups.length)
         return;
       layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
-      console.log('object :>> ', layer.color);
+      // console.log('object :>> ', layer.color);
     });
     // 3.1 检查颜色的冲突
     randomLayerList.forEach(({ layer }) => {
@@ -91,7 +92,7 @@ export default class AvatarCreatorMixin extends Vue {
     let congratulate = false;
     // 4. 绘制 svg
     const groups = [];
-    for (let { layer, dir } of randomLayerList) {
+    for (const { layer, dir } of randomLayerList) {
       if (layer.congratulate) congratulate = true;
       let svgRaw = (
         await require(`!!raw-loader!./resource/${dir}/${layer.filename}.svg`)
@@ -107,13 +108,25 @@ export default class AvatarCreatorMixin extends Vue {
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
       }
-
       // 4.2 取出svg 内的内容， 放入 <g></g>， 再放入 最终的svg
+      if(dir=="Base"){
+        console.log('svgRaw :>> ', svgRaw);
+      }
+      console.log('dir :>> ', dir);
+      // 原来的
+      // groups.push(
+      //   `\n<g id="gaoxia-avatar-${dir}">\n
+      //     ${svgRaw.replace(/<svg.*(?=>)>/, "").replace("</svg>", "")}
+      //   \n</g>\n`
+      // );
+      const className = dir=="Eyes"||dir=="Nose"?"":"smart-engineering"
+      // const className = "smart-engineering"
       groups.push(
-        `\n<g id="gaoxia-avatar-${dir}">\n
-          ${svgRaw.replace(/<svg.*(?=>)>/, "").replace("</svg>", "")}
+        `\n<g id="gaoxia-avatar-${dir}" class="${className}">\n
+          ${svgRaw.replace(/<svg.*?>/, "").replace("</svg>", "").replace(/cls-1/g,`cls-${dir}-1`).replace(/cls-2/g,`cls-${dir}-2`)}
         \n</g>\n`
       );
+
     }
 
     if (congratulate) congratulateAction && congratulateAction();

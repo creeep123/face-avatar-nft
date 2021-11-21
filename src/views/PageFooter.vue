@@ -1,7 +1,11 @@
 <template>
   <footer id="page-footer">
-    <a href="http://beian.miit.gov.cn/" target="_blank" class="__cursor_text">
-      {{ beianCode }} &nbsp; &copy;2020 高下制图
+    <a
+      href="http://beian.miit.gov.cn/"
+      target="_blank"
+      class="__cursor_text"
+    >
+      {{ beianCode }} &nbsp; &copy;2021 智能工程
     </a>
   </footer>
 </template>
@@ -9,7 +13,7 @@
 <script>
 export default {
   computed: {
-    beianCode() {
+    beianCode () {
       return process.env.VUE_APP_BEIAN_CODE;
     },
   },

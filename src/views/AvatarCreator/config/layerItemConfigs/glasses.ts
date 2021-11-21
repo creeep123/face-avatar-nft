@@ -1,15 +1,25 @@
 import { GenderType } from "./../../interface/avatar.interface";
 import { LayerItemConfig } from "./../../interface/layer.interface";
 const glassesConfig: LayerItemConfig[] = [
+  // {
+  //   genderType: GenderType.UNSET,
+  //   filename: "Round",
+  //   weight: 10,
+  // },
+  // {
+  //   genderType: GenderType.UNSET,
+  //   empty: true,
+  //   weight: 80,
+  // },
   {
     genderType: GenderType.UNSET,
-    filename: "Round",
+    filename: "头像初稿_墨镜",
     weight: 10,
   },
   {
     genderType: GenderType.UNSET,
-    empty: true,
-    weight: 80,
+    filename: "头像初稿_眼镜",
+    weight: 10,
   },
 ];
 export default glassesConfig;

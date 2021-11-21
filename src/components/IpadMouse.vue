@@ -28,7 +28,7 @@ export default {
     },
   },
 
-  data() {
+  data () {
     return {
       focus: false,
       styleTag: undefined,
@@ -36,33 +36,33 @@ export default {
   },
 
   computed: {
-    cursor() {
+    cursor () {
       return this.$refs.cursor;
     },
   },
 
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.generateIpadMouse();
     });
   },
 
   watch: {
-    forceShowCursor(show) {
+    forceShowCursor (show) {
       if (show) this.showDefaultCursor();
       else this.removeDefaultCursor();
     },
   },
 
   methods: {
-    generateIpadMouse() {
+    generateIpadMouse () {
       this.initCursor();
       this.initRect();
       this.initText();
       this.removeDefaultCursor();
     },
 
-    initCursor() {
+    initCursor () {
       const { cursor } = this;
 
       document.addEventListener("mousedown", () => {
@@ -81,7 +81,7 @@ export default {
       });
     },
 
-    initRect() {
+    initRect () {
       const { cursor, rectSelector } = this;
       const style = document.createElement("style");
       style.type = "text/css";
@@ -166,7 +166,7 @@ export default {
       });
     },
 
-    initText() {
+    initText () {
       const { cursor, textSelector } = this;
       const DEFAULT_CURSOR_SIZE = cursor.style.getPropertyValue("--height");
       document.querySelectorAll(textSelector).forEach((el) => {
@@ -190,25 +190,25 @@ export default {
       });
     },
 
-    removeDefaultCursor() {
-      this.clearStyleTag();
-      const styleTag = document.createElement("style");
-      styleTag.appendChild(
-        document.createTextNode(`
-        body,*
-        {
-          cursor: none !important;  
-        }`)
-      );
-      document.head.appendChild(styleTag);
-      this.styleTag = styleTag;
+    removeDefaultCursor () {
+      // this.clearStyleTag();
+      // const styleTag = document.createElement("style");
+      // styleTag.appendChild(
+      //   document.createTextNode(`
+      //   body,*
+      //   {
+      //     cursor: none !important;  
+      //   }`)
+      // );
+      // document.head.appendChild(styleTag);
+      // this.styleTag = styleTag;
     },
 
-    showDefaultCursor() {
+    showDefaultCursor () {
       this.clearStyleTag();
     },
 
-    clearStyleTag() {
+    clearStyleTag () {
       if (this.styleTag) {
         try {
           document.head.removeChild(this.styleTag);

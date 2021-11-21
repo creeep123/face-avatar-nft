@@ -3,7 +3,7 @@ import { GenderType, LAYER_ID } from "./../../interface/avatar.interface";
 import { LayerItemConfig } from "./../../interface/layer.interface";
 const hairConfig: LayerItemConfig[] = [
   {
-    filename: "Danny Phantom",
+    filename: "头像初稿_男发-9",
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -11,57 +11,57 @@ const hairConfig: LayerItemConfig[] = [
   },
 
   {
-    filename: "Doug Funny",
+    filename: "头像初稿_男发-11",
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
     weight: 10,
   },
   {
-    filename: "Fonze",
+    filename: "头像初稿_男发-13",
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
     weight: 10,
   },
-  {
-    filename: "Full",
-    genderType: GenderType.FEMAL,
-    avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
-    colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.SHIRT],
-    weight: 10,
-    removeLayers: [LAYER_ID.FACIAL_HAIR],
-  },
+  // {
+  //   filename: "Full",
+  //   genderType: GenderType.FEMAL,
+  //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
+  //   colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.SHIRT],
+  //   weight: 10,
+  //   removeLayers: [LAYER_ID.FACIAL_HAIR],
+  // },
 
   {
-    filename: "Mr Clean",
+    filename: "头像初稿_男发-14",
     genderType: GenderType.MALE,
     weight: 10,
   },
 
   {
-    filename: "Mr T",
+    filename: "头像初稿_男发-15",
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
     weight: 10,
   },
 
-  {
-    filename: "Pixie",
-    genderType: GenderType.FEMAL,
-    avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
-    colorNotSameAs: [LAYER_ID.BACKGROUND],
-    weight: 10,
-    removeLayers: [LAYER_ID.FACIAL_HAIR],
-  },
+  // {
+  //   filename: "Pixie",
+  //   genderType: GenderType.FEMAL,
+  //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
+  //   colorNotSameAs: [LAYER_ID.BACKGROUND],
+  //   weight: 10,
+  //   removeLayers: [LAYER_ID.FACIAL_HAIR],
+  // },
 
-  {
-    filename: "Turban",
-    genderType: GenderType.UNSET,
-    avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
-    colorNotSameAs: [LAYER_ID.BACKGROUND],
-    weight: 10,
-  },
+  // {
+  //   filename: "Turban",
+  //   genderType: GenderType.UNSET,
+  //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
+  //   colorNotSameAs: [LAYER_ID.BACKGROUND],
+  //   weight: 10,
+  // },
 ];
 export default hairConfig;

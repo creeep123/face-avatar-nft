@@ -51,7 +51,7 @@ export default class AvatarCreatorMixin extends Vue {
       if (!layer.avaiableColorGroups || !layer.avaiableColorGroups.length)
         return;
       layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
-      console.log('object :>> ', layer.color);
+      // console.log('object :>> ', layer.color);
     });
     // 3.1 检查颜色的冲突
     randomLayerList.forEach(({ layer }) => {

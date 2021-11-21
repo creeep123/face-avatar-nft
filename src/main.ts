@@ -4,8 +4,11 @@ import router from "./router";
 import store from "./store";
 import "remixicon/fonts/remixicon.css";
 import i18n from './i18n'
+import api from './service.js'
 
 Vue.config.productionTip = false;
+Vue.prototype.$api = api
+
 
 new Vue({
   router,
