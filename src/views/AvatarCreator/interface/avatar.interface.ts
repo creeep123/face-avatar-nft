@@ -15,6 +15,7 @@ export enum GenderType {
 
 export enum LAYER_ID {
   BASE = "base",
+  BANGS = "bangs",
   EAR = "ear",
   EAR_RING = "earRing",
   EYE_BROWS = "eyeBrows",

@@ -6,11 +6,11 @@ const glassesConfig: LayerItemConfig[] = [
   //   filename: "Round",
   //   weight: 10,
   // },
-  // {
-  //   genderType: GenderType.UNSET,
-  //   empty: true,
-  //   weight: 80,
-  // },
+  {
+    genderType: GenderType.UNSET,
+    empty: true,
+    weight: 80,
+  },
   {
     genderType: GenderType.UNSET,
     filename: "头像初稿_墨镜",

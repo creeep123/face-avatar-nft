@@ -13,6 +13,7 @@ import noseConfig from "./layerItemConfigs/nose";
 import shirtConfig from "./layerItemConfigs/shirt";
 import backgroundConfig from "./layerItemConfigs/background";
 import hairConfig from "./layerItemConfigs/hair";
+import bangsConfig from "./layerItemConfigs/bangs"
 import eyeBrowsConfig from "./layerItemConfigs/eyeBrows";
 import maskConfig from "./layerItemConfigs/mask";
 import headwearConfig from "./layerItemConfigs/headwear";
@@ -75,10 +76,18 @@ export const layerList: Array<LayerListItem> = [
   },
 
   {
+    id: LAYER_ID.BANGS,
+    dir: "Bangs",
+    description: "刘海",
+    zIndex: 401,
+    layers: bangsConfig,
+  },
+
+  {
     id: LAYER_ID.HAIR,
     dir: "Hair",
     description: "头发",
-    zIndex: 400,
+    zIndex: 99,
     layers: hairConfig,
   },
 
@@ -94,7 +103,7 @@ export const layerList: Array<LayerListItem> = [
     id: LAYER_ID.HAT,
     dir: "Hat",
     description: "帽子",
-    zIndex: 401,
+    zIndex: 402,
     layers: hatConfig,
   },
 

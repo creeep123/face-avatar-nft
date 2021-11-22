@@ -1,1 +1,19 @@
-<svg id="图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:4px;}</style></defs><path class="cls-1" d="M518.17,654c25.66-28.84,62-29.46,87.83-1.07"/></svg>
+<svg
+  id="图层_2"
+  data-name="图层 2"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1000 1000"
+>
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4px;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M518.17,654c25.66-28.84,62-29.46,87.83-1.07" />
+</svg>

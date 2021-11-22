@@ -52,11 +52,6 @@ const mouthConfig: LayerItemConfig[] = [
   //   weight: 10,
   // },
     {
-      filename: '头像初稿_八字胡',
-      genderType: GenderType.UNSET,
-      weight: 10,
-    },
-    {
       filename: '头像初稿_悲伤',
       genderType: GenderType.UNSET,
       weight: 10,

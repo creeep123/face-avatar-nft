@@ -105,7 +105,7 @@
     </div>
 
     <!-- 资源说明 -->
-    <div class="resource-info">
+    <!-- <div class="resource-info">
       <span class="__cursor_text">
         {{ $t("resource-from") }}
       </span>
@@ -128,7 +128,7 @@
           {{ $t("with-our-designer") }}
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- 联系我们 -->
     <div class="contact-us-wrapper">

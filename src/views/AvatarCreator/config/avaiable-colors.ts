@@ -64,7 +64,7 @@ export const avaiableColors: Record<LAYER_ID, ColorGroup[]> = {
     { weight: 1, value: ['#6BD9E9'] },
     { weight: 1, value: ['#9287FF'] },
   ],
-
+  [LAYER_ID.BANGS]: [],
   [LAYER_ID.EAR]: [],
   [LAYER_ID.EAR_RING]: [],
   [LAYER_ID.EYES]: [],

@@ -1,1 +1,61 @@
-<svg id="图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000"><defs><style>.cls-1,.cls-3{fill:none;}.cls-2{fill:#f6ebfc;}.cls-3{stroke:#c1c1c1;stroke-miterlimit:10;stroke-width:20px;}.cls-4{clip-path:url(#clip-path);}.cls-5{fill:#f8ffff;}</style><clipPath id="clip-path"><rect class="cls-1" x="-1020" width="1000" height="1000"/></clipPath></defs><rect class="cls-2" x="1" y="1" width="1000" height="1000"/><rect class="cls-3" x="100" y="100" width="802" height="802"/><g class="cls-4"><rect class="cls-5" x="-595.25" y="-161.98" width="161" height="1416.92" transform="translate(233.6 486.63) rotate(42.14)"/><rect class="cls-5" x="-347.75" y="10.52" width="161" height="1416.92" transform="translate(413.31 365.16) rotate(42.14)"/><rect class="cls-5" x="-143.25" y="215.02" width="161" height="1416.92" transform="translate(603.38 280.82) rotate(42.14)"/></g></svg>
+<svg
+  id="图层_2"
+  data-name="图层 2"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 1000 1000"
+>
+  <defs>
+    <style>
+      .cls-1,
+      .cls-3 {
+        fill: none;
+      }
+      .cls-2 {
+        fill: #f6ebfc;
+      }
+      .cls-3 {
+        stroke: #c1c1c1;
+        stroke-miterlimit: 10;
+        stroke-width: 20px;
+      }
+      .cls-4 {
+        clip-path: url(#clip-path);
+      }
+      .cls-5 {
+        fill: #f8ffff;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" x="-1020" width="1000" height="1000" />
+    </clipPath>
+  </defs>
+  <rect class="cls-2" x="1" y="1" width="1000" height="1000" />
+  <rect class="cls-3" x="100" y="100" width="802" height="802" />
+  <g class="cls-4">
+    <rect
+      class="cls-5"
+      x="-595.25"
+      y="-161.98"
+      width="161"
+      height="1416.92"
+      transform="translate(233.6 486.63) rotate(42.14)"
+    />
+    <rect
+      class="cls-5"
+      x="-347.75"
+      y="10.52"
+      width="161"
+      height="1416.92"
+      transform="translate(413.31 365.16) rotate(42.14)"
+    />
+    <rect
+      class="cls-5"
+      x="-143.25"
+      y="215.02"
+      width="161"
+      height="1416.92"
+      transform="translate(603.38 280.82) rotate(42.14)"
+    />
+  </g>
+</svg>

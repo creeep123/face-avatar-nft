@@ -52,7 +52,6 @@ export default class AvatarCreatorMixin extends Vue {
       if (!layer.avaiableColorGroups || !layer.avaiableColorGroups.length)
         return;
       layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
-      // console.log('object :>> ', layer.color);
     });
     // 3.1 检查颜色的冲突
     randomLayerList.forEach(({ layer }) => {
@@ -101,6 +100,7 @@ export default class AvatarCreatorMixin extends Vue {
       // 4.1 替换颜色
       const matchColorReg = /{{color\[\d+\]}}/;
       let matchRes = svgRaw.match(matchColorReg);
+      console.log('matchRes :>> ', matchRes);
       while (matchRes) {
         const str = matchRes[0];
         const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, "$1"));
@@ -108,6 +108,7 @@ export default class AvatarCreatorMixin extends Vue {
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
       }
+      console.log('matchRes :>> ', matchRes);
       // 4.2 取出svg 内的内容， 放入 <g></g>， 再放入 最终的svg
       if(dir=="Base"){
         console.log('svgRaw :>> ', svgRaw);
@@ -119,8 +120,8 @@ export default class AvatarCreatorMixin extends Vue {
       //     ${svgRaw.replace(/<svg.*(?=>)>/, "").replace("</svg>", "")}
       //   \n</g>\n`
       // );
-      const className = dir=="Eyes"||dir=="Nose"?"":"smart-engineering"
-      // const className = "smart-engineering"
+      // const className = dir=="Eyes"||dir=="Nose"||dir=="Bangs"?"":"smart-engineering"
+      const className = ""
       groups.push(
         `\n<g id="gaoxia-avatar-${dir}" class="${className}">\n
           ${svgRaw.replace(/<svg.*?>/, "").replace("</svg>", "").replace(/cls-1/g,`cls-${dir}-1`).replace(/cls-2/g,`cls-${dir}-2`)}
