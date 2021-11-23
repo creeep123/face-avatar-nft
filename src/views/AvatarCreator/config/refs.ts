@@ -143,7 +143,7 @@ export const layerList: Array<LayerListItem> = [
     id: LAYER_ID.MASK,
     dir: "Mask",
     description: "口罩",
-    zIndex: 501,
+    zIndex: 502,
     layers: maskConfig,
   },
 ];

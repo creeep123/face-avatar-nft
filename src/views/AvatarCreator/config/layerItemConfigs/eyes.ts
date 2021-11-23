@@ -23,6 +23,11 @@ const eyesConfig: LayerItemConfig[] = [
   // },
   {
     genderType: GenderType.MALE,
+    filename: '头像初稿_女-小眼睛-睁',
+    weight: 10,
+  },
+  {
+    genderType: GenderType.MALE,
     filename: '头像初稿_男-闭眼',
     weight: 10,
   },

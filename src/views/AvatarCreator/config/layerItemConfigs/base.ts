@@ -4,6 +4,12 @@ import { LayerItemConfig } from './../../interface/layer.interface';
 const baseConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
+    filename: '头像初稿_心形脸',
+    weight: 10,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BASE],
+  },
+  {
+    genderType: GenderType.UNSET,
     filename: '头像初稿_鹅蛋脸',
     weight: 10,
     avaiableColorGroups: avaiableColors[LAYER_ID.BASE],

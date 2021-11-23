@@ -7,7 +7,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #6b6b6b;
+        fill: {{color[0]}};
         stroke: #120d0d;
         stroke-miterlimit: 10;
         stroke-width: 4px;

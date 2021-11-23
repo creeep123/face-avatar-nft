@@ -17,6 +17,8 @@ export default class AvatarCreatorMixin extends Vue {
     congratulateAction?: () => any
   ): Promise<string> {
     const { size, gender } = config;
+    console.log('size :>> ', size);
+    console.log('gender :>> ', gender);
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
     console.log('layerList :>> ', layerList);
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
@@ -100,7 +102,7 @@ export default class AvatarCreatorMixin extends Vue {
       // 4.1 替换颜色
       const matchColorReg = /{{color\[\d+\]}}/;
       let matchRes = svgRaw.match(matchColorReg);
-      console.log('matchRes :>> ', matchRes);
+      // console.log('matchRes :>> ', matchRes);
       while (matchRes) {
         const str = matchRes[0];
         const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, "$1"));
@@ -108,12 +110,12 @@ export default class AvatarCreatorMixin extends Vue {
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
       }
-      console.log('matchRes :>> ', matchRes);
+      // console.log('matchRes :>> ', matchRes);
       // 4.2 取出svg 内的内容， 放入 <g></g>， 再放入 最终的svg
-      if(dir=="Base"){
-        console.log('svgRaw :>> ', svgRaw);
-      }
-      console.log('dir :>> ', dir);
+      // if(dir=="Base"){
+      //   console.log('svgRaw :>> ', svgRaw);
+      // }
+      // console.log('dir :>> ', dir);
       // 原来的
       // groups.push(
       //   `\n<g id="gaoxia-avatar-${dir}">\n
@@ -121,10 +123,11 @@ export default class AvatarCreatorMixin extends Vue {
       //   \n</g>\n`
       // );
       // const className = dir=="Eyes"||dir=="Nose"||dir=="Bangs"?"":"smart-engineering"
-      const className = ""
+      const clsdir = dir.replace(/\s+/g,"")
+      const className = "";
       groups.push(
         `\n<g id="gaoxia-avatar-${dir}" class="${className}">\n
-          ${svgRaw.replace(/<svg.*?>/, "").replace("</svg>", "").replace(/cls-1/g,`cls-${dir}-1`).replace(/cls-2/g,`cls-${dir}-2`)}
+          ${svgRaw.replace(/<svg.*?>/, "").replace("</svg>", "").replace(/cls-/g,`cls-${clsdir}-`)}
         \n</g>\n`
       );
 

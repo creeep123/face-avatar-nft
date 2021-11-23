@@ -28,7 +28,7 @@ const shirtConfig: LayerItemConfig[] = [
   // },
   {
     filename: '头像初稿_衣领-17',
-    genderType: GenderType.UNSET,
+    genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.SHIRT],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
     weight: 10,

@@ -11,7 +11,7 @@
         fill: none;
       }
       .cls-2 {
-        fill: #898989;
+        fill: {{color[0]}};
         stroke: #120d0d;
         stroke-miterlimit: 10;
         stroke-width: 4px;

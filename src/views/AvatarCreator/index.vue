@@ -198,12 +198,20 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
    * 生成头像
    */
   private async createAvatar(disableConfetti = false) {
+    const genders = [GenderType.MALE, GenderType.FEMALE, GenderType.UNSET];
+    console.log(
+      "Math.floor(Math.random() * 2 + 1) :>> ",
+      Math.floor(Math.random() * 2 + 1)
+    );
+    const randomIndex = Math.floor(Math.random() * 2 + 1);
+    const randomGender = genders[randomIndex];
+    console.log("randomGender :>> ", randomGender);
     const svgRaw = await this.createOne(
       {
         size: this.width,
         renderer: RenderType.SVG,
         amount: 1,
-        gender: GenderType.UNSET,
+        gender: randomGender,
       },
       disableConfetti
         ? () => {}

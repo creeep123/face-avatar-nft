@@ -86,6 +86,13 @@ const hairConfig: LayerItemConfig[] = [
     weight: 10,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
+  {
+    empty:true,
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
+    colorNotSameAs: [LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
   // {
   //   filename: "Turban",
   //   genderType: GenderType.UNSET,

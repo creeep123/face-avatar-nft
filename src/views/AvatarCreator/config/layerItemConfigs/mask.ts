@@ -7,13 +7,13 @@ const maskConfig: LayerItemConfig[] = [
     weight: 100,
   },
   {
-    empty: true,
+    // empty: true,
     filename:"头像初稿_口罩",
     genderType: GenderType.UNSET,
     weight: 100,
   },
   {
-    empty: true,
+    // empty: true,
     filename:"头像初稿_男女-脸部装饰-创可贴",
     genderType: GenderType.UNSET,
     weight: 100,
