@@ -1,6 +1,6 @@
 export function getRandomValueInArr(
   arr: Array<Record<string, any>>,
-  weightKey = 'weight',
+  weightKey = 'weight'
 ) {
   const tmpArr: Array<number> = [];
   arr.forEach((el, index) => {
@@ -10,5 +10,6 @@ export function getRandomValueInArr(
   tmpArr.sort(() => 0.5 - Math.random());
   const len = tmpArr.length;
   const randomIndex = parseInt((Math.random() * 10000).toFixed(0)) % len;
+  // console.log('arr[tmpArr[randomIndex]] :>> ', arr[tmpArr[randomIndex]]);
   return arr[tmpArr[randomIndex]];
 }

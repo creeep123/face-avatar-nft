@@ -1,7 +1,9 @@
 <template>
   <main id="app">
     <!-- <PageHeader /> -->
+    <Loading v-if="LOADING" />
     <router-view
+      v-if="!LOADING"
       @multiple-start="multipleExporting = true"
       @multiple-end="multipleExporting = false"
     />
@@ -16,6 +18,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   provide () {
     return {
@@ -37,9 +40,13 @@ export default {
     // IpadMouse: () => import("@/components/IpadMouse"),
     // PageHeader: () => import("./views/PageHeader"),
     PageFooter: () => import("./views/PageFooter"),
+    Loading: () => import("./components/Loading.vue")
   },
 
   computed: {
+    ...mapState([
+      'LOADING'
+    ])
     // showIpadMouse () {
     //   return !/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(
     //     navigator.userAgent

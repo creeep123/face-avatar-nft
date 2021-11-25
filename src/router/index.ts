@@ -8,11 +8,11 @@ import ResultPage from "../views/ResultPage/index.vue";
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  // {
-  //   path: "/",
-  //   name: "AvatarCreator",
-  //   component: AvatarCreator,
-  // },
+  {
+    path: "/",
+    name: "AvatarCreator",
+    component: AvatarCreator,
+  },
   {
     path: "/cam",
     name: "CamPage",

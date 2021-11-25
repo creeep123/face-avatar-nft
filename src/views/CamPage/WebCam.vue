@@ -155,29 +155,43 @@ export default {
         //截取图片，调用识别接口
         const context = this.$refs.canvas.getContext('2d');
         context.drawImage(this.$refs.camera, 0, 0, 450, 337.5);
-        const res = await this.getFaceInfo()
-        const faceAttribute = JSON.parse(res.face_attr)
+        const image = this.getCurCanvasImg()
+        this.$store.commit('showLoading')
+        const res1 = await this.getFaceInfo(image)
+        // const res2 = await this.getFaceColorImg(image)
+        this.$store.commit('hideLoading')
+        const faceAttribute = res1.face_attr
+        // const faceColorImg = res2.data.content
+        const faceColorImg = ""
         setTimeout(() => {
           this.isShotPhoto = false;
         }, FLASH_TIMEOUT);
-        debugger
-        this.$router.push({ name: 'AvatarCreator', params: { faceAttribute: faceAttribute } })
+        //人脸属性结果发送到result页面
+        this.$router.push({
+          name: 'ResultPage',
+          params: {
+            faceAttribute,
+            faceColorImg
+          }
+        })
       }
 
       this.isPhotoTaken = !this.isPhotoTaken;
     },
 
-    getFaceInfo () {
-      //获取照片人脸信息
-      const download = document.getElementById("downloadPhoto");
+    getCurCanvasImg () {
       const canvas = document.getElementById("photoTaken").toDataURL("image/jpeg")
-      const zip = new JSZip()
-      // zip.file("test.jpg", canvas, { base64: true });
-      // .replace("image/jpeg", "image/octet-stream");
-      // const image = zip.files["test.jpg"]
       const image = canvas
-      //TODOTODO
+      return image
+    },
+
+    getFaceInfo (image) {
+      //获取照片人脸信息
       return this.$api.getFaceProperties({ image })
+    },
+
+    getFaceColorImg (image) {
+      return this.$api.getFaceColorImage({ image })
     },
 
     downloadImage () {

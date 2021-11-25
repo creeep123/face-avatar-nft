@@ -55,8 +55,6 @@ const base64toblob = (base64String) => {
     array.push(bytes.charCodeAt(i));
   }
   const blob = new Blob([new Uint8Array(array)], { type: 'image/jpeg' });
-  // const fd = new FormData();
-  // fd.append('file', blob, Date.now() + '.jpg');
   return blob;
 };
 
@@ -71,6 +69,18 @@ const api = {
     const blob = base64toblob(image);
     formData.append('image', blob, Date.now() + '.jpg');
     return theAxios.post(`${BASE.ServerURI}/get_attr`, formData, {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    });
+  },
+
+  getFaceColorImage(params) {
+    const { image } = params;
+    const formData = new FormData();
+    const blob = base64toblob(image);
+    formData.append('image', blob, Date.now() + '.jpg');
+    return theAxios.post(`${BASE.ServerURI}/get_face`, formData, {
       headers: {
         'Content-type': 'multipart/form-data',
       },

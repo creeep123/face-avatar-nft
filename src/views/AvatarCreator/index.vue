@@ -79,31 +79,6 @@
       </button>
     </div>
 
-    <div
-      class="btns"
-      style="margin-top: 10px;"
-    >
-      <input
-        v-model="ammount"
-        type="number"
-        class="sum-input __cursor_text"
-        :placeholder="$t('input-amount-placeholder')"
-        style="flex-grow: 1; margin-right: 10px;"
-      />
-      <button
-        class="__cursor_rect"
-        id="multiple-export-btn"
-        style="min-width: 120px"
-        :disabled="exporting || !ammount ? 'disabled' : false"
-        @click="superMake"
-      >
-        <i class="ri-file-zip-fill"></i>
-        <span>
-          {{ $t("pack") }}
-        </span>
-      </button>
-    </div>
-
     <!-- 资源说明 -->
     <!-- <div class="resource-info">
       <span class="__cursor_text">
@@ -163,6 +138,8 @@ import { RenderType, GenderType } from "./interface/avatar.interface";
   mixins: [],
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
+  // private width = 410;
+  // private height = 205;
   private width = 280;
   private height = 280;
   private exporting = false;
@@ -198,14 +175,13 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
    * 生成头像
    */
   private async createAvatar(disableConfetti = false) {
-    const genders = [GenderType.MALE, GenderType.FEMALE, GenderType.UNSET];
-    console.log(
-      "Math.floor(Math.random() * 2 + 1) :>> ",
-      Math.floor(Math.random() * 2 + 1)
-    );
+    const genders = [GenderType.UNSET, GenderType.MALE, GenderType.FEMALE];
     const randomIndex = Math.floor(Math.random() * 2 + 1);
+    console.log("randomIndex :>> ", randomIndex);
     const randomGender = genders[randomIndex];
-    console.log("randomGender :>> ", randomGender);
+    // TODO: 传入识别结果
+    // const svgRaw = await this.createOne(faceInfoArray)
+
     const svgRaw = await this.createOne(
       {
         size: this.width,
@@ -260,56 +236,6 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       this.exporting = false;
       this.borderRadius = "12px";
     });
-  }
-
-  /**
-   * 批量制作
-   */
-  async superMake() {
-    this.$emit("multiple-start");
-    setTimeout(() => {
-      this.exporting = true;
-      this.showMask = true;
-      let { ammount } = this;
-      const max = 10000;
-      ammount = ammount > max ? max : ammount < 0 ? 1 : ammount;
-      this.ammount = ammount;
-      this.progress = 0;
-
-      const zip = new JSZip();
-      this.borderRadius = "0";
-
-      this.$nextTick(async () => {
-        for (let i = 0; i < ammount; i++) {
-          this.createAvatar(true);
-          const dom: HTMLElement = document.querySelector(
-            "#avatar-preview"
-          ) as HTMLElement;
-
-          const canvas = await html2canvas(dom, {
-            logging: false,
-            scale: window.devicePixelRatio * 2,
-            width: this.width,
-            height: this.height,
-            ignoreElements: this.exportIgnoreMiddleware as any,
-          });
-
-          const dataUrl = canvas
-            .toDataURL()
-            .replace("data:image/png;base64,", "");
-          zip.file(`${i + 1}.png`, dataUrl, { base64: true });
-          this.progress = i + 1;
-        }
-        const base64 = await zip.generateAsync({ type: "base64" });
-        const a = document.createElement("a");
-        a.href = "data:application/zip;base64," + base64;
-        a.download = "avatar.zip";
-        a.click();
-        this.exporting = false;
-        this.$emit("multiple-end");
-        this.showMask = false;
-      });
-    }, 0);
   }
 
   /**

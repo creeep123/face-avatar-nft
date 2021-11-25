@@ -1,6 +1,6 @@
-import { avaiableColors } from "./../avaiable-colors";
-import { GenderType, LAYER_ID } from "./../../interface/avatar.interface";
-import { LayerItemConfig } from "./../../interface/layer.interface";
+import { avaiableColors } from './../avaiable-colors';
+import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
+import { LayerItemConfig } from './../../interface/layer.interface';
 const hairConfig: LayerItemConfig[] = [
   // {
   //   filename: "头像初稿_男发-9",
@@ -55,7 +55,7 @@ const hairConfig: LayerItemConfig[] = [
   //   weight: 10,
   // },
   {
-    filename: "头像初稿_女发-25",
+    filename: '头像初稿_女发-25',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -63,7 +63,7 @@ const hairConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: "头像初稿_女发-26",
+    filename: '头像初稿_女发-26',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -71,7 +71,7 @@ const hairConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: "头像初稿_女发-27",
+    filename: '头像初稿_女发-27',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -79,7 +79,7 @@ const hairConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: "头像初稿_女发-28",
+    filename: '头像初稿_女发-28',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -87,12 +87,15 @@ const hairConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    empty:true,
     genderType: GenderType.UNSET,
-    avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
-    colorNotSameAs: [LAYER_ID.BACKGROUND],
+    empty: true,
     weight: 10,
   },
+  // {
+  //   genderType: GenderType.MALE,
+  //   empty: true,
+  //   weight: 10,
+  // },
   // {
   //   filename: "Turban",
   //   genderType: GenderType.UNSET,

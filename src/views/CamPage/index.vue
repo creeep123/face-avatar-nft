@@ -12,7 +12,10 @@
       }"
       id="avatar-preview-outter-wrapper"
     >
-      <WebCam></WebCam>
+      <WebCam
+        v-loading="loading"
+        @setLoading='setLoading'
+      ></WebCam>
     </div>
 
     <!-- <div
@@ -77,10 +80,12 @@ import { RenderType, GenderType } from "./interface/avatar.interface";
   components: {
     ExportLoading: () => import("@/components/ExportLoading.vue"),
     WebCam: () => import("./WebCam.vue"),
+    Loading: () => import("./Loading.vue"),
   },
   mixins: [],
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
+  private loading = false;
   private width = 280;
   private height = 480;
   private exporting = false;
@@ -88,18 +93,9 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private showMask = false;
   private progress = 0;
 
-  private backgroundColor = "#fff";
-  private borderRadius = "12px";
-
-  private mask: any = null;
-  private showWechatGroupQrCard = false;
-
-  private svgRaw = "";
-
-  private exportTypes = [
-    { label: "SVG", value: "svg" },
-    { label: "PNG", value: "png" },
-  ];
+  setLoading(boo: boolean) {
+    this.loading = boo;
+  }
 
   mounted() {}
 

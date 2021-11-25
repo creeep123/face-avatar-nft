@@ -8,7 +8,7 @@ module.exports = {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'https://miaomiao-home.synology.me:25001/',
+        target: 'http://10.206.87.231:8989',
         changOrigin: true,
       },
     },

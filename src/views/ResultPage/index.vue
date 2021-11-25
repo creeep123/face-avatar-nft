@@ -42,70 +42,35 @@
               height: `${height}px`,
             }"
           />
-          <div
+          <!-- <div
             style="width: 100%;height: 100%;position: relative;z-index:2"
             v-html="svgRaw"
-          ></div>
+          ></div> -->
+          <div style="width: 100%;height: 100%;position: relative;z-index:2">
+            <img
+              style=";transform:translate(-360px,-190px) scale(0.3)"
+              :src="'data:image/jpg;base64,'+this.faceColorImg.compare_map"
+              class=""
+            >
+          </div>
+
         </div>
       </div>
     </div>
 
-    <div
-      class="btns"
-      style="margin-top: 40px;"
-    >
-      <!-- 随机按钮 -->
-      <button
-        id="refresh-btn"
-        :disabled="exporting ? 'disabled' : false"
-        @click="() => createAvatar()"
-        class="__cursor_rect"
-      >
-        <i class="ri-refresh-line"></i>
-        <span>{{ $t("random-avatar") }}</span>
-      </button>
-
-      <!-- 下载按钮 -->
-      <button
-        class="__cursor_rect"
-        id="download-btn"
-        :disabled="exporting ? 'disabled' : false"
-        @click="capture"
-      >
-        <i class="ri-file-download-line"></i>
-        <span>
-          {{ $t("download") }}
-        </span>
-      </button>
-    </div>
-
-    <div
-      class="btns"
-      style="margin-top: 10px;"
-    >
-      <input
-        v-model="ammount"
-        type="number"
-        class="sum-input __cursor_text"
-        :placeholder="$t('input-amount-placeholder')"
-        style="flex-grow: 1; margin-right: 10px;"
-      />
-      <button
-        class="__cursor_rect"
-        id="multiple-export-btn"
-        style="min-width: 120px"
-        :disabled="exporting || !ammount ? 'disabled' : false"
-        @click="superMake"
-      >
-        <i class="ri-file-zip-fill"></i>
-        <span>
-          {{ $t("pack") }}
-        </span>
-      </button>
+    <div>
+      <ul id="example-1">
+        <li
+          v-for="objKey in Object.keys(this.faceAttributeInfos)"
+          :key="objKey"
+        >
+          {{ attributesName[objKey] }}:{{faceAttributeInfos[objKey]}}
+        </li>
+      </ul>
     </div>
 
     <!-- 资源说明 -->
-    <div class="resource-info">
+    <!-- <div class="resource-info">
       <span class="__cursor_text">
         {{ $t("resource-from") }}
       </span>
@@ -128,7 +93,7 @@
           {{ $t("with-our-designer") }}
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- 联系我们 -->
     <div class="contact-us-wrapper">
@@ -154,6 +119,7 @@ import JSZip from "jszip";
 // @ts-ignore
 import confetti from "canvas-confetti";
 import AvatarCreatorMixin from "./creator.mixin";
+import attributesName from "./utils/attributesName";
 import { RenderType, GenderType } from "./interface/avatar.interface";
 
 @Component({
@@ -164,7 +130,10 @@ import { RenderType, GenderType } from "./interface/avatar.interface";
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private width = 280;
-  private height = 280;
+  private height = 140;
+  private faceColorImg = "";
+  private faceAttributeInfos: any = {};
+  private attributesName = attributesName;
   private exporting = false;
   private ammount = 100;
   private showMask = false;
@@ -184,42 +153,18 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   ];
 
   mounted() {
-    this.createAvatar();
+    this.fetchFaceInfo();
+    console.log("this.faceColorImg :>> ", this.faceColorImg);
+    console.log("this.faceAttribute :>> ", this.faceAttributeInfos);
+    attributesChosen = matchAttributesFromFaceAttributeInfos();
   }
 
-  /**
-   * 生成头像
-   */
-  private async createAvatar(disableConfetti = false) {
-    const svgRaw = await this.createOne(
-      {
-        size: this.width,
-        renderer: RenderType.SVG,
-        amount: 1,
-        gender: GenderType.UNSET,
-      },
-      disableConfetti
-        ? () => {}
-        : () => {
-            this.applyConfettiAnimation();
-          }
-    );
-
-    this.svgRaw = svgRaw;
-
-    if (!disableConfetti) {
-      // 获取背景颜色
-      const tempWrapper = document.createElement("div");
-      tempWrapper.innerHTML = svgRaw;
-      const bgGroup = tempWrapper.querySelector("#gaoxia-avatar-Background");
-      if (bgGroup) {
-        const bgRect = bgGroup.querySelector("rect");
-        if (bgRect)
-          this.backgroundColor = bgRect.getAttribute("fill") || "#fff";
-      }
-    } else {
-      this.backgroundColor = "#fff";
-    }
+  private fetchFaceInfo() {
+    const { faceColorImg, faceAttribute }: any = this.$route.params;
+    this.faceColorImg = faceColorImg;
+    this.faceAttributeInfos =
+      faceAttribute.FaceDetailInfos[0].FaceDetailAttributesInfo;
+    return this.$route.params;
   }
 
   /**
@@ -245,56 +190,6 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       this.exporting = false;
       this.borderRadius = "12px";
     });
-  }
-
-  /**
-   * 批量制作
-   */
-  async superMake() {
-    this.$emit("multiple-start");
-    setTimeout(() => {
-      this.exporting = true;
-      this.showMask = true;
-      let { ammount } = this;
-      const max = 10000;
-      ammount = ammount > max ? max : ammount < 0 ? 1 : ammount;
-      this.ammount = ammount;
-      this.progress = 0;
-
-      const zip = new JSZip();
-      this.borderRadius = "0";
-
-      this.$nextTick(async () => {
-        for (let i = 0; i < ammount; i++) {
-          this.createAvatar(true);
-          const dom: HTMLElement = document.querySelector(
-            "#avatar-preview"
-          ) as HTMLElement;
-
-          const canvas = await html2canvas(dom, {
-            logging: false,
-            scale: window.devicePixelRatio * 2,
-            width: this.width,
-            height: this.height,
-            ignoreElements: this.exportIgnoreMiddleware as any,
-          });
-
-          const dataUrl = canvas
-            .toDataURL()
-            .replace("data:image/png;base64,", "");
-          zip.file(`${i + 1}.png`, dataUrl, { base64: true });
-          this.progress = i + 1;
-        }
-        const base64 = await zip.generateAsync({ type: "base64" });
-        const a = document.createElement("a");
-        a.href = "data:application/zip;base64," + base64;
-        a.download = "avatar.zip";
-        a.click();
-        this.exporting = false;
-        this.$emit("multiple-end");
-        this.showMask = false;
-      });
-    }, 0);
   }
 
   /**

@@ -23,14 +23,13 @@ const eyeBrowsConfig: LayerItemConfig[] = [
   // },
   {
     genderType: GenderType.UNSET,
-    filename: "头像初稿_男女-短-粗-弯眉",
+    filename: '头像初稿_男女-短-粗-弯眉',
     weight: 10,
   },
   {
     genderType: GenderType.UNSET,
-    filename: "头像初稿_男女-短-细-平-眉",
+    filename: '头像初稿_男女-短-细-平-眉',
     weight: 10,
   },
-
 ];
 export default eyeBrowsConfig;
