@@ -76,8 +76,14 @@ const earRingConfig: LayerItemConfig[] = [
 
   {
     genderType: GenderType.UNSET,
-    empty: true,
+    filename: '头像初稿_男女-耳机',
     weight: 10,
+  },
+
+  {
+    genderType: GenderType.UNSET,
+    empty: true,
+    weight: 60,
   },
 ];
 export default earRingConfig;

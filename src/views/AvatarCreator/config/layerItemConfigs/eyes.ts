@@ -1,4 +1,4 @@
-import { GenderType } from './../../interface/avatar.interface';
+import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from '../../interface/layer.interface';
 const eyesConfig: LayerItemConfig[] = [
   // {
@@ -25,6 +25,7 @@ const eyesConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     filename: '头像初稿_男-闭眼',
     weight: 10,
+    removeLayers: [LAYER_ID.EYELID],
   },
   {
     genderType: GenderType.MALE,
@@ -40,6 +41,7 @@ const eyesConfig: LayerItemConfig[] = [
     genderType: GenderType.FEMALE,
     filename: '头像初稿_女-闭眼',
     weight: 10,
+    removeLayers: [LAYER_ID.EYELID],
   },
   {
     genderType: GenderType.FEMALE,

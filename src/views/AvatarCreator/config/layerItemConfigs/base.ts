@@ -10,6 +10,12 @@ const baseConfig: LayerItemConfig[] = [
   },
   {
     genderType: GenderType.UNSET,
+    filename: '头像初稿_圆脸',
+    weight: 10,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BASE],
+  },
+  {
+    genderType: GenderType.UNSET,
     filename: '头像初稿_鹅蛋脸',
     weight: 10,
     avaiableColorGroups: avaiableColors[LAYER_ID.BASE],

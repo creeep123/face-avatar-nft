@@ -167,14 +167,10 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   ];
 
   mounted() {
-    const attributesChosen =
-      matchAttributesFromFaceAttributeInfos(mockFaceInfo);
-    this.$store.commit("changeChosenAttrs", attributesChosen);
-    this.createAvatar();
-    //  mock 数据用下面
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
+    this.createAvatar();
   }
 
   /**
@@ -182,15 +178,18 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
    */
   private async createAvatar(disableConfetti = false) {
     const genders = [GenderType.UNSET, GenderType.MALE, GenderType.FEMALE];
-    const randomIndex = Math.floor(Math.random() * 2 + 1);
-    const randomGender = genders[randomIndex];
+    // const randomIndex = Math.floor(Math.random() * 2 + 1);
+    // console.log("this.$store.state :>> ", this.$store.state);
+    // const randomGender = genders[randomIndex];
+    const curGender =
+      this.$store.state.GENDER == 0 ? GenderType.MALE : GenderType.FEMALE;
 
     const svgRaw = await this.createOne(
       {
         size: this.width,
         renderer: RenderType.SVG,
         amount: 1,
-        gender: randomGender,
+        gender: curGender,
       },
       disableConfetti
         ? () => {}

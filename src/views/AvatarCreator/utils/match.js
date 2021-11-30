@@ -12,13 +12,13 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     case 0:
       attributes.Base = ['方脸'];
       break;
-    case 1:
-      attributes.Base = ['三角脸'];
-      break;
+    // case 1:
+    //   attributes.Base = ['三角脸'];
+    //   break;
     case 2:
       attributes.Base = ['鹅蛋脸'];
       break;
-    case 3:
+    case 3 || 1:
       attributes.Base = ['心形脸'];
       break;
     case 4:
@@ -99,14 +99,14 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     case 0:
       attributes.Eyes.push('小');
       break;
-    case 1:
-      attributes.Eyes.push('普通');
-      break;
-    case 2:
+    // case 1:
+    //   attributes.Eyes.push('普通');
+    //   break;
+    case 1 || 2:
       attributes.Eyes.push('大');
       break;
     default:
-      attributes.Eyes.push('普通');
+      attributes.Eyes.push('大');
   }
 
   //胡子
@@ -184,7 +184,7 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   //口罩
   switch (faceAttributeInfos.Mask.Type) {
     case true:
-      attributes.Mask = ['戴口罩'];
+      attributes.Mask = ['口罩'];
       break;
     case false:
       attributes.Mask = ['无口罩'];
@@ -196,13 +196,13 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   //嘴巴
   switch (faceAttributeInfos.Mouth.MouthOpen.Type) {
     case 0:
-      attributes.Mouth = ['不张嘴'];
+      attributes.Mouth = ['闭嘴'];
       break;
     case 1:
       attributes.Mouth = ['张嘴'];
       break;
     default:
-      attributes.Mouth = ['不张嘴'];
+      attributes.Mouth = ['闭嘴'];
   }
 
   //鼻子
@@ -217,7 +217,7 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
       attributes.Nose = ['普通'];
       break;
     case 3:
-      attributes.Nose = ['圆鼻头'];
+      attributes.Nose = ['圆鼻'];
       break;
     default:
       attributes.Nose = ['普通'];

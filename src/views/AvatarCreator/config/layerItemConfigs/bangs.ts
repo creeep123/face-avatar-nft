@@ -3,7 +3,7 @@ import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const bangsConfig: LayerItemConfig[] = [
   {
-    filename: '头像初稿_男发_刘海-9',
+    filename: '头像初稿_男发_有刘海-9',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -11,7 +11,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_男发_刘海-11',
+    filename: '头像初稿_男发_有刘海-11',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -19,7 +19,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_男发_无刘海_秃头-14',
+    filename: '头像初稿_男发_无刘海_秃头-13',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -35,7 +35,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_男发_刘海-20',
+    filename: '头像初稿_男发_有刘海-20',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -43,7 +43,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_男发_刘海-73',
+    filename: '头像初稿_男发_有刘海-73',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
@@ -75,7 +75,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_女刘海-21',
+    filename: '头像初稿_女有刘海-21',
     colorSameAs: LAYER_ID.HAIR,
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
@@ -84,7 +84,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: '头像初稿_女刘海-24',
+    filename: '头像初稿_女有刘海-24',
     colorSameAs: LAYER_ID.HAIR,
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
@@ -93,7 +93,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: '头像初稿_女刘海-76',
+    filename: '头像初稿_女有刘海-76',
     colorSameAs: LAYER_ID.HAIR,
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
@@ -147,7 +147,7 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   // {
-  //   filename: '头像初稿_女刘海-21',
+  //   filename: '头像初稿_女有刘海-21',
   //   genderType: GenderType.UNSET,
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //   colorNotSameAs: [LAYER_ID.BACKGROUND],

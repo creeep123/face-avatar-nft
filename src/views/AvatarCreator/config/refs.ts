@@ -12,11 +12,14 @@ import mouthConfig from './layerItemConfigs/mouth';
 import noseConfig from './layerItemConfigs/nose';
 import shirtConfig from './layerItemConfigs/shirt';
 import backgroundConfig from './layerItemConfigs/background';
+import backgroundAccessoryConfig from './layerItemConfigs/backgroundAccessory';
 import hairConfig from './layerItemConfigs/hair';
 import bangsConfig from './layerItemConfigs/bangs';
 import eyeBrowsConfig from './layerItemConfigs/eyeBrows';
+import eyelidConfig from './layerItemConfigs/eyelid';
 import maskConfig from './layerItemConfigs/mask';
 import headwearConfig from './layerItemConfigs/headwear';
+import handConfig from './layerItemConfigs/hand';
 
 export const layerList: Array<LayerListItem> = [
   {
@@ -49,6 +52,14 @@ export const layerList: Array<LayerListItem> = [
     description: '眉毛',
     zIndex: 200,
     layers: eyeBrowsConfig,
+  },
+
+  {
+    id: LAYER_ID.EYELID,
+    dir: 'Eyelid',
+    description: '眼皮',
+    zIndex: 200,
+    layers: eyelidConfig,
   },
 
   {
@@ -132,11 +143,27 @@ export const layerList: Array<LayerListItem> = [
   },
 
   {
+    id: LAYER_ID.HAND,
+    dir: 'Hand',
+    description: '手部',
+    zIndex: 201,
+    layers: handConfig,
+  },
+
+  {
     id: LAYER_ID.BACKGROUND,
     dir: 'Background',
     description: '背景图层',
     zIndex: 0,
     layers: backgroundConfig,
+  },
+
+  {
+    id: LAYER_ID.BACKGROUND_ACCESSORY,
+    dir: 'Background Accessory',
+    description: '背景配饰',
+    zIndex: 1,
+    layers: backgroundAccessoryConfig,
   },
 
   {

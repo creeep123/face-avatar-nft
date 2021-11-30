@@ -11,6 +11,7 @@
         justifyContent: 'center',
       }"
       id="avatar-preview-outter-wrapper"
+      @click="jumpToAvatarPage"
     >
       <div :style="{
           overflow: 'hidden',
@@ -46,10 +47,18 @@
             style="width: 100%;height: 100%;position: relative;z-index:2"
             v-html="svgRaw"
           ></div> -->
-          <div style="width: 100%;height: 100%;position: relative;z-index:2">
+          <!-- <div style="width: 100%;height: 100%;position: relative;z-index:2">
             <img
               style=";transform:translate(-360px,-190px) scale(0.3)"
-              :src="'data:image/jpg;base64,'+this.faceColorImg.compare_map"
+              :src="'data:image/jpg;base64,'+$store.PIXEL64"
+              class=""
+            >
+          </div> -->
+
+          <div style="width: 100%;height: 100%;position: relative;z-index:2">
+            <img
+              style="max-width:280px"
+              :src="'data:image/jpg;base64,'+this.$store.state.PIXEL64"
               class=""
             >
           </div>
@@ -60,19 +69,21 @@
 
     <div>
       <ul id="example-1">
+        <li>年龄：{{this.$store.state.AGE}}</li>
+        <li>魅力值：{{this.$store.state.GENDER}}</li>
+        <li>性别：{{this.$store.state.BEAUTY}}</li>
         <li
-          v-for="objKey in Object.keys(this.attributesChosen)"
+          v-for="objKey in Object.keys(this.$store.state.chosenAttr)"
           :key="objKey"
         >
-          <!-- {{ attributesName[objKey] }}:{{attributesChosen[objKey]}} -->
-          {{ objKey }}:{{attributesChosen[objKey]}}
+          {{ objKey }}:{{$store.state.chosenAttr[objKey]}}
         </li>
       </ul>
     </div>
 
-    <div>
-      <h1>{{chosenAttr}}</h1>
-    </div>
+    <!-- <div>
+      <h1>{{this.$store.state.chosenAttr}}</h1>
+    </div> -->
 
     <!-- 资源说明 -->
     <!-- <div class="resource-info">
@@ -101,7 +112,7 @@
     </div> -->
 
     <!-- 联系我们 -->
-    <div class="contact-us-wrapper">
+    <!-- <div class="contact-us-wrapper">
       <div
         class="contact-us __cursor_rect"
         @click="toggleWechatGroupQrCard(true)"
@@ -109,7 +120,7 @@
         <i class="ri-wechat-2-fill"></i>
         <span>{{ $t("contcat-us") }}</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -141,7 +152,7 @@ import { mapState } from "vuex";
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private width = 280;
-  private height = 140;
+  private height = 280;
   private faceColorImg = "";
   private faceAttributeInfos: any = {};
   private attributesChosen: any = {};
@@ -165,21 +176,10 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   ];
 
   mounted() {
-    // 正式用这段
-    // this.fetchFaceInfo();
-    // const attributesChosen = matchAttributesFromFaceAttributeInfos(
-    //   this.faceAttributeInfos
-    // );
-
-    //  mock 数据用下面
-    this.faceAttributeInfos = mockFaceInfo;
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
-    const attributesChosen =
-      matchAttributesFromFaceAttributeInfos(mockFaceInfo);
-    this.attributesChosen = attributesChosen;
-    this.$store.commit("changeChosenAttrs", attributesChosen);
+    this.attributesChosen = this.$store.state.chosenAttr;
   }
 
   private fetchFaceInfo() {
@@ -188,6 +188,12 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     this.faceAttributeInfos =
       faceAttribute.FaceDetailInfos[0].FaceDetailAttributesInfo;
     return this.$route.params;
+  }
+
+  private jumpToAvatarPage() {
+    this.$router.push({
+      name: "AvatarCreator",
+    });
   }
 
   /**

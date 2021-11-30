@@ -39,7 +39,9 @@ export default class AvatarCreatorMixin extends Vue {
             );
           }),
           'weight',
-          chosenAttr[l.dir]
+          chosenAttr[l.dir],
+          // 调试用
+          l.dir
         ),
       }))
       // 去除不需要显示的

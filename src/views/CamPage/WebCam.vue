@@ -87,6 +87,7 @@
 
 <script>
 import JSZip from 'jszip';
+import matchAttributesFromFaceAttributeInfos from './utils/match'
 export default {
   name: "webcam",
   inject: ['faceInfo'],
@@ -156,23 +157,24 @@ export default {
         const context = this.$refs.canvas.getContext('2d');
         context.drawImage(this.$refs.camera, 0, 0, 450, 337.5);
         const image = this.getCurCanvasImg()
+        //人脸信息存入 store
         this.$store.commit('showLoading')
         const res1 = await this.getFaceInfo(image)
-        // const res2 = await this.getFaceColorImg(image)
+        const faceDetailInfo = res1.data.FaceDetailInfos[0].FaceDetailAttributesInfo
+        const attributesChosen =
+          matchAttributesFromFaceAttributeInfos(faceDetailInfo);
+        this.$store.commit('changeChosenAttrs', attributesChosen)
+        this.$store.commit('changeAge', faceDetailInfo.Age)
+        this.$store.commit('changeBeauty', faceDetailInfo.Beauty)
+        this.$store.commit('changeGender', faceDetailInfo.Gender.Type)
+        this.$store.commit('changePixel64', res1.data.FaceDetailInfos[0].pixel_b64)
         this.$store.commit('hideLoading')
-        const faceAttribute = res1.face_attr
-        // const faceColorImg = res2.data.content
-        const faceColorImg = ""
         setTimeout(() => {
           this.isShotPhoto = false;
         }, FLASH_TIMEOUT);
-        //人脸属性结果发送到result页面
+        //跳转到result页面
         this.$router.push({
           name: 'ResultPage',
-          params: {
-            faceAttribute,
-            faceColorImg
-          }
         })
       }
 
@@ -188,10 +190,6 @@ export default {
     getFaceInfo (image) {
       //获取照片人脸信息
       return this.$api.getFaceProperties({ image })
-    },
-
-    getFaceColorImg (image) {
-      return this.$api.getFaceColorImage({ image })
     },
 
     downloadImage () {
