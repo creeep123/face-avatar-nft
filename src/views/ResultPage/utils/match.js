@@ -36,13 +36,13 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   //耳朵
   switch (1) {
     default:
-      attributes.Ear = ['耳朵'];
+      attributes.Ear = [''];
   }
 
   //耳饰
   switch (1) {
     default:
-      attributes.EarRing = ['耳饰'];
+      attributes.EarRing = [''];
   }
 
   //眉毛
@@ -101,6 +101,128 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     default:
       attributes.Eyes.push('普通');
   }
+
+  //胡子
+  switch (faceAttributeInfos.Moustache.Type) {
+    case 0:
+      attributes.FacialHair = ['无胡子'];
+      break;
+    case 1:
+      attributes.FacialHair = ['有胡子'];
+      break;
+    default:
+      attributes.FacialHair = ['无胡子'];
+  }
+
+  //眼镜
+  switch (faceAttributeInfos.Eye.Glass.Type) {
+    case 0:
+      attributes.Glasses = ['无眼镜'];
+      break;
+    case 1:
+      attributes.Glasses = ['普通眼镜'];
+      break;
+    case 2:
+      attributes.Glasses = ['墨镜'];
+      break;
+    default:
+      attributes.Glasses = ['无胡子'];
+  }
+
+  //头发
+  switch (faceAttributeInfos.Hair.Length.Type) {
+    case 0:
+      attributes.Hair = ['光头'];
+      break;
+    case 1:
+      attributes.Hair = ['短发'];
+      break;
+    case 2:
+      attributes.Hair = ['中发'];
+      break;
+    case 3:
+      attributes.Hair = ['长发'];
+      break;
+    case 4:
+      attributes.Hair = ['绑发'];
+      break;
+    default:
+      attributes.Hair = ['中发'];
+  }
+
+  //帽子
+  switch (faceAttributeInfos.Hat.Style) {
+    case 0:
+      attributes.Hat = ['无帽子'];
+      break;
+    case 1 || 2 || 3:
+      attributes.Hat = ['戴帽子'];
+      break;
+    // case 1:
+    //   attributes.Hat = ['戴帽子'];
+    //   break;
+    // case 2:
+    //   attributes.Hat = ['墨镜'];
+    //   break;
+    default:
+      attributes.Hat = ['无帽子'];
+  }
+
+  //头饰
+  switch (1) {
+    default:
+      attributes.Headwear = [''];
+  }
+
+  //口罩
+  switch (faceAttributeInfos.Mask.Type) {
+    case true:
+      attributes.Mask = ['戴口罩'];
+      break;
+    case false:
+      attributes.Mask = ['无口罩'];
+      break;
+    default:
+      attributes.Mask = ['无口罩'];
+  }
+
+  //嘴巴
+  switch (faceAttributeInfos.Mouth.MouthOpen.Type) {
+    case 0:
+      attributes.Mouth = ['不张嘴'];
+      break;
+    case 1:
+      attributes.Mouth = ['张嘴'];
+      break;
+    default:
+      attributes.Mouth = ['不张嘴'];
+  }
+
+  //鼻子
+  switch (faceAttributeInfos.Nose.Type) {
+    case 0:
+      attributes.Nose = ['朝天鼻'];
+      break;
+    case 1:
+      attributes.Nose = ['鹰钩鼻'];
+      break;
+    case 2:
+      attributes.Nose = ['普通'];
+      break;
+    case 3:
+      attributes.Nose = ['圆鼻头'];
+      break;
+    default:
+      attributes.Nose = ['普通'];
+  }
+
+  //衣服
+  switch (1) {
+    default:
+      attributes.Shirt = [''];
+  }
+
+  return attributes;
 };
 
 export default matchAttributesFromFaceAttributeInfos;

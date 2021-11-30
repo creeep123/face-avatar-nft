@@ -1,0 +1,91 @@
+<svg
+  id="图层_2"
+  data-name="图层 2"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 1000 1000"
+>
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+      .cls-3 {
+        fill: #ffc545;
+      }
+      .cls-4 {
+        opacity: 0.2;
+      }
+      .cls-5 {
+        fill: #fff;
+      }
+      .cls-6 {
+        clip-path: url(#clip-path-2);
+      }
+      .cls-7 {
+        fill: #d0d7ed;
+      }
+      .cls-8 {
+        fill: #ffeec0;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" x="-1020" width="1000" height="1000" />
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect class="cls-1" width="1000" height="1000" />
+    </clipPath>
+  </defs>
+  <g class="cls-2">
+    <circle class="cls-3" cx="-20.5" cy="500.5" r="103.5" />
+    <g class="cls-4">
+      <circle class="cls-5" cx="-20.5" cy="500.5" r="103.5" />
+    </g>
+  </g>
+  <g class="cls-6">
+    <rect class="cls-7" width="1000" height="1000" />
+    <rect
+      class="cls-8"
+      x="68"
+      y="-329"
+      width="161"
+      height="899"
+      transform="translate(119.24 -68.49) rotate(42.14)"
+    />
+    <rect
+      class="cls-8"
+      x="267.25"
+      y="-394.48"
+      width="161"
+      height="1416.92"
+      transform="translate(300.55 -152.16) rotate(42.14)"
+    />
+    <rect
+      class="cls-8"
+      x="424.75"
+      y="-161.98"
+      width="161"
+      height="1416.92"
+      transform="translate(497.26 -197.73) rotate(42.14)"
+    />
+    <rect
+      class="cls-8"
+      x="672.25"
+      y="10.52"
+      width="161"
+      height="1416.92"
+      transform="translate(676.98 -319.2) rotate(42.14)"
+    />
+    <rect
+      class="cls-8"
+      x="876.75"
+      y="215.02"
+      width="161"
+      height="1416.92"
+      transform="translate(867.05 -403.55) rotate(42.14)"
+    />
+  </g>
+</svg>

@@ -15,6 +15,18 @@ const facialHairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.FACIAL_HAIR],
   },
   {
+    genderType: GenderType.MALE,
+    filename: '头像初稿_胡子',
+    weight: 10,
+    avaiableColorGroups: avaiableColors[LAYER_ID.FACIAL_HAIR],
+  },
+  {
+    genderType: GenderType.MALE,
+    filename: '头像初稿_胡子2',
+    weight: 10,
+    avaiableColorGroups: avaiableColors[LAYER_ID.FACIAL_HAIR],
+  },
+  {
     genderType: GenderType.UNSET,
     empty: true,
     weight: 100,

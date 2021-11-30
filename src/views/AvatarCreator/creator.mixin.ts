@@ -5,6 +5,7 @@ import { layerList } from './config/refs';
 import { CreateAvatarDto } from './dto/create-avatar.dto';
 import { GenderType, RenderType } from './interface/avatar.interface';
 import { getRandomValueInArr } from './utils/get-random-in-arr';
+import { getMatchedValueInArr } from './utils/get-match-attr-in-arr';
 
 @Component
 export default class AvatarCreatorMixin extends Vue {
@@ -14,15 +15,12 @@ export default class AvatarCreatorMixin extends Vue {
    */
   async createOne(
     config: CreateAvatarDto,
-    congratulateAction?: () => any
+    congratulateAction?: () => any,
+    chosenAttr?: any
   ): Promise<string> {
     const { size, gender } = config;
-    // console.log('size :>> ', size);
-    // console.log('gender :>> ', gender);
-    console.log('layerList :>> ', JSON.parse(JSON.stringify(layerList[7])));
+    console.log('chosenAttr :>> ', chosenAttr);
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
-    // console.log('layerList :>> ', layerList);
-    console.log('ls before sort:>> ', ls[7]);
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
     // 1. 获取随机的 layer 组合
     console.log('ls :>> ', ls[9]);
@@ -30,7 +28,7 @@ export default class AvatarCreatorMixin extends Vue {
       .map((l) => ({
         id: l.id,
         dir: l.dir,
-        layer: getRandomValueInArr(
+        layer: getMatchedValueInArr(
           // 性别过滤
           l.layers.filter(({ genderType }: any) => {
             // console.log('genderType :>> ', genderType);
@@ -39,7 +37,9 @@ export default class AvatarCreatorMixin extends Vue {
               genderType == gender ||
               genderType == GenderType.UNSET
             );
-          })
+          }),
+          'weight',
+          chosenAttr[l.dir]
         ),
       }))
       // 去除不需要显示的
@@ -87,7 +87,7 @@ export default class AvatarCreatorMixin extends Vue {
       const target = randomLayerList.find((e) => e.id === layer.colorSameAs);
       layer.color = target && target.layer.color;
     });
-
+    console.log('rdlist :>> ', JSON.parse(JSON.stringify(randomLayerList)));
     // 删除冗余的信息
     randomLayerList.forEach(({ layer }) => {
       delete layer.avaiableColorGroups;
@@ -97,11 +97,11 @@ export default class AvatarCreatorMixin extends Vue {
       delete layer.colorNotSameAs;
       delete layer.colorSameAs;
     });
+    console.log('rdlistAft :>> ', JSON.parse(JSON.stringify(randomLayerList)));
     let congratulate = false;
     // 4. 绘制 svg
     const groups = [];
     for (const { layer, dir } of randomLayerList) {
-      // console.log('layer :>> ', layer);
       if (layer.congratulate) congratulate = true;
       let svgRaw = (
         await require(`!!raw-loader!./resource/${dir}/${layer.filename}.svg`)
@@ -114,11 +114,11 @@ export default class AvatarCreatorMixin extends Vue {
         const str = matchRes[0];
         const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, '$1'));
         const colors = layer.color;
-        // const color = index?color[index]:
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
       }
       // console.log('matchRes :>> ', matchRes);
+
       // 4.2 取出svg 内的内容， 放入 <g></g>， 再放入 最终的svg
       // if(dir=="Base"){
       //   console.log('svgRaw :>> ', svgRaw);

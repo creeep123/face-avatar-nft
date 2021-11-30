@@ -1,6 +1,6 @@
 export function getRandomValueInArr(
   arr: Array<Record<string, any>>,
-  weightKey = 'weight',
+  weightKey = 'weight'
 ) {
   const tmpArr: Array<number> = [];
   arr.forEach((el, index) => {

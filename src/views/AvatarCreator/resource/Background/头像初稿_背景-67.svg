@@ -7,23 +7,20 @@
 >
   <defs>
     <style>
-      .cls-1,
-      .cls-3 {
+      .cls-1 {
         fill: none;
       }
       .cls-2 {
         fill: #f6ebfc;
       }
       .cls-3 {
-        stroke: #c1c1c1;
-        stroke-miterlimit: 10;
-        stroke-width: 20px;
+        fill: #ffeef1;
       }
       .cls-4 {
         clip-path: url(#clip-path);
       }
       .cls-5 {
-        fill: #f8ffff;
+        fill: #ffeec0;
       }
     </style>
     <clipPath id="clip-path">

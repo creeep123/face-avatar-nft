@@ -129,13 +129,19 @@ import JSZip from "jszip";
 // @ts-ignore
 import confetti from "canvas-confetti";
 import AvatarCreatorMixin from "./creator.mixin";
+import mockFaceInfo from "./mockdata";
+import matchAttributesFromFaceAttributeInfos from "./utils/match";
 import { RenderType, GenderType } from "./interface/avatar.interface";
+import { mapState } from "vuex";
 
 @Component({
   components: {
     ExportLoading: () => import("@/components/ExportLoading.vue"),
   },
   mixins: [],
+  computed: {
+    ...mapState(["chosenAttr"]),
+  },
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private width = 410;
@@ -161,14 +167,14 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   ];
 
   mounted() {
+    const attributesChosen =
+      matchAttributesFromFaceAttributeInfos(mockFaceInfo);
+    this.$store.commit("changeChosenAttrs", attributesChosen);
     this.createAvatar();
-  }
-
-  /**
-   * 从 router 获取人脸信息
-   */
-  private fetchFaceInfo() {
-    return this.$route.params.faceAttribute;
+    //  mock 数据用下面
+    // attributesChosen 按照不同 layer 分为了 15 个 layer
+    // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
+    // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
   }
 
   /**
@@ -177,10 +183,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private async createAvatar(disableConfetti = false) {
     const genders = [GenderType.UNSET, GenderType.MALE, GenderType.FEMALE];
     const randomIndex = Math.floor(Math.random() * 2 + 1);
-    console.log("randomIndex :>> ", randomIndex);
     const randomGender = genders[randomIndex];
-    // TODO: 传入识别结果
-    // const svgRaw = await this.createOne(faceInfoArray)
 
     const svgRaw = await this.createOne(
       {
@@ -193,7 +196,8 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
         ? () => {}
         : () => {
             this.applyConfettiAnimation();
-          }
+          },
+      this.$store.state.chosenAttr
     );
 
     this.svgRaw = svgRaw;

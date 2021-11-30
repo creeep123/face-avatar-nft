@@ -9,18 +9,6 @@ const backgroundConfig: LayerItemConfig[] = [
   //   weight: 10,
   // },
   {
-    filename: '头像初稿_背景-64',
-    genderType: GenderType.UNSET,
-    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
-    weight: 10,
-  },
-  {
-    filename: '头像初稿_背景-65',
-    genderType: GenderType.UNSET,
-    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
-    weight: 10,
-  },
-  {
     filename: '头像初稿_背景-66',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
@@ -33,11 +21,53 @@ const backgroundConfig: LayerItemConfig[] = [
     weight: 10,
   },
   {
-    filename: '头像初稿_背景-68',
+    filename: '头像初稿_背景黑客帝国',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
     weight: 10,
-  }
+  },
+  {
+    filename: '头像初稿_纯色背景',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景1',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景2',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景4',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景5',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
+  {
+    filename: '头像初稿_图案背景6',
+    genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
+    weight: 10,
+  },
 ];
 
 export default backgroundConfig;

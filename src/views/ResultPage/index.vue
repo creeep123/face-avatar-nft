@@ -61,12 +61,17 @@
     <div>
       <ul id="example-1">
         <li
-          v-for="objKey in Object.keys(this.faceAttributeInfos)"
+          v-for="objKey in Object.keys(this.attributesChosen)"
           :key="objKey"
         >
-          {{ attributesName[objKey] }}:{{faceAttributeInfos[objKey]}}
+          <!-- {{ attributesName[objKey] }}:{{attributesChosen[objKey]}} -->
+          {{ objKey }}:{{attributesChosen[objKey]}}
         </li>
       </ul>
+    </div>
+
+    <div>
+      <h1>{{chosenAttr}}</h1>
     </div>
 
     <!-- 资源说明 -->
@@ -118,21 +123,28 @@ import JSZip from "jszip";
 
 // @ts-ignore
 import confetti from "canvas-confetti";
+import mockFaceInfo from "./mockdata";
 import AvatarCreatorMixin from "./creator.mixin";
 import attributesName from "./utils/attributesName";
+import matchAttributesFromFaceAttributeInfos from "./utils/match";
 import { RenderType, GenderType } from "./interface/avatar.interface";
+import { mapState } from "vuex";
 
 @Component({
   components: {
     ExportLoading: () => import("@/components/ExportLoading.vue"),
   },
   mixins: [],
+  computed: {
+    ...mapState(["chosenAttr"]),
+  },
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private width = 280;
   private height = 140;
   private faceColorImg = "";
   private faceAttributeInfos: any = {};
+  private attributesChosen: any = {};
   private attributesName = attributesName;
   private exporting = false;
   private ammount = 100;
@@ -153,10 +165,21 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   ];
 
   mounted() {
-    this.fetchFaceInfo();
-    console.log("this.faceColorImg :>> ", this.faceColorImg);
-    console.log("this.faceAttribute :>> ", this.faceAttributeInfos);
-    attributesChosen = matchAttributesFromFaceAttributeInfos();
+    // 正式用这段
+    // this.fetchFaceInfo();
+    // const attributesChosen = matchAttributesFromFaceAttributeInfos(
+    //   this.faceAttributeInfos
+    // );
+
+    //  mock 数据用下面
+    this.faceAttributeInfos = mockFaceInfo;
+    // attributesChosen 按照不同 layer 分为了 15 个 layer
+    // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
+    // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
+    const attributesChosen =
+      matchAttributesFromFaceAttributeInfos(mockFaceInfo);
+    this.attributesChosen = attributesChosen;
+    this.$store.commit("changeChosenAttrs", attributesChosen);
   }
 
   private fetchFaceInfo() {
