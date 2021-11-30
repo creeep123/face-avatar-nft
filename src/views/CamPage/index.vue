@@ -31,32 +31,6 @@
       </button>
     </div> -->
 
-    <!-- 资源说明 -->
-    <!-- <div class="resource-info">
-      <span class="__cursor_text">
-        {{ $t("resource-from") }}
-      </span>
-
-      <div class="sources">
-        <a
-          class="__cursor_rect"
-          href="https://www.figma.com/community/file/829741575478342595/Avatar-Illustration-System"
-          target="_blank"
-        >
-          {{ $t("figma-community") }}
-        </a>
-
-        <span>+</span>
-        <a
-          class="__cursor_rect"
-          href="https://www.gaoxiazhitu.com/about"
-          target="_blank"
-        >
-          {{ $t("with-our-designer") }}
-        </a>
-      </div>
-    </div> -->
-
     <div class="contact-us-wrapper">
       <h1>拍照页面</h1>
     </div>
@@ -67,14 +41,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import { Mixins } from "vue-property-decorator";
-import html2canvas from "html2canvas";
-
-import JSZip from "jszip";
-
-// @ts-ignore
-import confetti from "canvas-confetti";
 import AvatarCreatorMixin from "./creator.mixin";
-import { RenderType, GenderType } from "./interface/avatar.interface";
 
 @Component({
   components: {

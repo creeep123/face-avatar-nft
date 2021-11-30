@@ -24,7 +24,7 @@ const backgroundConfig: LayerItemConfig[] = [
     filename: '头像初稿_背景黑客帝国',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
-    weight: 10,
+    weight: 2,
   },
   {
     filename: '头像初稿_纯色背景',

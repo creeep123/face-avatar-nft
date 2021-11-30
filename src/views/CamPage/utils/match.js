@@ -122,18 +122,32 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   }
 
   //眼镜
-  switch (faceAttributeInfos.Eye.Glass.Type) {
-    case 0:
+  // switch (faceAttributeInfos.Eye.Glass.Type) {
+  //   case 0:
+  //     attributes.Glasses = ['无眼镜'];
+  //     break;
+  //   case 1:
+  //     attributes.Glasses = ['普通眼镜'];
+  //     break;
+  //   case 2:
+  //     attributes.Glasses = ['墨镜'];
+  //     break;
+  //   default:
+  //     attributes.Glasses = ['无胡子'];
+  // }
+
+  switch (faceAttributeInfos.my_glass_type) {
+    case 'no_glass':
       attributes.Glasses = ['无眼镜'];
       break;
-    case 1:
-      attributes.Glasses = ['普通眼镜'];
+    case 'round':
+      attributes.Glasses = ['圆眼镜'];
       break;
-    case 2:
-      attributes.Glasses = ['墨镜'];
+    case 'square':
+      attributes.Glasses = ['方眼镜'];
       break;
     default:
-      attributes.Glasses = ['无胡子'];
+      attributes.Glasses = ['无眼镜'];
   }
 
   //头发
@@ -183,10 +197,10 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
 
   //口罩
   switch (faceAttributeInfos.Mask.Type) {
-    case true:
+    case 1 || 3 || 4:
       attributes.Mask = ['口罩'];
       break;
-    case false:
+    case 0 || 2:
       attributes.Mask = ['无口罩'];
       break;
     default:

@@ -9,17 +9,12 @@ const glassesConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 60,
+    weight: 1,
   },
   {
     genderType: GenderType.UNSET,
-    filename: '头像初稿_墨镜',
-    weight: 10,
-  },
-  {
-    genderType: GenderType.UNSET,
-    filename: '头像初稿_眼镜',
-    weight: 10,
+    filename: '头像初稿_墨镜_方眼镜',
+    weight: 2,
   },
   {
     genderType: GenderType.UNSET,
