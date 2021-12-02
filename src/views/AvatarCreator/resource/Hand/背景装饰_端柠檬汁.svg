@@ -50,7 +50,7 @@
         stroke-width: 2px;
       }
       .cls-6 {
-        fill: #ffedd1;
+        fill: {{color[0]}};
       }
       .cls-7 {
         fill: none;

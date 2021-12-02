@@ -29,7 +29,7 @@
         stroke-linecap: round;
       }
       .cls-4 {
-        fill: #fdebcf;
+        fill: {{color[0]}};
       }
       .cls-5 {
         fill: none;

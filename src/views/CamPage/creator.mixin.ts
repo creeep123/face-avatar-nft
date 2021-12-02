@@ -1,10 +1,10 @@
-import { LayerItemConfig, LayerListItem } from "./interface/layer.interface";
-import Vue from "vue";
-import Component from "vue-class-component";
-import { layerList } from "./config/refs";
-import { CreateAvatarDto } from "./dto/create-avatar.dto";
-import { GenderType, RenderType } from "./interface/avatar.interface";
-import { getRandomValueInArr } from "./utils/get-random-in-arr";
+import { LayerItemConfig, LayerListItem } from './interface/layer.interface';
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { layerList } from './config/refs';
+import { CreateAvatarDto } from './dto/create-avatar.dto';
+import { GenderType, RenderType } from './interface/avatar.interface';
+import { getRandomValueInArr } from './utils/get-random-in-arr';
 
 @Component
 export default class AvatarCreatorMixin extends Vue {
@@ -51,7 +51,6 @@ export default class AvatarCreatorMixin extends Vue {
       if (!layer.avaiableColorGroups || !layer.avaiableColorGroups.length)
         return;
       layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
-      // console.log('object :>> ', layer.color);
     });
     // 3.1 检查颜色的冲突
     randomLayerList.forEach(({ layer }) => {
@@ -102,7 +101,7 @@ export default class AvatarCreatorMixin extends Vue {
       let matchRes = svgRaw.match(matchColorReg);
       while (matchRes) {
         const str = matchRes[0];
-        const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, "$1"));
+        const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, '$1'));
         const colors = layer.color;
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
@@ -111,17 +110,18 @@ export default class AvatarCreatorMixin extends Vue {
       // 4.2 取出svg 内的内容， 放入 <g></g>， 再放入 最终的svg
       groups.push(
         `\n<g id="gaoxia-avatar-${dir}">\n
-          ${svgRaw.replace(/<svg.*(?=>)>/, "").replace("</svg>", "")}
+          ${svgRaw.replace(/<svg.*(?=>)>/, '').replace('</svg>', '')}
         \n</g>\n`
       );
     }
 
     if (congratulate) congratulateAction && congratulateAction();
-    const svg = `<svg width="${size}" height="${size}" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      ${groups.join("\n\n")}
+    const svg =
+      `<svg width="${size}" height="${size}" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      ${groups.join('\n\n')}
     </svg>`
-      .trim()
-      .replace(/(\n|\t)/g, "");
+        .trim()
+        .replace(/(\n|\t)/g, '');
     return svg;
   }
 }

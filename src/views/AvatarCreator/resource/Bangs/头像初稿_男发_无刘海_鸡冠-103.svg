@@ -7,7 +7,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #b5aca1;
+        fill: {{color[0]}};
       }
       .cls-1,
       .cls-2 {

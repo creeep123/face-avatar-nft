@@ -146,7 +146,7 @@ export const layerList: Array<LayerListItem> = [
     id: LAYER_ID.HAND,
     dir: 'Hand',
     description: '手部',
-    zIndex: 201,
+    zIndex: 503,
     layers: handConfig,
   },
 

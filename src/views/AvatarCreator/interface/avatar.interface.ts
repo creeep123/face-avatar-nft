@@ -13,6 +13,13 @@ export enum GenderType {
   FEMALE = '2',
 }
 
+export enum SkinType {
+  YELLOW = 0,
+  BROWN = 1,
+  BLACK = 2,
+  WHITE = 3,
+}
+
 export enum LAYER_ID {
   BASE = 'base',
   BANGS = 'bangs',

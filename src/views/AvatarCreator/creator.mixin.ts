@@ -6,6 +6,8 @@ import { CreateAvatarDto } from './dto/create-avatar.dto';
 import { GenderType, RenderType } from './interface/avatar.interface';
 import { getRandomValueInArr } from './utils/get-random-in-arr';
 import { getMatchedValueInArr } from './utils/get-match-attr-in-arr';
+import getMatchedColorInArr from './utils/get-match-color-in-arr';
+import store from '@/store';
 
 @Component
 export default class AvatarCreatorMixin extends Vue {
@@ -18,12 +20,10 @@ export default class AvatarCreatorMixin extends Vue {
     congratulateAction?: () => any,
     chosenAttr?: any
   ): Promise<string> {
-    const { size, gender } = config;
-    console.log('chosenAttr :>> ', chosenAttr);
+    const { size, gender, skin } = config;
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
     // 1. 获取随机的 layer 组合
-    console.log('ls :>> ', ls[9]);
     let randomLayerList = ls
       .map((l) => ({
         id: l.id,
@@ -62,7 +62,14 @@ export default class AvatarCreatorMixin extends Vue {
     randomLayerList.forEach(({ id, dir, layer }) => {
       if (!layer.avaiableColorGroups || !layer.avaiableColorGroups.length)
         return;
-      layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
+      if (dir == 'Base') {
+        layer.color = getMatchedColorInArr(
+          layer.avaiableColorGroups,
+          skin
+        ).value;
+      } else {
+        layer.color = getRandomValueInArr(layer.avaiableColorGroups).value;
+      }
     });
     // 3.1 检查颜色的冲突
     randomLayerList.forEach(({ layer }) => {
@@ -115,7 +122,9 @@ export default class AvatarCreatorMixin extends Vue {
       while (matchRes) {
         const str = matchRes[0];
         const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, '$1'));
-        const colors = layer.color;
+        console.log('layer :>> ', layer);
+        const colors =
+          typeof layer.color == 'undefined' ? ['#BCA07B'] : layer.color;
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);
         matchRes = svgRaw.match(matchColorReg);
       }

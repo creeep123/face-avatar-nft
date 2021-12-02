@@ -33,7 +33,7 @@
         fill: #c56607;
       }
       .cls-6 {
-        fill: #f2cfa9;
+        fill: {{color[0]}};
       }
       .cls-7 {
         fill: none;

@@ -18,6 +18,7 @@
       }
       .cls-1,
       .cls-2 {
+        stroke: #000;
         stroke-linecap: round;
       }
       .cls-2 {

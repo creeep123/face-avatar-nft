@@ -129,8 +129,6 @@ import JSZip from "jszip";
 // @ts-ignore
 import confetti from "canvas-confetti";
 import AvatarCreatorMixin from "./creator.mixin";
-import mockFaceInfo from "./mockdata";
-import matchAttributesFromFaceAttributeInfos from "./utils/match";
 import { RenderType, GenderType } from "./interface/avatar.interface";
 import { mapState } from "vuex";
 
@@ -190,6 +188,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
         renderer: RenderType.SVG,
         amount: 1,
         gender: curGender,
+        skin: this.$store.state.SKIN,
       },
       disableConfetti
         ? () => {}

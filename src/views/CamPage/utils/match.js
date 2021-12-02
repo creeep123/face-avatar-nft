@@ -179,12 +179,6 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     case 1 || 2 || 3:
       attributes.Hat = ['戴帽子'];
       break;
-    // case 1:
-    //   attributes.Hat = ['戴帽子'];
-    //   break;
-    // case 2:
-    //   attributes.Hat = ['墨镜'];
-    //   break;
     default:
       attributes.Hat = ['无帽子'];
   }

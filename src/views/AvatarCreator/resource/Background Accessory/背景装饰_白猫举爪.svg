@@ -19,21 +19,26 @@
       .cls-1,
       .cls-2,
       .cls-3 {
+        stroke: #000;
         stroke-linecap: round;
       }
       .cls-1,
       .cls-2,
       .cls-4 {
+        stroke: #000;
         stroke-miterlimit: 10;
       }
       .cls-2,
       .cls-3 {
+        stroke: #000;
         fill: none;
       }
       .cls-3 {
+        stroke: rgb(29, 28, 28);
         stroke-linejoin: round;
       }
       .cls-4 {
+        stroke: #000;
         fill: #f9ccd3;
       }
     </style>

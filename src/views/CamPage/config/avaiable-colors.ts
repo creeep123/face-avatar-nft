@@ -38,12 +38,12 @@ export const avaiableColors: Record<LAYER_ID, ColorGroup[]> = {
     { weight: 1, value: ['#6BD9E9', '#D2EFF3'] },
     { weight: 1, value: ['#9287FF', '#E0DDFF'] },
 
-    { weight: 1, value: ["#E97C17", "#d4975e"] },
-    { weight: 1, value: ["#B4B0CD", "#e4e2f1"] },
-    { weight: 1, value: ["#878787", "#b6b6b6"] },
-    { weight: 1, value: ["#CA475A", "#d86072"] },
-    { weight: 1, value: ["#0C4F2F", "#3d8160"] },
-    { weight: 1, value: ["#354161", "#579b7a"] },
+    { weight: 1, value: ['#E97C17', '#d4975e'] },
+    { weight: 1, value: ['#B4B0CD', '#e4e2f1'] },
+    { weight: 1, value: ['#878787', '#b6b6b6'] },
+    { weight: 1, value: ['#CA475A', '#d86072'] },
+    { weight: 1, value: ['#0C4F2F', '#3d8160'] },
+    { weight: 1, value: ['#354161', '#579b7a'] },
   ],
 
   // 胡子可用色
@@ -67,6 +67,7 @@ export const avaiableColors: Record<LAYER_ID, ColorGroup[]> = {
 
   [LAYER_ID.EAR]: [],
   [LAYER_ID.EAR_RING]: [],
+  [LAYER_ID.EYELID]: [],
   [LAYER_ID.EYES]: [],
   [LAYER_ID.EYE_BROWS]: [],
   [LAYER_ID.GLASSES]: [],

@@ -7,6 +7,7 @@
   <defs>
     <style>
       .cls-1 {
+        stroke: #000;
         fill: #ffedb9;
       }
       .cls-1,
@@ -20,6 +21,7 @@
       .cls-2,
       .cls-3,
       .cls-4 {
+        stroke: #000;
         stroke-linecap: round;
       }
       .cls-1,
@@ -27,6 +29,7 @@
       .cls-4,
       .cls-5,
       .cls-7 {
+        stroke: #000;
         stroke-miterlimit: 10;
       }
       .cls-1,
@@ -36,17 +39,21 @@
       .cls-5,
       .cls-6,
       .cls-7 {
+        stroke: #000;
         stroke-width: 4px;
       }
       .cls-2,
       .cls-3 {
+        stroke: #000;
         fill: none;
       }
       .cls-3,
       .cls-6 {
+        stroke: #000;
         stroke-linejoin: round;
       }
       .cls-4 {
+        stroke: #000;
         fill: #ffce3e;
       }
       .cls-5,

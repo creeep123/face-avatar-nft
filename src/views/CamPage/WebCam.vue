@@ -167,6 +167,7 @@ export default {
         this.$store.commit('changeAge', faceDetailInfo.Age)
         this.$store.commit('changeBeauty', faceDetailInfo.Beauty)
         this.$store.commit('changeGender', faceDetailInfo.Gender.Type)
+        this.$store.commit('changeSkin', faceDetailInfo.Skin.Type)
         this.$store.commit('changePixel64', res1.data.FaceDetailInfos[0].pixel_b64)
         this.$store.commit('hideLoading')
         setTimeout(() => {

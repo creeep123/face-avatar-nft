@@ -8,6 +8,7 @@
     <style>
       .cls-1,
       .cls-7 {
+        stroke: #000;
         fill: #ffedb9;
       }
       .cls-1,
@@ -21,6 +22,7 @@
       .cls-2,
       .cls-4,
       .cls-5 {
+        stroke: #000;
         stroke-miterlimit: 10;
       }
       .cls-1,
@@ -33,6 +35,7 @@
       }
       .cls-2,
       .cls-3 {
+        stroke: black;
         fill: none;
       }
       .cls-3,

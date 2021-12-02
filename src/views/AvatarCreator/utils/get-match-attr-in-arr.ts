@@ -4,7 +4,6 @@ export function getMatchedValueInArr(
   curKeyWords: any,
   dir: any
 ) {
-  debugger;
   const tmpArr: Array<number> = [];
   //0.
   curKeyWords = typeof curKeyWords == 'undefined' ? [''] : curKeyWords;
@@ -14,7 +13,6 @@ export function getMatchedValueInArr(
     'Ear',
     'Eyelid',
     'Hand',
-    'Hat',
     'HeadWear',
     'Shirt',
   ];

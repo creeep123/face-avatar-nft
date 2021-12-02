@@ -1,4 +1,5 @@
-import { GenderType } from './../../interface/avatar.interface';
+import { avaiableColors } from '../avaiable-colors';
+import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const noseConfig: LayerItemConfig[] = [
   // {
@@ -33,21 +34,25 @@ const noseConfig: LayerItemConfig[] = [
   {
     filename: '头像初稿_朝天鼻',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.NOSE],
     weight: 10,
   },
   {
     filename: '头像初稿_普通鼻',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.NOSE],
     weight: 10,
   },
   {
     filename: '头像初稿_鹰钩鼻',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.NOSE],
     weight: 10,
   },
   {
     filename: '头像初稿_圆鼻',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.NOSE],
     weight: 10,
   },
 ];

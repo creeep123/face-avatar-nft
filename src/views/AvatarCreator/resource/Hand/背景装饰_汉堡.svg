@@ -24,7 +24,7 @@
         fill: #c76607;
       }
       .cls-4 {
-        fill: #ffedd1;
+        fill: {{color[0]}};
       }
       .cls-5 {
         fill: none;

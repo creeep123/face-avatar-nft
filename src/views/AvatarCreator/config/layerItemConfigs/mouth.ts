@@ -1,3 +1,4 @@
+import { avaiableColors } from '../avaiable-colors';
 import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const mouthConfig: LayerItemConfig[] = [
@@ -54,33 +55,39 @@ const mouthConfig: LayerItemConfig[] = [
   {
     filename: '头像初稿_悲伤_闭嘴',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
     weight: 10,
   },
   {
     filename: '头像初稿_惊讶_张嘴',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
     weight: 10,
   },
   {
     filename: '头像初稿_开心呲牙_张嘴',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
     weight: 10,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
     filename: '头像初稿_开心吹泡泡_闭嘴',
     genderType: GenderType.UNSET,
-    weight: 10,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
+    weight: 2,
     removeLayers: [LAYER_ID.MASK, LAYER_ID.FACIAL_HAIR],
   },
   {
     filename: '头像初稿_开心笑_张嘴',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
     weight: 10,
   },
   {
     filename: '头像初稿_微笑_闭嘴',
     genderType: GenderType.UNSET,
+    avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
     weight: 10,
   },
 ];

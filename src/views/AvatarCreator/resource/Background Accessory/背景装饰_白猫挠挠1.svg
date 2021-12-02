@@ -20,6 +20,7 @@
       .cls-1,
       .cls-2,
       .cls-3 {
+        stroke: #000;
         stroke-linecap: round;
       }
       .cls-1,

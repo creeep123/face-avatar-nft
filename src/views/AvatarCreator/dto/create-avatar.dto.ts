@@ -1,5 +1,9 @@
-import { GenderType, RenderType } from './../interface/avatar.interface';
-
+import { VNodeChildrenArrayContents } from 'vue/types/umd';
+import {
+  GenderType,
+  RenderType,
+  SkinType,
+} from './../interface/avatar.interface';
 
 // http://192.168.50.160:3000/avatar?renderer=svg&amount=1&size=500&gender=unset
 export class CreateAvatarDto {
@@ -8,7 +12,7 @@ export class CreateAvatarDto {
   // "1": jpeg
   // "2": base64
   renderer?: RenderType;
-  
+
   // 随机生成的数量
   amount?: number;
 
@@ -20,4 +24,11 @@ export class CreateAvatarDto {
   // "1": 偏向男性
   // "2": 偏向女性
   gender?: GenderType;
+
+  //皮肤
+  //0 黄
+  //1 棕
+  //2 黑
+  //3 白
+  skin?: SkinType;
 }

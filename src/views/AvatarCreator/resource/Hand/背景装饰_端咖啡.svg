@@ -24,7 +24,7 @@
         stroke-miterlimit: 10;
       }
       .cls-3 {
-        fill: #fdebcf;
+        fill: {{color[0]}};
       }
       .cls-4 {
         fill: none;

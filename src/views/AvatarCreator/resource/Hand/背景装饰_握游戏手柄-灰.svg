@@ -44,7 +44,7 @@
         fill: #e8e8e8;
       }
       .cls-8 {
-        fill: #f2cfa9;
+        fill: {{color[0]}};
       }
       .cls-9 {
         fill: none;

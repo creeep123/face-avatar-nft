@@ -8,6 +8,7 @@
     <style>
       .cls-1 {
         fill: #0f0b0b;
+        <!-- fill: {{color[0]}}; -->
         stroke: #000;
         stroke-miterlimit: 10;
         stroke-width: 4px;

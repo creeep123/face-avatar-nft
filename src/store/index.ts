@@ -10,6 +10,7 @@ export default new Vuex.Store({
     BEAUTY: '',
     PIXEL64: '',
     GENDER: '',
+    SKIN: '',
     chosenAttr: {},
   },
   mutations: {
@@ -32,6 +33,10 @@ export default new Vuex.Store({
     changeBeauty(state, beauty) {
       console.log('<<< changeBeauty >>> ');
       state.BEAUTY = beauty;
+    },
+    changeSkin(state, Skin) {
+      console.log('<<< changeSkin >>> ');
+      state.SKIN = Skin;
     },
     changePixel64(state, Pixel64) {
       console.log('<<< changePixel64 >>> ');

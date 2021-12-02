@@ -70,8 +70,8 @@
     <div>
       <ul id="example-1">
         <li>年龄：{{this.$store.state.AGE}}</li>
-        <li>魅力值：{{this.$store.state.GENDER}}</li>
-        <li>性别：{{this.$store.state.BEAUTY}}</li>
+        <li>魅力值：{{this.$store.state.BEAUTY}}</li>
+        <li>性别：{{this.$store.state.GENDER}}</li>
         <li
           v-for="objKey in Object.keys(this.$store.state.chosenAttr)"
           :key="objKey"
