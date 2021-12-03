@@ -5,19 +5,25 @@ const hatConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 0.0001,
+    weight: 10,
   },
   {
     filename: '头像初稿_戴帽子-10',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAT],
-    weight: 10,
+    weight: 15,
   },
   {
     filename: '头像初稿_戴帽子-16',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAT],
-    weight: 10,
+    weight: 15,
+  },
+  {
+    genderType: GenderType.UNSET,
+    filename: '天使_戴帽子_无帽子',
+    weight: 1,
+    avaiableColorGroups: avaiableColors[LAYER_ID.HAT],
   },
 ];
 

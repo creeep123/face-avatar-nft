@@ -11,10 +11,10 @@
         fill: none;
       }
       .cls-2 {
-        fill: #f6ebfc;
+        fill: {{color[0]}};
       }
       .cls-3 {
-        fill: #ffeef1;
+        fill: {{color[1]}};
       }
       .cls-4 {
         clip-path: url(#clip-path);

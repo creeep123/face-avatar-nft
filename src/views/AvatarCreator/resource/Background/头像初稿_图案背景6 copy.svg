@@ -11,11 +11,11 @@
         font-family: AdobeSongStd-Light-GBpc-EUC-H, Adobe Song Std;
       }
       .cls-2 {
-        fill: {{color[0]}};
+        fill: #d0d7ed;
       }
       .cls-3 {
         fill: none;
-        stroke: {{color[1]}};
+        stroke: #ffeec0;
         stroke-miterlimit: 10;
         stroke-width: 10px;
       }

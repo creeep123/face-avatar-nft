@@ -30,7 +30,7 @@ const shirtConfig: LayerItemConfig[] = [
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.SHIRT],
     colorNotSameAs: [LAYER_ID.BACKGROUND],
-    weight: 10,
+    weight: 2,
   },
   {
     filename: '头像初稿_女_衣领-80',

@@ -14,10 +14,10 @@
         clip-path: url(#clip-path);
       }
       .cls-3 {
-        fill: #fd8;
+        fill: {{color[0]}};
       }
       .cls-4 {
-        fill: #ffc545;
+        fill:{{color[1]}};
       }
       .cls-5 {
         opacity: 0.2;

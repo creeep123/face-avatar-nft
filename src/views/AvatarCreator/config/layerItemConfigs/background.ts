@@ -29,8 +29,9 @@ const backgroundConfig: LayerItemConfig[] = [
   {
     filename: '头像初稿_纯色背景',
     genderType: GenderType.UNSET,
+    colorNotSameAs: [LAYER_ID.BANGS],
     avaiableColorGroups: avaiableColors[LAYER_ID.BACKGROUND],
-    weight: 150,
+    weight: 120,
   },
   {
     filename: '头像初稿_图案背景',

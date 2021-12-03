@@ -1,7 +1,7 @@
 export function getMatchedValueInArr(
   configArr: any,
   weightKey = 'weight',
-  curKeyWords: any,
+  curKeyWords: any[],
   dir: any
 ) {
   const tmpArr: Array<number> = [];
@@ -14,7 +14,6 @@ export function getMatchedValueInArr(
     'Eyelid',
     'Hand',
     'HeadWear',
-    'Shirt',
   ];
   console.log('dir :>> ', dir);
   console.log('curKeyWords :>> ', curKeyWords);
@@ -31,6 +30,7 @@ export function getMatchedValueInArr(
         }
       }
       return hasKeyWords || attrItem.empty;
+      // return hasKeyWords;
     });
   }
   console.log('filteredArr :>> ', filteredArr);

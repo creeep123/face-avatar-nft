@@ -61,7 +61,7 @@ const hairConfig: LayerItemConfig[] = [
   //   weight: 100,
   // },
   {
-    filename: '头像初稿_女编发-26',
+    filename: '头像初稿_女绑发-26',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
@@ -69,7 +69,7 @@ const hairConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
-    filename: '头像初稿_女编发-85',
+    filename: '头像初稿_女绑发-85',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],

@@ -20,30 +20,34 @@ export default class AvatarCreatorMixin extends Vue {
     congratulateAction?: () => any,
     chosenAttr?: any
   ): Promise<string> {
+    debugger;
     const { size, gender, skin } = config;
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
     // 1. 获取随机的 layer 组合
     let randomLayerList = ls
-      .map((l) => ({
-        id: l.id,
-        dir: l.dir,
-        layer: getMatchedValueInArr(
-          // 性别过滤
-          l.layers.filter(({ genderType }: any) => {
-            // console.log('genderType :>> ', genderType);
-            return (
-              gender == GenderType.UNSET ||
-              genderType == gender ||
-              genderType == GenderType.UNSET
-            );
-          }),
-          'weight',
-          chosenAttr[l.dir],
-          // 调试用
-          l.dir
-        ),
-      }))
+      .map((l) => {
+        const dirName = l.dir.replace(/\s+/g, '');
+        return {
+          id: l.id,
+          dir: l.dir,
+          layer: getMatchedValueInArr(
+            // 性别过滤
+            l.layers.filter(({ genderType }: any) => {
+              // console.log('genderType :>> ', genderType);
+              return (
+                gender == GenderType.UNSET ||
+                genderType == gender ||
+                genderType == GenderType.UNSET
+              );
+            }),
+            'weight',
+            chosenAttr[dirName],
+            // 调试用
+            l.dir
+          ),
+        };
+      })
       // 去除不需要显示的
       .filter(({ layer }) => !layer.empty);
 

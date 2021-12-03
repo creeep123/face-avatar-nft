@@ -5,21 +5,21 @@ const maskConfig: LayerItemConfig[] = [
   {
     empty: true,
     genderType: GenderType.UNSET,
-    weight: 1,
+    weight: 10,
   },
   {
     // empty: true,
     filename: '头像初稿_口罩',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MASK],
-    weight: 100,
+    weight: 5,
   },
   {
     // empty: true,
     filename: '头像初稿_男女-脸部装饰-创可贴_无口罩',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MASK],
-    weight: 100,
+    weight: 1,
   },
 ];
 

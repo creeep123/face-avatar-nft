@@ -26,10 +26,10 @@
         clip-path: url(#clip-path-2);
       }
       .cls-7 {
-        fill: #d2feff;
+        fill: {{color[0]}};
       }
       .cls-8 {
-        fill: #f8ffff;
+        fill:{{color[1]}};
       }
     </style>
     <clipPath id="clip-path">

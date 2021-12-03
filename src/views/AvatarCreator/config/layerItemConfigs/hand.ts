@@ -5,7 +5,7 @@ const handConfig: LayerItemConfig[] = [
   {
     empty: true,
     genderType: GenderType.UNSET,
-    weight: 100,
+    weight: 400,
   },
   {
     filename: '背景装饰_端茶',

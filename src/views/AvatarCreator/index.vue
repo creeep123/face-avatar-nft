@@ -51,11 +51,11 @@
     </div>
 
     <br />
-
+    <!-- 二维码 -->
     <div
       :style="{
         width: `100%`,
-        height: `${height}px`,
+        height: `${qrHeight}px`,
         display: 'flex',
         justifyContent: 'center',
       }"
@@ -63,16 +63,16 @@
     >
       <div :style="{
           overflow: 'hidden',
-          width: `${width}px`,
-          height: exporting ? 0 : `${height}px`,
+          width: `${qrWidth}px`,
+          height: exporting ? 0 : `${qrHeight}px`,
           '--bg': backgroundColor,
         }">
         <div
           id="avatar-preview"
           :class="{ exporting }"
           :style="{
-            width: `${width}px`,
-            height: `${height}px`,
+            width: `${qrWidth}px`,
+            height: `${qrHeight}px`,
             backgroundColor,
             borderRadius,
             '--bg': backgroundColor,
@@ -87,13 +87,13 @@
             :progress="progress"
             v-if="showMask"
             :style="{
-              width: `${width}px`,
-              height: `${height}px`,
+              width: `${qrWidth}px`,
+              height: `${qrHeight}px`,
             }"
           />
           <div style="width: 100%;height: 100%;position: relative;z-index:2">
             <img
-              style="max-width:280px"
+              style="max-width:140px"
               :src="'data:image/jpg;base64,'+this.qrCodeBase64"
             >
           </div>
@@ -130,7 +130,7 @@
       </button>
 
       <!-- 下一步按钮 -->
-      <button
+      <!-- <button
         class="__cursor_rect"
         id="download-btn"
         :disabled="exporting ? 'disabled' : false"
@@ -140,7 +140,7 @@
         <span>
           {{ $t("next-step") }}
         </span>
-      </button>
+      </button> -->
     </div>
 
     <!-- 资源说明 -->
@@ -211,6 +211,8 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private height = 205;
   private width = 280;
   private height = 280;
+  private qrWidth = 140;
+  private qrHeight = 140;
   private exporting = false;
   private ammount = 100;
   private showMask = false;
@@ -235,7 +237,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
     this.createAvatar();
-    this.captureAndPush();
+    // this.captureAndPush();
   }
 
   // private getCurCanvasImg() {
@@ -256,7 +258,6 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // const randomGender = genders[randomIndex];
     const curGender =
       this.$store.state.GENDER == 0 ? GenderType.MALE : GenderType.FEMALE;
-
     const svgRaw = await this.createOne(
       {
         size: this.width,
@@ -288,6 +289,8 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     } else {
       this.backgroundColor = "#fff";
     }
+
+    this.captureAndPush();
   }
 
   private async pushAvatarImageReturnQrCode(image: string) {
@@ -304,11 +307,11 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       const canvas = await html2canvas(dom, {
         logging: false,
         scale: window.devicePixelRatio,
-        width: this.width,
-        height: this.height,
+        width: this.qrWidth,
+        height: this.qrHeight,
       });
       const image = canvas.toDataURL();
-      const res = await this.pushAvatarImageReturnQrCode(image);
+      const res: any = await this.pushAvatarImageReturnQrCode(image);
       this.qrCodeBase64 = res.qr_code64;
       this.exporting = false;
       this.borderRadius = "12px";

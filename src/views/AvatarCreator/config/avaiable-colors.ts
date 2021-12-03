@@ -53,20 +53,27 @@ export const avaiableColors: Record<LAYER_ID, ColorGroup[]> = {
   ],
 
   // 服装可用颜色
-  [LAYER_ID.SHIRT]: [
-    { weight: 1, value: ['#000000', '#AFAFAF'] },
-    { weight: 1, value: ['#ffffff', '#A1A1A1'] },
-    { weight: 1, value: ['#F4D150', '#FFEBA4'] },
-    { weight: 1, value: ['#FC909F', '#FFEDEF'] },
-    { weight: 1, value: ['#6BD9E9', '#D2EFF3'] },
-    { weight: 1, value: ['#9287FF', '#E0DDFF'] },
+  // [LAYER_ID.SHIRT]: [
+  //   { weight: 1, value: ['#000000', '#AFAFAF'] },
+  //   { weight: 1, value: ['#ffffff', '#A1A1A1'] },
+  //   { weight: 1, value: ['#F4D150', '#FFEBA4'] },
+  //   { weight: 1, value: ['#FC909F', '#FFEDEF'] },
+  //   { weight: 1, value: ['#6BD9E9', '#D2EFF3'] },
+  //   { weight: 1, value: ['#9287FF', '#E0DDFF'] },
 
-    { weight: 1, value: ['#E97C17', '#d4975e'] },
-    { weight: 1, value: ['#B4B0CD', '#e4e2f1'] },
-    { weight: 1, value: ['#878787', '#b6b6b6'] },
-    { weight: 1, value: ['#CA475A', '#d86072'] },
-    { weight: 1, value: ['#0C4F2F', '#3d8160'] },
-    { weight: 1, value: ['#354161', '#579b7a'] },
+  //   { weight: 1, value: ['#E97C17', '#d4975e'] },
+  //   { weight: 1, value: ['#B4B0CD', '#e4e2f1'] },
+  //   { weight: 1, value: ['#878787', '#b6b6b6'] },
+  //   { weight: 1, value: ['#CA475A', '#d86072'] },
+  //   { weight: 1, value: ['#0C4F2F', '#3d8160'] },
+  //   { weight: 1, value: ['#354161', '#579b7a'] },
+  // ],
+  [LAYER_ID.SHIRT]: [
+    { weight: 1, value: ['#fd8'] },
+    { weight: 1, value: ['#d0d7ed'] },
+    { weight: 1, value: ['#f0cdd2'] },
+    { weight: 1, value: ['#ffd357'] },
+    // { weight: 0.1, value: ['#6bd9e9'] },
   ],
 
   // 胡子可用色
@@ -78,16 +85,25 @@ export const avaiableColors: Record<LAYER_ID, ColorGroup[]> = {
     { weight: 0.1, value: ['#6bd9e9'] },
   ],
 
+  // #ffd16a,#ffdd88
+
   // 背景可用色
   [LAYER_ID.BACKGROUND]: [
-    { weight: 1, value: ['#E0DDFF'] },
-    { weight: 1, value: ['#D2EFF3'] },
-    { weight: 1, value: ['#FFEDEF'] },
-    { weight: 1, value: ['#FFEBA4'] },
-    { weight: 1, value: ['#F4D150'] },
-    { weight: 1, value: ['#FC909F'] },
-    { weight: 1, value: ['#6BD9E9'] },
-    { weight: 1, value: ['#9287FF'] },
+    // { weight: 1, value: ['#E0DDFF'] },
+    // { weight: 1, value: ['#D2EFF3'] },
+    // { weight: 1, value: ['#FFEDEF'] },
+    // { weight: 1, value: ['#FFEBA4'] },
+    // { weight: 1, value: ['#F4D150'] },
+    // { weight: 1, value: ['#FC909F'] },
+    // { weight: 1, value: ['#6BD9E9'] },
+    // { weight: 1, value: ['#9287FF'] },
+    { weight: 1, value: ['#ffd16a', '#ffdd88'] },
+    { weight: 1, value: ['#d2feff', '#f8ffff'] },
+    { weight: 1, value: ['#f6ebfc', '#7a5da9'] },
+    { weight: 1, value: ['#ffeec0', '#d0d7ed'] },
+    { weight: 1, value: ['#4183ee', '#2c5dab'] },
+    { weight: 1, value: ['#b12e2f', '#2f2f2f'] },
+    { weight: 1, value: ['#fce100', '#2b2b2b'] },
   ],
   //刘海可用色
   // [LAYER_ID.BANGS]: [
