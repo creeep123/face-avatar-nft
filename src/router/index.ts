@@ -10,8 +10,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'AvatarCreator',
-    component: AvatarCreator,
+    name: 'CamPage',
+    component: CamPage,
   },
   {
     path: '/cam',

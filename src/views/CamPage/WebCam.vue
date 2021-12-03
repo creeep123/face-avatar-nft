@@ -9,8 +9,8 @@
         class="opencam-button"
         @click="toggleCamera"
       >
-        <span v-if="!isCameraOpen">Open Camera</span>
-        <span v-else>Close Camera</span>
+        <span v-if="!isCameraOpen">开始</span>
+        <span v-else>关闭摄像头</span>
       </button>
     </div>
 

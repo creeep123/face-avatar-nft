@@ -62,11 +62,12 @@
               class=""
             >
           </div>
-
         </div>
       </div>
     </div>
-
+    <div>
+      <h2>点击上方图片生成专属头像</h2>
+    </div>
     <div>
       <ul id="example-1">
         <li>年龄：{{this.$store.state.AGE}}</li>

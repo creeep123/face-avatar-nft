@@ -35,7 +35,7 @@ export default {
   a {
     font-size: 0.7rem;
     font-weight: normal;
-    color: #aaa;
+    color: #e0dede;
     text-decoration: none;
   }
 }

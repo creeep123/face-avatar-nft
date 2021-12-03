@@ -32,7 +32,7 @@
     </div> -->
 
     <div class="contact-us-wrapper">
-      <h1>拍照页面</h1>
+      <h1>Meta Face</h1>
     </div>
   </div>
 </template>
@@ -254,7 +254,7 @@ $primary: #0067b6;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #aaa;
+  color: #0075ce;
   position: relative;
 
   .contact-us {
