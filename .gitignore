@@ -2,6 +2,8 @@
 node_modules
 */**/dist/*
 assets/头像
+dist/*
+dist.zip
 
 # local env files
 .env
