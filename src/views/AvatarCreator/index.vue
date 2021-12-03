@@ -50,6 +50,57 @@
       </div>
     </div>
 
+    <br />
+
+    <div
+      :style="{
+        width: `100%`,
+        height: `${height}px`,
+        display: 'flex',
+        justifyContent: 'center',
+      }"
+      id="qrcode-preview-outter-wrapper"
+    >
+      <div :style="{
+          overflow: 'hidden',
+          width: `${width}px`,
+          height: exporting ? 0 : `${height}px`,
+          '--bg': backgroundColor,
+        }">
+        <div
+          id="avatar-preview"
+          :class="{ exporting }"
+          :style="{
+            width: `${width}px`,
+            height: `${height}px`,
+            backgroundColor,
+            borderRadius,
+            '--bg': backgroundColor,
+          }"
+        >
+          <ExportLoading
+            :ammount="
+              Object.prototype.toString.call(ammount) === '[object String]'
+                ? parseInt(ammount)
+                : ammount
+            "
+            :progress="progress"
+            v-if="showMask"
+            :style="{
+              width: `${width}px`,
+              height: `${height}px`,
+            }"
+          />
+          <div style="width: 100%;height: 100%;position: relative;z-index:2">
+            <img
+              style="max-width:280px"
+              :src="'data:image/jpg;base64,'+this.qrCodeBase64"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div
       class="btns"
       style="margin-top: 40px;"
@@ -75,6 +126,19 @@
         <i class="ri-file-download-line"></i>
         <span>
           {{ $t("download") }}
+        </span>
+      </button>
+
+      <!-- 下一步按钮 -->
+      <button
+        class="__cursor_rect"
+        id="download-btn"
+        :disabled="exporting ? 'disabled' : false"
+        @click="captureAndPush"
+      >
+        <i class="ri-file-download-line"></i>
+        <span>
+          {{ $t("next-step") }}
         </span>
       </button>
     </div>
@@ -106,7 +170,7 @@
     </div> -->
 
     <!-- 联系我们 -->
-    <div class="contact-us-wrapper">
+    <!-- <div class="contact-us-wrapper">
       <div
         class="contact-us __cursor_rect"
         @click="toggleWechatGroupQrCard(true)"
@@ -114,7 +178,7 @@
         <i class="ri-wechat-2-fill"></i>
         <span>{{ $t("contcat-us") }}</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -131,6 +195,7 @@ import confetti from "canvas-confetti";
 import AvatarCreatorMixin from "./creator.mixin";
 import { RenderType, GenderType } from "./interface/avatar.interface";
 import { mapState } from "vuex";
+import $api from "../../service";
 
 @Component({
   components: {
@@ -158,6 +223,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private showWechatGroupQrCard = false;
 
   private svgRaw = "";
+  private qrCodeBase64 = "";
 
   private exportTypes = [
     { label: "SVG", value: "svg" },
@@ -169,7 +235,16 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
     this.createAvatar();
+    this.captureAndPush();
   }
+
+  // private getCurCanvasImg() {
+  //   const canvas = document
+  //     .getElementById("photoTaken")
+  //     .toDataURL("image/jpeg");
+  //   const image = canvas;
+  //   return image;
+  // }
 
   /**
    * 生成头像
@@ -213,6 +288,31 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     } else {
       this.backgroundColor = "#fff";
     }
+  }
+
+  private async pushAvatarImageReturnQrCode(image: string) {
+    return $api.pushAvatar({ image });
+  }
+
+  async captureAndPush() {
+    this.exporting = true;
+    this.borderRadius = "0";
+    this.$nextTick(async () => {
+      const dom: HTMLElement = document.querySelector(
+        "#avatar-preview"
+      ) as HTMLElement;
+      const canvas = await html2canvas(dom, {
+        logging: false,
+        scale: window.devicePixelRatio,
+        width: this.width,
+        height: this.height,
+      });
+      const image = canvas.toDataURL();
+      const res = await this.pushAvatarImageReturnQrCode(image);
+      this.qrCodeBase64 = res.qr_code64;
+      this.exporting = false;
+      this.borderRadius = "12px";
+    });
   }
 
   /**
@@ -561,6 +661,12 @@ $primary: #0067b6;
   visibility: hidden !important;
 }
 #avatar-preview-outter-wrapper {
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+#qrcode-preview-outter-wrapper {
   transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
   &:hover {
     transform: scale(1.02);

@@ -106,7 +106,6 @@ export default class AvatarCreatorMixin extends Vue {
       delete layer.colorNotSameAs;
       delete layer.colorSameAs;
     });
-    console.log('rdlistAft :>> ', JSON.parse(JSON.stringify(randomLayerList)));
     let congratulate = false;
     // 4. 绘制 svg
     const groups = [];
@@ -122,7 +121,6 @@ export default class AvatarCreatorMixin extends Vue {
       while (matchRes) {
         const str = matchRes[0];
         const index = parseInt(str.replace(/^{{color\[(\d+)\]}}$/, '$1'));
-        console.log('layer :>> ', layer);
         const colors =
           typeof layer.color == 'undefined' ? ['#BCA07B'] : layer.color;
         svgRaw = svgRaw.replace(matchColorReg, colors[index]);

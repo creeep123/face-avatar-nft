@@ -6,7 +6,6 @@ export default function getMatchedColorInArr(
 ) {
   //1. 根据肤色筛选部件
   let filteredArr: any = [];
-  debugger;
   switch (curSkin) {
     case SkinType.YELLOW:
       filteredArr = filteredArr.concat(configArr.slice(0, 3));

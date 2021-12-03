@@ -74,6 +74,18 @@ const api = {
       },
     });
   },
+  pushAvatar(params) {
+    // const { image } = params;
+    const { image } = params;
+    const formData = new FormData();
+    const blob = base64toblob(image);
+    formData.append('image', blob, Date.now() + '.jpg');
+    return theAxios.post(`${BASE.ServerURI}/push_avatar`, formData, {
+      headers: {
+        'Content-type': 'multipart/form-data',
+      },
+    });
+  },
 };
 
 export default api;

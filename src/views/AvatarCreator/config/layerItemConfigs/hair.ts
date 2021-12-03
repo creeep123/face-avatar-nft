@@ -8,7 +8,7 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
 
   // {
@@ -17,7 +17,7 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
   // {
   //   filename: "头像初稿_男发-13",
@@ -25,14 +25,14 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
   // // {
   // //   filename: "Full",
   // //   genderType: GenderType.FEMAL,
   // //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   // //   colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.SHIRT],
-  // //   weight: 10,
+  // //   weight: 100,
   // //   removeLayers: [LAYER_ID.FACIAL_HAIR],
   // // },
 
@@ -42,7 +42,7 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
   // {
   //   filename: "头像初稿_男发-15",
@@ -50,7 +50,7 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
   // {
   //   filename: "头像初稿_男发-20",
@@ -58,14 +58,14 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
   {
     filename: '头像初稿_女编发-26',
     genderType: GenderType.FEMALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -74,7 +74,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -83,7 +83,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -92,7 +92,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -101,7 +101,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -110,7 +110,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -119,7 +119,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -128,7 +128,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -137,7 +137,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -146,7 +146,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -155,7 +155,7 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -164,18 +164,18 @@ const hairConfig: LayerItemConfig[] = [
     avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
 
-    weight: 10,
+    weight: 100,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 10,
+    weight: 1,
   },
   // {
   //   genderType: GenderType.MALE,
   //   empty: true,
-  //   weight: 10,
+  //   weight: 100,
   // },
   // {
   //   filename: "Turban",
@@ -183,7 +183,7 @@ const hairConfig: LayerItemConfig[] = [
   //   avaiableColorGroups: avaiableColors[LAYER_ID.HAIR],
   //       colorNotSameAs: [LAYER_ID.BACKGROUND,LAYER_ID.BASE],
 
-  //   weight: 10,
+  //   weight: 100,
   // },
 ];
 export default hairConfig;
