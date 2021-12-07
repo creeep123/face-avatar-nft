@@ -31,7 +31,7 @@
       class="camera-box"
       :class="{ 'flash' : isShotPhoto }"
     >
-      <div class="camera-box-cover"></div>
+      <!-- <div class="camera-box-cover"></div> -->
       <!-- <div
         class="camera-shutter"
         :class="{'flash' : isShotPhoto}"
@@ -124,7 +124,10 @@ export default {
 
         const constraints = (window.constraints = {
           audio: false,
-          video: true
+          video: {
+            width: 1000,
+            height: 1000
+          },
         });
 
 
@@ -288,9 +291,10 @@ button {
     position: relative;
     #inputVideo {
       // width: 200px;
-      transform: rotateY(180deg);
-      -webkit-transform: rotateY(180deg); /* Safari 和 Chrome */
-      -moz-transform: rotateY(180deg);
+      transform: rotateY(180deg) scale(2);
+      -webkit-transform: rotateY(180deg) scale(2); /* Safari 和 Chrome */
+      -moz-transform: rotateY(180deg) scale(2);
+      clip-path: inset(25% 25% 25% 25%);
     }
     .camera-shutter {
       opacity: 0;
