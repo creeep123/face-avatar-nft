@@ -8,9 +8,10 @@ const glassesConfig: LayerItemConfig[] = [
   //   weight: 10,
   // },
   {
+    filename: '无眼镜',
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 1,
+    weight: 10,
   },
   {
     genderType: GenderType.UNSET,

@@ -4,14 +4,14 @@
     class="web-camera-container"
   >
     <div class="camera-button">
-      <button
+      <!-- <button
         type="button"
         class="opencam-button"
         @click="toggleCamera"
       >
         <span v-if="!isCameraOpen">开始</span>
         <span v-else>关闭摄像头</span>
-      </button>
+      </button> -->
     </div>
 
     <div
@@ -31,7 +31,7 @@
       class="camera-box"
       :class="{ 'flash' : isShotPhoto }"
     >
-
+      <div class="camera-box-cover"></div>
       <!-- <div
         class="camera-shutter"
         :class="{'flash' : isShotPhoto}"
@@ -41,8 +41,8 @@
         id="inputVideo"
         v-show="!isPhotoTaken"
         ref="camera"
-        :width="450"
-        :height="337.5"
+        :width="280"
+        :height="280"
         autoplay
       ></video>
 
@@ -50,8 +50,8 @@
         v-show="isPhotoTaken"
         id="photoTaken"
         ref="canvas"
-        :width="450"
-        :height="337.5"
+        :width="280"
+        :height="280"
       ></canvas>
     </div>
 
@@ -93,6 +93,7 @@ export default {
   inject: ['faceInfo'],
   mounted () {
     console.log(this.faceInfo)
+    this.toggleCamera()
   },
   data () {
     return {
@@ -284,8 +285,9 @@ button {
   }
 
   .camera-box {
+    position: relative;
     #inputVideo {
-      width: 200px;
+      // width: 200px;
       transform: rotateY(180deg);
       -webkit-transform: rotateY(180deg); /* Safari 和 Chrome */
       -moz-transform: rotateY(180deg);
@@ -301,6 +303,18 @@ button {
         opacity: 1;
       }
     }
+  }
+
+  .camera-box-cover {
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    /* background-color: red; */
+    transform: translate(-50%, -50%);
+    border: 4px dashed #fff;
   }
 
   .camera-shoot {

@@ -3,6 +3,7 @@ import { avaiableColors } from './../avaiable-colors';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const hatConfig: LayerItemConfig[] = [
   {
+    filename: '无帽子',
     genderType: GenderType.UNSET,
     empty: true,
     weight: 10,

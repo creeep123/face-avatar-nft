@@ -20,7 +20,6 @@ export default class AvatarCreatorMixin extends Vue {
     congratulateAction?: () => any,
     chosenAttr?: any
   ): Promise<string> {
-    debugger;
     const { size, gender, skin } = config;
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);

@@ -68,6 +68,38 @@
     <div>
       <h2>点击上方图片生成专属头像</h2>
     </div>
+
+    <div class="profile-card-inf">
+      <!-- <div class="profile-card-inf__item">
+        <div class="profile-card-inf__title">{{this.$store.state.AGE}}</div>
+        <div class="profile-card-inf__txt">年龄</div>
+      </div>
+
+      <div class="profile-card-inf__item">
+        <div class="profile-card-inf__title">{{this.$store.state.BEAUTY}}</div>
+        <div class="profile-card-inf__txt">魅力值</div>
+      </div>
+
+      <div class="profile-card-inf__item">
+        <div class="profile-card-inf__title">{{this.$store.state.GENDER==1?"♀":"♂"}}</div>
+        <div class="profile-card-inf__txt">性别</div>
+      </div> -->
+
+      <!-- <div class="profile-card-inf__item">
+        <div class="profile-card-inf__title">85</div>
+        <div class="profile-card-inf__txt">Works</div>
+      </div> -->
+
+      <!-- 
+        脸型：
+        眼镜：
+        潜力：
+        有眼镜
+        帽子
+        胡子
+               -->
+    </div>
+
     <div>
       <ul id="example-1">
         <li>年龄：{{this.$store.state.AGE}}</li>
@@ -415,6 +447,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 </script>
 
 <style lang="scss" scoped>
+@import "./card";
 $primary: #0067b6;
 #avatar-creator {
   position: fixed;

@@ -105,19 +105,30 @@
       class="btns"
       style="margin-top: 40px;"
     >
-      <!-- 随机按钮 -->
+      <!-- 重拍一张 -->
       <button
         id="refresh-btn"
         :disabled="exporting ? 'disabled' : false"
-        @click="() => createAvatar()"
+        @click="() => jumpToCamPage()"
+        class="__cursor_rect"
+      >
+        <i class="ri-refresh-line"></i>
+        <span>我要重拍</span>
+      </button>
+
+      <!-- 随机按钮 -->
+      <!-- <button
+        id="refresh-btn"
+        :disabled="exporting ? 'disabled' : false"
+        @click="() => createAvatarAndPush()"
         class="__cursor_rect"
       >
         <i class="ri-refresh-line"></i>
         <span>{{ $t("random-avatar") }}</span>
-      </button>
+      </button> -->
 
       <!-- 下载按钮 -->
-      <button
+      <!-- <button
         class="__cursor_rect"
         id="download-btn"
         :disabled="exporting ? 'disabled' : false"
@@ -127,7 +138,7 @@
         <span>
           {{ $t("download") }}
         </span>
-      </button>
+      </button> -->
 
       <!-- 下一步按钮 -->
       <!-- <button
@@ -211,6 +222,8 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private height = 205;
   private width = 280;
   private height = 280;
+  // private width = 560;
+  // private height = 560; //大屏幕版本
   private qrWidth = 140;
   private qrHeight = 140;
   private exporting = false;
@@ -236,7 +249,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
-    this.createAvatar();
+    this.createAvatarAndPush();
     // this.captureAndPush();
   }
 
@@ -247,6 +260,21 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   //   const image = canvas;
   //   return image;
   // }
+
+  private jumpToCamPage() {
+    this.$router.push({
+      name: "CamPage",
+    });
+  }
+
+  async createAvatarAndPush() {
+    //生成头像并推送至后端，直到头像不重复
+    let unique = false;
+    while (!unique) {
+      this.createAvatar();
+      unique = await this.captureAndPush();
+    }
+  }
 
   /**
    * 生成头像
@@ -290,7 +318,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       this.backgroundColor = "#fff";
     }
 
-    this.captureAndPush();
+    // this.captureAndPush();
   }
 
   private async pushAvatarImageReturnQrCode(image: string) {
@@ -300,22 +328,27 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   async captureAndPush() {
     this.exporting = true;
     this.borderRadius = "0";
-    this.$nextTick(async () => {
-      const dom: HTMLElement = document.querySelector(
-        "#avatar-preview"
-      ) as HTMLElement;
-      const canvas = await html2canvas(dom, {
-        logging: false,
-        scale: window.devicePixelRatio,
-        width: this.qrWidth,
-        height: this.qrHeight,
-      });
-      const image = canvas.toDataURL();
-      const res: any = await this.pushAvatarImageReturnQrCode(image);
+    // this.$nextTick(async () => {
+    const dom: HTMLElement = document.querySelector(
+      "#avatar-preview"
+    ) as HTMLElement;
+    const canvas = await html2canvas(dom, {
+      logging: false,
+      scale: window.devicePixelRatio,
+      width: this.width,
+      height: this.height,
+    });
+    const image = canvas.toDataURL();
+    const res: any = await this.pushAvatarImageReturnQrCode(image);
+    if (res.status == "already have this pic") {
+      return false;
+    } else {
       this.qrCodeBase64 = res.qr_code64;
       this.exporting = false;
       this.borderRadius = "12px";
-    });
+      return true;
+    }
+    // });
   }
 
   /**
@@ -562,7 +595,8 @@ $primary: #0067b6;
   .btns {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: center;
   }
   button {
     border: none;

@@ -39,6 +39,27 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     default:
       attributes.Bangs = ['无刘海'];
   }
+  if (faceAttributeInfos.Gender.Type == 0) {
+    switch (faceAttributeInfos.Hair.Length.Type) {
+      case 0:
+        attributes.Bangs.push('光头');
+        break;
+      case 1 || 4:
+        attributes.Bangs.push('短发');
+        break;
+      case 2 || 3:
+        attributes.Bangs.push('中发');
+        break;
+      // case 3:
+      //   attributes.Bangs.push('长发');
+      //   break;
+      // case 4:
+      //   attributes.Bangs.push('绑发');
+      //   break;
+      default:
+        attributes.Bangs.push('短发');
+    }
+  }
 
   //耳朵
   switch (1) {
@@ -122,33 +143,35 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   }
 
   //眼镜
-  // switch (faceAttributeInfos.Eye.Glass.Type) {
-  //   case 0:
-  //     attributes.Glasses = ['无眼镜'];
-  //     break;
-  //   case 1:
-  //     attributes.Glasses = ['普通眼镜'];
-  //     break;
-  //   case 2:
-  //     attributes.Glasses = ['墨镜'];
-  //     break;
-  //   default:
-  //     attributes.Glasses = ['无胡子'];
-  // }
-
-  switch (faceAttributeInfos.my_glass_type) {
-    case 'no_glass':
+  switch (faceAttributeInfos.Eye.Glass.Type) {
+    case 0:
       attributes.Glasses = ['无眼镜'];
       break;
-    case 'round':
-      attributes.Glasses = ['圆眼镜'];
+    case 1:
+      // attributes.Glasses = ['普通眼镜'];
+      attributes.Glasses = [''];
       break;
-    case 'square':
-      attributes.Glasses = ['方眼镜'];
+    case 2:
+      attributes.Glasses = ['墨镜'];
       break;
     default:
       attributes.Glasses = ['无眼镜'];
   }
+  // if (faceAttributeInfos.Eye.Glass.Type == 1) {
+  //   switch (faceAttributeInfos.my_glass_type) {
+  //     case 'no_glass':
+  //       attributes.Glasses.push('无眼镜');
+  //       break;
+  //     case 'round':
+  //       attributes.Glasses.push('圆眼镜');
+  //       break;
+  //     case 'square':
+  //       attributes.Glasses.push('方眼镜');
+  //       break;
+  //     default:
+  //       attributes.Glasses.push('无眼镜');
+  //   }
+  // }
 
   //头发
   switch (faceAttributeInfos.Hair.Length.Type) {
