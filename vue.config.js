@@ -1,4 +1,10 @@
 // vue.config.js
+// const path = require('path');
+
+// function resolve(dir) {
+//   return path.join(__dirname, dir);
+// }
+
 module.exports = {
   lintOnSave: false,
 
@@ -13,6 +19,14 @@ module.exports = {
       },
     },
   },
+
+  // resolve: {
+  //   extensions: ['.js', '.vue', '.json', '.less'],
+  //   alias: {
+  //     vue$: 'vue/dist/vue.esm.js',
+  //     '@': resolve('src'), //比如说这里的@就指向src
+  //   },
+  // },
 
   runtimeCompiler: false,
 

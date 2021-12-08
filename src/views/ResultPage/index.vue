@@ -1,6 +1,6 @@
 <template>
   <div
-    id="avatar-creator"
+    id="colorful-face"
     :class="{ exporting }"
   >
     <div
@@ -8,11 +8,18 @@
         width: `100%`,
         height: `${height}px`,
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
       }"
       id="avatar-preview-outter-wrapper"
       @click="jumpToAvatarPage"
     >
+      <div class="main-attributes">
+        <div class="main-attribute-item">{{$store.state.GENDER==0?"MAN":"WOMAN"}}</div>
+        <div class="main-attribute-item">{{$store.state.AGE}}</div>
+        <div class="main-attribute-item">{{this.getMappedAttribute("Glasses")}}</div>
+        <div class="main-attribute-item">{{this.getMappedAttribute("Hair")}}</div>
+        <div class="main-attribute-item">{{this.getMappedAttribute("FacialHair")}}</div>
+      </div>
       <div :style="{
           overflow: 'hidden',
           width: `${width}px`,
@@ -184,8 +191,8 @@ import { mapState } from "vuex";
   },
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
-  private width = 280;
-  private height = 280;
+  private width = 500;
+  private height = 500;
   private faceColorImg = "";
   private faceAttributeInfos: any = {};
   private attributesChosen: any = {};
@@ -207,6 +214,38 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     { label: "SVG", value: "svg" },
     { label: "PNG", value: "png" },
   ];
+
+  getMappedAttribute(attrName: any) {
+    const attributesMap: any = {
+      Glasses: {
+        方眼镜: "SQUARE",
+        圆眼镜: "CIRCLE",
+        墨镜: "SUNGLASSES",
+        无眼镜: "NONE",
+      },
+      Hair: {
+        光头: "BOLD",
+        短发: "SHORT",
+        中发: "MIDDLE",
+        长发: "LONG",
+        绑发: "TIED",
+      },
+      FacialHair: {
+        有胡子: "YES",
+        无胡子: "NO",
+      },
+    };
+    const attrArray: string[] = this.$store.state.chosenAttr[attrName];
+    const attributesMapOne = attributesMap[`${attrName}`];
+    for (let i = 0; i < attrArray.length; i++) {
+      if (
+        attrArray[i] !== "" &&
+        attributesMapOne.hasOwnProperty(attrArray[i])
+      ) {
+        return attributesMapOne[attrArray[i]];
+      }
+    }
+  }
 
   mounted() {
     // attributesChosen 按照不同 layer 分为了 15 个 layer
@@ -449,7 +488,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 <style lang="scss" scoped>
 @import "./card";
 $primary: #0067b6;
-#avatar-creator {
+#colorful-face {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -572,14 +611,16 @@ $primary: #0067b6;
     box-shadow: none;
   }
 }
-#avatar-creator.exporting #avatar-preview::after {
+#colorful-face.exporting #avatar-preview::after {
   visibility: hidden !important;
 }
 #avatar-preview-outter-wrapper {
-  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
-  &:hover {
-    transform: scale(1.02);
-  }
+  // transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
+  // &:hover {
+  //   transform: scale(1.02);
+  // }
+  display: flex;
+  justify-content: start;
 }
 
 .resource-info {
@@ -675,7 +716,7 @@ $primary: #0067b6;
 }
 
 @media screen and(max-width: 400px) {
-  #avatar-creator {
+  #colorful-face {
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -683,8 +724,31 @@ $primary: #0067b6;
   }
 }
 
+@media screen and(min-width: 1080px) {
+  #colorful-face {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    // flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    background-image: url("assets/bg.png");
+  }
+  #avatar-preview-outter-wrapper {
+    margin-top: 6.5vh;
+  }
+
+  .main-attributes {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
-  #avatar-creator {
+  #colorful-face {
     /* background-color: #393939; */
     background-color: rgba(80, 80, 80, 0.2);
 
@@ -715,7 +779,7 @@ $primary: #0067b6;
 }
 
 body.darkmode:not(.darkmode-off) {
-  #avatar-creator {
+  #colorful-face {
     /* background-color: #393939; */
     background-color: rgba(80, 80, 80, 0.2);
 

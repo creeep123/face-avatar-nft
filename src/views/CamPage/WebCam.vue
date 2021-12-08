@@ -41,8 +41,8 @@
         id="inputVideo"
         v-show="!isPhotoTaken"
         ref="camera"
-        :width="280"
-        :height="280"
+        :width="`${weight}`"
+        :height="`${height}`"
         autoplay
       ></video>
 
@@ -50,12 +50,12 @@
         v-show="isPhotoTaken"
         id="photoTaken"
         ref="canvas"
-        :width="280"
-        :height="280"
+        :width="`${weight}`"
+        :height="`${height}`"
       ></canvas>
     </div>
 
-    <div
+    <!-- <div
       v-if="isCameraOpen && !isLoading"
       class="camera-shoot"
     >
@@ -66,9 +66,9 @@
       >
         拍摄
       </button>
-    </div>
+    </div> -->
 
-    <div
+    <!-- <div
       v-if="isPhotoTaken && isCameraOpen"
       class="camera-download"
     >
@@ -81,7 +81,7 @@
       >
         Download
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -97,6 +97,8 @@ export default {
   },
   data () {
     return {
+      weight: 850,
+      height: 1000,
       isCameraOpen: false,
       isPhotoTaken: false,
       isShotPhoto: false,
@@ -159,7 +161,8 @@ export default {
         const FLASH_TIMEOUT = 50;
         //截取图片，调用识别接口
         const context = this.$refs.canvas.getContext('2d');
-        context.drawImage(this.$refs.camera, 0, 0, 450, 337.5);
+        // context.drawImage(this.$refs.camera, 0, 0, 816, 960, 0, 0, 850, 1000); 
+        context.drawImage(this.$refs.camera, 240, 0, 850, 1000, 0, 0, 1224, 1440);
         const image = this.getCurCanvasImg()
         //人脸信息存入 store
         this.$store.commit('showLoading')
@@ -177,7 +180,7 @@ export default {
         setTimeout(() => {
           this.isShotPhoto = false;
         }, FLASH_TIMEOUT);
-        //跳转到result页面
+        // 跳转到result页面
         this.$router.push({
           name: 'ResultPage',
         })
@@ -210,56 +213,57 @@ export default {
 
 
 <style lang="scss" scoped>
+@import url("../../components/global/global.scss");
 $primary: #0067b6;
 body {
   display: flex;
   justify-content: center;
 }
-button {
-  border: none;
-  height: 40px;
-  border-radius: 7px;
-  cursor: pointer;
-  &:focus,
-  &:active {
-    outline: none;
-  }
+// button {
+//   border: none;
+//   height: 40px;
+//   border-radius: 7px;
+//   cursor: pointer;
+//   &:focus,
+//   &:active {
+//     outline: none;
+//   }
 
-  &:active {
-    box-shadow: 0px 0px 2px rgba($primary, 0.5);
-  }
+//   &:active {
+//     box-shadow: 0px 0px 2px rgba($primary, 0.5);
+//   }
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
 
-  i {
-    margin-right: 10px;
-  }
+//   i {
+//     margin-right: 10px;
+//   }
 
-  transition: all 0.3s ease;
+//   transition: all 0.3s ease;
 
-  &#cam-shot-btn {
-    background-color: $primary;
-    color: #fff;
+//   &#cam-shot-btn {
+//     background-color: $primary;
+//     color: #fff;
 
-    &:hover {
-      background-color: #06538d;
-    }
-  }
-  &#download-btn {
-    background-color: transparent;
-    border: 1px solid $primary;
-    color: $primary;
-    width: calc(50% - 5px);
+//     &:hover {
+//       background-color: #06538d;
+//     }
+//   }
+//   &#download-btn {
+//     background-color: transparent;
+//     border: 1px solid $primary;
+//     color: $primary;
+//     width: calc(50% - 5px);
 
-    &:hover {
-      background-color: $primary;
-      color: #fff;
-    }
-  }
-}
+//     &:hover {
+//       background-color: $primary;
+//       color: #fff;
+//     }
+//   }
+// }
 
 .web-camera-container {
   margin-top: 2rem;
@@ -271,7 +275,8 @@ button {
   align-items: center;
   // border: 1px solid #ccc;
   // border-radius: 4px;
-  width: 500px;
+  width: 100%;
+  background-color: gray;
   // background-color: pink;
 
   .camera-button {
@@ -289,6 +294,10 @@ button {
 
   .camera-box {
     position: relative;
+    border: 5px solid #5c5c5c;
+    box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
+    -webkit-box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
+    -moz-box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
     #inputVideo {
       // width: 200px;
       transform: rotateY(180deg) scale(2);
@@ -395,6 +404,12 @@ button {
     100% {
       opacity: 1;
     }
+  }
+}
+
+@media screen and(min-width: 1080px) {
+  .web-camera-container {
+    height: 1000px;
   }
 }
 </style>

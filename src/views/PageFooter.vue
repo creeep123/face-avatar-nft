@@ -5,7 +5,7 @@
       target="_blank"
       class="__cursor_text"
     >
-      {{ beianCode }} &nbsp; &copy;2021 智能工程
+      {{ beianCode }} &nbsp; &copy;2021 META FACE
     </a>
   </footer>
 </template>
@@ -25,7 +25,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 60px;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   display: flex;
   align-items: center;

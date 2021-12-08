@@ -5,7 +5,7 @@
   >
     <div
       :style="{
-        width: `100%`,
+        width: `${width}px`,
         height: `${height}px`,
         display: 'flex',
         justifyContent: 'center',
@@ -14,6 +14,7 @@
     >
       <WebCam
         v-loading="loading"
+        ref="webCam"
         @setLoading='setLoading'
       ></WebCam>
     </div>
@@ -31,8 +32,14 @@
       </button>
     </div> -->
 
-    <div class="contact-us-wrapper">
-      <h1>Meta Face</h1>
+    <div class="camera-shoot hologram interactive btn light chicagoflf">
+      <button
+        class="shoot-button"
+        type="button"
+        @click="this.handleButtonClick"
+      >
+        Let's go!
+      </button>
     </div>
   </div>
 </template>
@@ -53,8 +60,10 @@ import AvatarCreatorMixin from "./creator.mixin";
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private loading = false;
-  private width = 280;
-  private height = 480;
+  // private width = 280;
+  // private height = 480;
+  private width = 850;
+  private height = 1000;
   private exporting = false;
   private ammount = 100;
   private showMask = false;
@@ -62,6 +71,12 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 
   setLoading(boo: boolean) {
     this.loading = boo;
+  }
+
+  handleButtonClick() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    //@ts-ignore
+    this.$refs.webCam.takePhoto();
   }
 
   mounted() {}
@@ -85,6 +100,9 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 
 <style lang="scss" scoped>
 $primary: #0067b6;
+.camera-shoot {
+  margin-top: 24vh;
+}
 #avatar-creator {
   position: fixed;
   left: 50%;
@@ -112,52 +130,52 @@ $primary: #0067b6;
     flex-wrap: nowrap;
     justify-content: center;
   }
-  button {
-    border: none;
-    height: 40px;
-    border-radius: 7px;
-    cursor: pointer;
-    &:focus,
-    &:active {
-      outline: none;
-    }
+  // button {
+  //   border: none;
+  //   height: 40px;
+  //   border-radius: 7px;
+  //   cursor: pointer;
+  //   &:focus,
+  //   &:active {
+  //     outline: none;
+  //   }
 
-    &:active {
-      box-shadow: 0px 0px 2px rgba($primary, 0.5);
-    }
+  //   &:active {
+  //     box-shadow: 0px 0px 2px rgba($primary, 0.5);
+  //   }
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   align-items: center;
 
-    i {
-      margin-right: 10px;
-    }
+  //   i {
+  //     margin-right: 10px;
+  //   }
 
-    transition: all 0.3s ease;
+  //   transition: all 0.3s ease;
 
-    &#refresh-btn {
-      background-color: $primary;
-      color: #fff;
-      width: calc(50% - 5px);
+  //   &#refresh-btn {
+  //     background-color: $primary;
+  //     color: #fff;
+  //     width: calc(50% - 5px);
 
-      &:hover {
-        background-color: #06538d;
-      }
-    }
-    &#download-btn {
-      background-color: transparent;
-      border: 1px solid $primary;
-      color: $primary;
-      width: calc(50% - 5px);
+  //     &:hover {
+  //       background-color: #06538d;
+  //     }
+  //   }
+  //   &#download-btn {
+  //     background-color: transparent;
+  //     border: 1px solid $primary;
+  //     color: $primary;
+  //     width: calc(50% - 5px);
 
-      &:hover {
-        background-color: $primary;
-        color: #fff;
-      }
-    }
-  }
+  //     &:hover {
+  //       background-color: $primary;
+  //       color: #fff;
+  //     }
+  //   }
+  // }
   input {
     background-color: #efefef;
     border-radius: 7px;
@@ -270,42 +288,6 @@ $primary: #0067b6;
     }
   }
 }
-#wechat-group-qr-card {
-  width: 300px;
-  height: 350px;
-  padding: 20px;
-  position: fixed;
-  background-color: #fff;
-  z-index: 99999;
-  /* bottom: calc(100% + 10px); */
-  border-radius: 20px;
-  box-shadow: 0px -20px 40px rgba(0, 0, 0, 0.1),
-    0px 10px 20px rgba(0, 0, 0, 0.05);
-  img {
-    width: 100%;
-    border-radius: inherit;
-  }
-
-  transform: scale(0) translateY(0px);
-  opacity: 0;
-  transition: all 0.23s ease;
-  transform-origin: 50% 120%;
-  &::after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: #fff;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &.show-wechat-group-qr-card {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
 
 @media screen and(max-width: 400px) {
   #avatar-creator {
@@ -313,6 +295,22 @@ $primary: #0067b6;
     max-width: 100%;
     height: 100%;
     border-radius: 0;
+  }
+}
+
+@media screen and(min-width: 1080px) {
+  #avatar-creator {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    // flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    background-image: url("assets/bg.png");
+  }
+  #avatar-preview-outter-wrapper {
+    margin-top: 6.5vh;
   }
 }
 

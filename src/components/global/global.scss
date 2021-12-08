@@ -1,0 +1,86 @@
+@font-face {
+  font-family: ChicagoFLF;
+  src: url('./ChicagoFLF.ttf');
+}
+:root {
+  --nsblack: #000;
+  --nswhite: #fff;
+  --nsgray: #d8dad9;
+  --nsgray-50: #f7f7f7;
+  --nsgray-100: #d8dad9;
+  --nsgray-200: #bbb;
+  --nsgray-300: #7d8492;
+  --nsgray-400: #888;
+  --nsgray-500: #666;
+  --nsgray-600: #3b4151;
+  --nsltblue: #eef7f6;
+  --nsblue: #47aed7;
+  --nsforest: #0a854c;
+  --nsgreen: #d3e7dc;
+  --nslime: #66fecb;
+  --nsnavy: #336bad;
+  --nsorange: #ee4116;
+  --nsorangred: #d53810;
+  --nspeach: #ffe1c5;
+  --nspink: #f7cdcf;
+  --nsred-100: #feebeb;
+  --nsred: #e11e2e;
+  --nsyellow: #e2ba36;
+  --nstitle: ChicagoFLF, sans-serif;
+  --sansserif: -apple-system, BlinkMacSystemFont, 'avenir next', avenir,
+    'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,
+    sans-serif;
+  --nsmonospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  --bradius: 0px;
+  --bwidth: 1px;
+  --btn-ghost-x: -4px;
+  --btn-ghost-y: -4px;
+  --btn-ghost-x-hover: -1px;
+  --btn-ghost-y-hover: -1px;
+  --card-ghost-x: -9px;
+  --card-ghost-y: -9px;
+  --card-ghost-x-hover: -5px;
+  --card-ghost-y-hover: -5px;
+  --h2-size: 2em;
+  --h3-size: 2em;
+}
+.hologram.interactive {
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.btn.light {
+  color: var(--nsblack);
+  background-color: var(--nswhite);
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(var(--btn-ghost-y) * -1);
+  min-width: 8rem;
+}
+.select-none {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-user-select: none;
+}
+.hologram {
+  text-decoration: none;
+  border: var(--bwidth) solid var(--nsblack);
+  box-shadow: var(--btn-ghost-x) var(--btn-ghost-y) 0 0 var(--nsgray),
+    var(--btn-ghost-x) var(--btn-ghost-y) 0 1px var(--nsblack);
+}
+.chicagoflf {
+  --nstitle: ChicagoFLF, sans-serif;
+  font-family: var(--nstitle);
+}
+
+.shoot-button {
+  width: 360px;
+  height: 138px;
+  font-size: 2rem;
+  font-style: italic;
+  background-color: #d2191a;
+  color: #f4bb26;
+  font-family: ChicagoFLF, sans-serif;
+}

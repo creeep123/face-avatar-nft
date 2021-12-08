@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("./assets/global/global.scss");
 body,
 html {
   width: 100%;

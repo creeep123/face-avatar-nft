@@ -157,21 +157,21 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     default:
       attributes.Glasses = ['无眼镜'];
   }
-  // if (faceAttributeInfos.Eye.Glass.Type == 1) {
-  //   switch (faceAttributeInfos.my_glass_type) {
-  //     case 'no_glass':
-  //       attributes.Glasses.push('无眼镜');
-  //       break;
-  //     case 'round':
-  //       attributes.Glasses.push('圆眼镜');
-  //       break;
-  //     case 'square':
-  //       attributes.Glasses.push('方眼镜');
-  //       break;
-  //     default:
-  //       attributes.Glasses.push('无眼镜');
-  //   }
-  // }
+  if (faceAttributeInfos.Eye.Glass.Type == 1) {
+    switch (faceAttributeInfos.my_glass_type) {
+      case 'no_glass':
+        attributes.Glasses.push('无眼镜');
+        break;
+      case 'round':
+        attributes.Glasses.push('圆眼镜');
+        break;
+      case 'square':
+        attributes.Glasses.push('方眼镜');
+        break;
+      default:
+        attributes.Glasses.push('无眼镜');
+    }
+  }
 
   //头发
   switch (faceAttributeInfos.Hair.Length.Type) {
