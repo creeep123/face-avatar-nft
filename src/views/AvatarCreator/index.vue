@@ -588,7 +588,10 @@ $primary: #0067b6;
     &#refresh-btn {
       background-color: $primary;
       color: #fff;
-      width: calc(50% - 5px);
+      // width: calc(50% - 5px);
+      width: 350px;
+      height: 100px;
+      font-size: 1.5rem;
 
       &:hover {
         background-color: #06538d;

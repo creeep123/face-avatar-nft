@@ -33,6 +33,11 @@ export function getMatchedValueInArr(
       // return hasKeyWords;
     });
   }
+  if (filteredArr.length > 1) {
+    filteredArr = filteredArr.filter((item: { empty: any }) => {
+      return typeof item.empty == 'undefined';
+    });
+  }
   console.log('filteredArr :>> ', filteredArr);
   //2. 根据 weight （权重）选取部件
   filteredArr.forEach((el: { [x: string]: any }, index: number) => {

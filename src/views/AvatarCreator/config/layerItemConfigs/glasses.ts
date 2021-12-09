@@ -15,7 +15,7 @@ const glassesConfig: LayerItemConfig[] = [
   },
   {
     genderType: GenderType.UNSET,
-    filename: '头像初稿_墨镜_方眼镜',
+    filename: '头像初稿_墨镜',
     avaiableColorGroups: avaiableColors[LAYER_ID.GLASSES],
     weight: 2,
   },
