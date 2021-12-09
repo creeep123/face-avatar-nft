@@ -14,19 +14,35 @@
       @click="jumpToAvatarPage"
     >
       <div class="main-attributes">
-        <div class="main-attribute-item">{{$store.state.GENDER==0?"MAN":"WOMAN"}}</div>
-        <div class="main-attribute-item">{{$store.state.AGE}}</div>
-        <div class="main-attribute-item">{{this.getMappedAttribute("Glasses")}}</div>
-        <div class="main-attribute-item">{{this.getMappedAttribute("Hair")}}</div>
-        <div class="main-attribute-item">{{this.getMappedAttribute("FacialHair")}}</div>
+        <div class="main-attribute-item">
+          <div class="icon-wrapper"><img src="./assets/性别.png"></div>
+          <div class="attribute-value">{{$store.state.GENDER==0?"男":"女"}}</div>
+        </div>
+        <div class="main-attribute-item">
+          <div class="icon-wrapper"><img src="./assets/年龄.png"></div>
+          <div class="attribute-value">{{$store.state.AGE}}</div>
+        </div>
+        <div class="main-attribute-item">
+          <div class="icon-wrapper"><img src="./assets/眼镜.png"></div>
+          <div class="attribute-value">{{this.getMappedAttribute("Glasses")}}</div>
+        </div>
+        <div class="main-attribute-item">
+          <div class="icon-wrapper"><img src="./assets/假发.png"></div>
+          <div class="attribute-value">{{this.getMappedAttribute("Hair")}}</div>
+        </div>
+        <div class="main-attribute-item">
+          <div class="icon-wrapper"><img src="./assets/胡子.png"></div>
+          <div class="attribute-value">{{this.getMappedAttribute("FacialHair")}}</div>
+        </div>
       </div>
+
       <div :style="{
           overflow: 'hidden',
           width: `${width}px`,
           height: exporting ? 0 : `${height}px`,
           '--bg': backgroundColor,
         }">
-        <div
+        <!-- <div
           id="avatar-preview"
           :class="{ exporting }"
           :style="{
@@ -34,6 +50,16 @@
             height: `${height}px`,
             backgroundColor,
             borderRadius,
+            '--bg': backgroundColor,
+          }"
+        > -->
+        <div
+          id="avatar-preview"
+          :class="{ exporting }"
+          :style="{
+            width: `${width}px`,
+            height: `${height}px`,
+            backgroundColor,
             '--bg': backgroundColor,
           }"
         >
@@ -64,50 +90,16 @@
 
           <div style="width: 100%;height: 100%;position: relative;z-index:2">
             <img
-              style="max-width:280px"
+              :style="`width:${width}px`"
               :src="'data:image/jpg;base64,'+this.$store.state.PIXEL64"
-              class=""
+              class="color-face-img"
             >
           </div>
         </div>
       </div>
     </div>
-    <div>
-      <h2>点击上方图片生成专属头像</h2>
-    </div>
 
-    <div class="profile-card-inf">
-      <!-- <div class="profile-card-inf__item">
-        <div class="profile-card-inf__title">{{this.$store.state.AGE}}</div>
-        <div class="profile-card-inf__txt">年龄</div>
-      </div>
-
-      <div class="profile-card-inf__item">
-        <div class="profile-card-inf__title">{{this.$store.state.BEAUTY}}</div>
-        <div class="profile-card-inf__txt">魅力值</div>
-      </div>
-
-      <div class="profile-card-inf__item">
-        <div class="profile-card-inf__title">{{this.$store.state.GENDER==1?"♀":"♂"}}</div>
-        <div class="profile-card-inf__txt">性别</div>
-      </div> -->
-
-      <!-- <div class="profile-card-inf__item">
-        <div class="profile-card-inf__title">85</div>
-        <div class="profile-card-inf__txt">Works</div>
-      </div> -->
-
-      <!-- 
-        脸型：
-        眼镜：
-        潜力：
-        有眼镜
-        帽子
-        胡子
-               -->
-    </div>
-
-    <div>
+    <!-- <div>
       <ul id="example-1">
         <li>年龄：{{this.$store.state.AGE}}</li>
         <li>魅力值：{{this.$store.state.BEAUTY}}</li>
@@ -119,48 +111,27 @@
           {{ objKey }}:{{$store.state.chosenAttr[objKey]}}
         </li>
       </ul>
+    </div> -->
+
+    <div>
+      <ul id="rating-stars">
+        <li
+          class="star-list-item"
+          v-for="(starMount,index) in getStarAmount()"
+          :key="index"
+        >
+          <span
+            v-for="(_,index) in new Array(starMount).fill(0)"
+            :key="index"
+            class="star-img-wrapper"
+          ><img src="./assets/红心@1x.png"></span>
+        </li>
+      </ul>
     </div>
 
-    <!-- <div>
-      <h1>{{this.$store.state.chosenAttr}}</h1>
-    </div> -->
-
-    <!-- 资源说明 -->
-    <!-- <div class="resource-info">
-      <span class="__cursor_text">
-        {{ $t("resource-from") }}
-      </span>
-
-      <div class="sources">
-        <a
-          class="__cursor_rect"
-          href="https://www.figma.com/community/file/829741575478342595/Avatar-Illustration-System"
-          target="_blank"
-        >
-          {{ $t("figma-community") }}
-        </a>
-
-        <span>+</span>
-        <a
-          class="__cursor_rect"
-          href="https://www.gaoxiazhitu.com/about"
-          target="_blank"
-        >
-          {{ $t("with-our-designer") }}
-        </a>
-      </div>
-    </div> -->
-
-    <!-- 联系我们 -->
-    <!-- <div class="contact-us-wrapper">
-      <div
-        class="contact-us __cursor_rect"
-        @click="toggleWechatGroupQrCard(true)"
-      >
-        <i class="ri-wechat-2-fill"></i>
-        <span>{{ $t("contcat-us") }}</span>
-      </div>
-    </div> -->
+    <div class="continue-button-wrapper">
+      <div class="continue-button"></div>
+    </div>
   </div>
 </template>
 
@@ -191,8 +162,8 @@ import { mapState } from "vuex";
   },
 })
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
-  private width = 500;
-  private height = 500;
+  private width = 600;
+  private height = 600;
   private faceColorImg = "";
   private faceAttributeInfos: any = {};
   private attributesChosen: any = {};
@@ -220,7 +191,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       Glasses: {
         方眼镜: "SQUARE",
         圆眼镜: "CIRCLE",
-        墨镜: "SUNGLASSES",
+        墨镜: "SUNGLA",
         无眼镜: "NONE",
       },
       Hair: {
@@ -242,7 +213,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
         attrArray[i] !== "" &&
         attributesMapOne.hasOwnProperty(attrArray[i])
       ) {
-        return attributesMapOne[attrArray[i]];
+        return attrArray[i];
       }
     }
   }
@@ -252,6 +223,22 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
     this.attributesChosen = this.$store.state.chosenAttr;
+  }
+
+  getStarAmount() {
+    const faceInfoRaw = this.$store.state.faceInfoRaw;
+    const starAmounts = [
+      Math.floor(
+        Math.floor(
+          faceInfoRaw.Smile < 20 ? faceInfoRaw.Smile + 20 : faceInfoRaw.Smile
+        ) / 20
+      ),
+      Math.round(Math.random() * 5),
+      Math.floor(Math.floor(faceInfoRaw.Beauty) / 20),
+      Math.round(Math.random() * 5),
+      Math.round(Math.random() * 5),
+    ];
+    return starAmounts;
   }
 
   private fetchFaceInfo() {
@@ -501,10 +488,10 @@ $primary: #0067b6;
 
   /* background-color: #fff; */
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
+  // border-radius: 12px;
   padding: 50px 30px 20px 30px;
-  box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.1),
-    5px 5px 10px rgba(0, 0, 0, 0.02);
+  // box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.1),
+  //   5px 5px 10px rgba(0, 0, 0, 0.02);
   z-index: 9;
   backdrop-filter: saturate(180%) blur(12px);
 
@@ -598,13 +585,13 @@ $primary: #0067b6;
 
   &::before {
     content: "";
-    position: fixed;
-    width: inherit;
-    height: inherit;
-    border-radius: inherit;
-    transform: scale(0.95);
-    box-shadow: 0px 15px 30px var(--bg);
-    opacity: 1;
+    // position: fixed;
+    // width: inherit;
+    // height: inherit;
+    // border-radius: inherit;
+    // transform: scale(0.95);
+    // box-shadow: 0px 15px 30px var(--bg);
+    // opacity: 1;
   }
 
   &.exporting::before {
@@ -621,6 +608,10 @@ $primary: #0067b6;
   // }
   display: flex;
   justify-content: start;
+}
+
+.color-face-img {
+  // border: 8px solid #3b3b3b;
 }
 
 .resource-info {
@@ -724,6 +715,7 @@ $primary: #0067b6;
   }
 }
 
+//适配大屏幕
 @media screen and(min-width: 1080px) {
   #colorful-face {
     width: 100%;
@@ -733,17 +725,59 @@ $primary: #0067b6;
     // flex-direction: row;
     justify-content: start;
     align-items: center;
-    background-image: url("assets/bg.png");
+    background-image: url("assets/背景@1x.png");
   }
   #avatar-preview-outter-wrapper {
-    margin-top: 6.5vh;
+    margin-top: 14.5vh;
   }
 
   .main-attributes {
-    flex-basis: 50%;
+    flex-basis: 35%;
+    margin-top: 90px;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    margin-left: 18px;
+  }
+
+  .main-attribute-item {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 50px;
+    margin: 25px 0px;
+  }
+
+  .attribute-value {
+    font-weight: bold;
+    font-size: 48px;
+    margin-left: 28px;
+  }
+
+  .icon-wrapper {
+    opacity: 0;
+    width: 120px;
+    img {
+      min-width: 100px;
+    }
+  }
+
+  #rating-stars {
+    margin-top: 9vh;
+    .star-list-item {
+      overflow: hidden;
+      height: 80px;
+      margin: 23px 0px;
+      list-style: none;
+      img {
+        min-width: 74px;
+      }
+    }
+  }
+
+  .continue-button {
+    height: 119px;
+    width: 480px;
+    background-image: url("./assets/底部button-常态@1x.png");
   }
 }
 

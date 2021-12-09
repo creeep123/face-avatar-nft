@@ -1,6 +1,6 @@
 <template>
   <div
-    id="avatar-creator"
+    id="cam-previewer"
     :class="{ exporting }"
   >
     <div
@@ -32,13 +32,31 @@
       </button>
     </div> -->
 
-    <div class="camera-shoot hologram interactive btn light chicagoflf">
+    <!-- <div class="camera-shoot hologram interactive btn light chicagoflf">
+      <button
+        class="shoot-button"
+        type="button"
+        @click="this.handleButtonClick"
+      >
+      </button>
+    </div> -->
+
+    <!-- <div class="camera-shoot">
       <button
         class="shoot-button"
         type="button"
         @click="this.handleButtonClick"
       >
         Let's go!
+      </button>
+    </div> -->
+
+    <div class="camera-shoot">
+      <button
+        class="shoot-button"
+        type="button"
+        @click="this.handleButtonClick"
+      >
       </button>
     </div>
   </div>
@@ -63,7 +81,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private width = 280;
   // private height = 480;
   private width = 850;
-  private height = 1000;
+  private height = 850;
   private exporting = false;
   private ammount = 100;
   private showMask = false;
@@ -102,8 +120,15 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 $primary: #0067b6;
 .camera-shoot {
   margin-top: 24vh;
+  .shoot-button {
+    height: 119px;
+    width: 480px;
+    border: none;
+    background: transparent;
+    background-image: url("./assets/底部button-常态@1x.png");
+  }
 }
-#avatar-creator {
+#cam-previewer {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -115,15 +140,15 @@ $primary: #0067b6;
   justify-content: center;
 
   /* background-color: #fff; */
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
-  padding: 50px 30px 20px 30px;
-  box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.1),
-    5px 5px 10px rgba(0, 0, 0, 0.02);
-  z-index: 9;
-  backdrop-filter: saturate(180%) blur(12px);
+  // background-color: rgba(255, 255, 255, 0.7);
+  // border-radius: 12px;
+  // padding: 50px 30px 20px 30px;
+  // box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.1),
+  //   5px 5px 10px rgba(0, 0, 0, 0.02);
+  // z-index: 9;
+  // backdrop-filter: saturate(180%) blur(12px);
 
-  max-width: 360px;
+  // max-width: 360px;
 
   .btns {
     display: flex;
@@ -199,12 +224,12 @@ $primary: #0067b6;
     width: 50%;
   }
 
-  button:disabled {
-    background-color: #efefef !important;
-    color: grey !important;
-    cursor: not-allowed;
-    border: none !important;
-  }
+  // button:disabled {
+  //   background-color: #efefef !important;
+  //   color: grey !important;
+  //   cursor: not-allowed;
+  //   border: none !important;
+  // }
 }
 
 #avatar-preview {
@@ -226,7 +251,7 @@ $primary: #0067b6;
     box-shadow: none;
   }
 }
-#avatar-creator.exporting #avatar-preview::after {
+#cam-previewer.exporting #avatar-preview::after {
   visibility: hidden !important;
 }
 #avatar-preview-outter-wrapper {
@@ -290,7 +315,7 @@ $primary: #0067b6;
 }
 
 @media screen and(max-width: 400px) {
-  #avatar-creator {
+  #cam-previewer {
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -299,7 +324,7 @@ $primary: #0067b6;
 }
 
 @media screen and(min-width: 1080px) {
-  #avatar-creator {
+  #cam-previewer {
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -307,15 +332,15 @@ $primary: #0067b6;
     // flex-direction: row;
     justify-content: start;
     align-items: center;
-    background-image: url("assets/bg.png");
+    background-image: url("assets/背景@1x.png");
   }
   #avatar-preview-outter-wrapper {
-    margin-top: 6.5vh;
+    margin-top: 312px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  #avatar-creator {
+  #cam-previewer {
     /* background-color: #393939; */
     background-color: rgba(80, 80, 80, 0.2);
 
@@ -346,7 +371,7 @@ $primary: #0067b6;
 }
 
 body.darkmode:not(.darkmode-off) {
-  #avatar-creator {
+  #cam-previewer {
     /* background-color: #393939; */
     background-color: rgba(80, 80, 80, 0.2);
 
@@ -364,10 +389,10 @@ body.darkmode:not(.darkmode-off) {
       }
     }
 
-    button:disabled {
-      background-color: #686868 !important;
-      color: grey !important;
-    }
+    // button:disabled {
+    //   background-color: #686868 !important;
+    //   color: grey !important;
+    // }
 
     #avatar-preview::after {
       box-shadow: 0px 15px 24px var(--bg);

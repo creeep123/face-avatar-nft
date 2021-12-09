@@ -80,6 +80,7 @@ const api = {
     const formData = new FormData();
     const blob = base64toblob(image);
     formData.append('image', blob, Date.now() + '.jpg');
+    formData.append('rare', 'Legendary' || '' || 'Common');
     return theAxios.post(`${BASE.ServerURI}/push_avatar`, formData, {
       headers: {
         'Content-type': 'multipart/form-data',

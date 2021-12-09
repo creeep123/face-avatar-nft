@@ -12,6 +12,7 @@ export default new Vuex.Store({
     GENDER: '',
     SKIN: '',
     chosenAttr: {},
+    faceInfoRaw: {},
   },
   mutations: {
     showLoading(state) {
@@ -25,6 +26,10 @@ export default new Vuex.Store({
     changeChosenAttrs(state, attr) {
       console.log('<<< changeChosenAttrs >>> ');
       state.chosenAttr = attr;
+    },
+    changeFaceInfoRaw(state, raw) {
+      console.log('<<< changeChosenAttrs >>> ');
+      state.faceInfoRaw = raw;
     },
     changeAge(state, age) {
       console.log('<<< changeAge >>> ');

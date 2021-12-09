@@ -36,7 +36,10 @@
         class="camera-shutter"
         :class="{'flash' : isShotPhoto}"
       ></div> -->
-
+      <div
+        class="videoBorder"
+        v-show="!isPhotoTaken"
+      ></div>
       <video
         id="inputVideo"
         v-show="!isPhotoTaken"
@@ -98,7 +101,7 @@ export default {
   data () {
     return {
       weight: 850,
-      height: 1000,
+      height: 850,
       isCameraOpen: false,
       isPhotoTaken: false,
       isShotPhoto: false,
@@ -127,8 +130,8 @@ export default {
         const constraints = (window.constraints = {
           audio: false,
           video: {
-            width: 1000,
-            height: 1000
+            width: 850,
+            height: 850
           },
         });
 
@@ -170,6 +173,7 @@ export default {
         const faceDetailInfo = res1.data.FaceDetailInfos[0].FaceDetailAttributesInfo
         const attributesChosen =
           matchAttributesFromFaceAttributeInfos(faceDetailInfo);
+        this.$store.commit('changeFaceInfoRaw', faceDetailInfo)
         this.$store.commit('changeChosenAttrs', attributesChosen)
         this.$store.commit('changeAge', faceDetailInfo.Age)
         this.$store.commit('changeBeauty', faceDetailInfo.Beauty)
@@ -266,9 +270,6 @@ body {
 // }
 
 .web-camera-container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,30 +277,34 @@ body {
   // border: 1px solid #ccc;
   // border-radius: 4px;
   width: 100%;
-  background-color: gray;
-  // background-color: pink;
+  // background-color: gray;
 
-  .camera-button {
-    // margin-bottom: 2rem;
-    .opencam-button {
-      // width: calc(40% - 10px);
-      width: 80px;
-      color: $primary;
-      background-color: rgba($primary, 0.1);
-      &:hover {
-        background-color: rgba($primary, 0.15);
-      }
-    }
-  }
+  // .camera-button {
+  //   // margin-bottom: 2rem;
+  //   .opencam-button {
+  //     // width: calc(40% - 10px);
+  //     width: 80px;
+  //     color: $primary;
+  //     background-color: rgba($primary, 0.1);
+  //     &:hover {
+  //       background-color: rgba($primary, 0.15);
+  //     }
+  //   }
+  // }
 
   .camera-box {
-    position: relative;
-    border: 5px solid #5c5c5c;
-    box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
-    -webkit-box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
-    -moz-box-shadow: -18px -18px 0px 0px rgba(166, 163, 163, 1);
+    // position: relative;
+    .videoBorder {
+      // z-index: 999;
+      position: absolute;
+      height: 850px;
+      width: 850px;
+      background-image: url("./assets/头像框@1x.png");
+    }
     #inputVideo {
       // width: 200px;
+      // position: absolute;
+      // z-index: 999;
       transform: rotateY(180deg) scale(2);
       -webkit-transform: rotateY(180deg) scale(2); /* Safari 和 Chrome */
       -moz-transform: rotateY(180deg) scale(2);
@@ -331,14 +336,14 @@ body {
   }
 
   .camera-shoot {
-    margin: 8px 0;
+    // margin: 8px 0;
 
-    button {
-      width: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    // button {
+    //   width: 100px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    // }
   }
 
   .camera-loading {
@@ -409,7 +414,7 @@ body {
 
 @media screen and(min-width: 1080px) {
   .web-camera-container {
-    height: 1000px;
+    height: 850px;
   }
 }
 </style>

@@ -54,20 +54,20 @@
     <!-- 二维码 -->
     <div
       :style="{
-        width: `100%`,
+        width: `${qrWidth}px`,
         height: `${qrHeight}px`,
         display: 'flex',
         justifyContent: 'center',
       }"
       id="qrcode-preview-outter-wrapper"
     >
-      <div :style="{
+      <!-- <div :style="{
           overflow: 'hidden',
           width: `${qrWidth}px`,
           height: exporting ? 0 : `${qrHeight}px`,
           '--bg': backgroundColor,
-        }">
-        <div
+        }"> -->
+      <!-- <div
           id="avatar-preview"
           :class="{ exporting }"
           :style="{
@@ -77,28 +77,28 @@
             borderRadius,
             '--bg': backgroundColor,
           }"
-        >
-          <ExportLoading
-            :ammount="
+        > -->
+      <ExportLoading
+        :ammount="
               Object.prototype.toString.call(ammount) === '[object String]'
                 ? parseInt(ammount)
                 : ammount
             "
-            :progress="progress"
-            v-if="showMask"
-            :style="{
+        :progress="progress"
+        v-if="showMask"
+        :style="{
               width: `${qrWidth}px`,
               height: `${qrHeight}px`,
             }"
-          />
-          <div style="width: 100%;height: 100%;position: relative;z-index:2">
-            <img
-              style="max-width:140px"
-              :src="'data:image/jpg;base64,'+this.qrCodeBase64"
-            >
-          </div>
-        </div>
-      </div>
+      />
+      <!-- <div style="width: 100%;height: 100%;position: relative;z-index:2"> -->
+      <img
+        :style="`max-width: ${qrWidth}px;`"
+        :src="'data:image/jpg;base64,'+this.qrCodeBase64"
+      >
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div> -->
     </div>
 
     <div
@@ -154,42 +154,11 @@
       </button> -->
     </div>
 
-    <!-- 资源说明 -->
-    <!-- <div class="resource-info">
-      <span class="__cursor_text">
-        {{ $t("resource-from") }}
-      </span>
-
-      <div class="sources">
-        <a
-          class="__cursor_rect"
-          href="https://www.figma.com/community/file/829741575478342595/Avatar-Illustration-System"
-          target="_blank"
-        >
-          {{ $t("figma-community") }}
-        </a>
-
-        <span>+</span>
-        <a
-          class="__cursor_rect"
-          href="https://www.gaoxiazhitu.com/about"
-          target="_blank"
-        >
-          {{ $t("with-our-designer") }}
-        </a>
-      </div>
-    </div> -->
-
-    <!-- 联系我们 -->
-    <!-- <div class="contact-us-wrapper">
-      <div
-        class="contact-us __cursor_rect"
-        @click="toggleWechatGroupQrCard(true)"
-      >
-        <i class="ri-wechat-2-fill"></i>
-        <span>{{ $t("contcat-us") }}</span>
-      </div>
-    </div> -->
+    <!-- <img
+      :style="`max-width: ${qrWidth}px;`"
+      :src="this.testImage"
+    /> -->
+    <!-- <h1>{{this.testImage}}</h1> -->
   </div>
 </template>
 
@@ -220,12 +189,14 @@ import $api from "../../service";
 export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private width = 410;
   // private height = 205;
-  private width = 280;
-  private height = 280;
-  // private width = 560;
-  // private height = 560; //大屏幕版本
-  private qrWidth = 140;
-  private qrHeight = 140;
+  // private width = 280;
+  // private height = 280;
+  private width = 560;
+  private height = 560; //大屏幕版本
+  // private qrWidth = 140;
+  // private qrHeight = 140;
+  private qrWidth = 280;
+  private qrHeight = 280; // 大屏幕版本
   private exporting = false;
   private ammount = 100;
   private showMask = false;
@@ -234,32 +205,26 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private backgroundColor = "#fff";
   private borderRadius = "12px";
 
+  private unique = false;
   private mask: any = null;
   private showWechatGroupQrCard = false;
 
   private svgRaw = "";
   private qrCodeBase64 = "";
+  private testImage = "";
 
   private exportTypes = [
     { label: "SVG", value: "svg" },
     { label: "PNG", value: "png" },
   ];
 
-  mounted() {
+  async mounted() {
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
-    this.createAvatarAndPush();
+    await this.createAvatarAndPush();
     // this.captureAndPush();
   }
-
-  // private getCurCanvasImg() {
-  //   const canvas = document
-  //     .getElementById("photoTaken")
-  //     .toDataURL("image/jpeg");
-  //   const image = canvas;
-  //   return image;
-  // }
 
   private jumpToCamPage() {
     this.$router.push({
@@ -269,11 +234,10 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 
   async createAvatarAndPush() {
     //生成头像并推送至后端，直到头像不重复
-    let unique = false;
-    while (!unique) {
-      this.createAvatar();
-      unique = await this.captureAndPush();
-    }
+    // while (!this.unique) {
+    await this.createAvatar();
+    await this.captureAndPush();
+    // }
   }
 
   /**
@@ -317,8 +281,6 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     } else {
       this.backgroundColor = "#fff";
     }
-
-    // this.captureAndPush();
   }
 
   private async pushAvatarImageReturnQrCode(image: string) {
@@ -328,27 +290,27 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   async captureAndPush() {
     this.exporting = true;
     this.borderRadius = "0";
-    // this.$nextTick(async () => {
-    const dom: HTMLElement = document.querySelector(
-      "#avatar-preview"
-    ) as HTMLElement;
-    const canvas = await html2canvas(dom, {
-      logging: false,
-      scale: window.devicePixelRatio,
-      width: this.width,
-      height: this.height,
+    this.$nextTick(async () => {
+      const dom: HTMLElement = document.querySelector(
+        "#avatar-preview"
+      ) as HTMLElement;
+      const canvas = await html2canvas(dom, {
+        logging: false,
+        scale: window.devicePixelRatio,
+        width: this.width,
+        height: this.height,
+      });
+      const image = canvas.toDataURL();
+      this.testImage = image;
+      const res: any = await this.pushAvatarImageReturnQrCode(image);
+      if (res.status == "already have this pic") {
+        await this.createAvatarAndPush();
+      } else {
+        this.qrCodeBase64 = res.qr_code64;
+        this.exporting = false;
+        this.borderRadius = "12px";
+      }
     });
-    const image = canvas.toDataURL();
-    const res: any = await this.pushAvatarImageReturnQrCode(image);
-    if (res.status == "already have this pic") {
-      return false;
-    } else {
-      this.qrCodeBase64 = res.qr_code64;
-      this.exporting = false;
-      this.borderRadius = "12px";
-      return true;
-    }
-    // });
   }
 
   /**
@@ -808,6 +770,23 @@ $primary: #0067b6;
     max-width: 100%;
     height: 100%;
     border-radius: 0;
+  }
+}
+
+//适配大屏幕
+@media screen and(min-width: 1080px) {
+  #avatar-creator {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
+    // flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    background-image: url("assets/bg.png");
+  }
+  #avatar-preview-outter-wrapper {
+    margin-top: 14.5vh;
   }
 }
 
