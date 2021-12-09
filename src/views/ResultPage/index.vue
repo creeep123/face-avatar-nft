@@ -11,7 +11,6 @@
         justifyContent: 'space-between',
       }"
       id="avatar-preview-outter-wrapper"
-      @click="jumpToAvatarPage"
     >
       <div class="main-attributes">
         <div class="main-attribute-item">
@@ -125,12 +124,20 @@
             :key="index"
             class="star-img-wrapper"
           ><img src="./assets/红心@1x.png"></span>
+          <span
+            v-for="(_,index) in new Array(5-starMount).fill(0)"
+            :key="index"
+            class="star-img-wrapper"
+          ><img src="./assets/空心@1x.png"></span>
         </li>
       </ul>
     </div>
 
     <div class="continue-button-wrapper">
-      <div class="continue-button"></div>
+      <div
+        class="continue-button"
+        @click="jumpToAvatarPage"
+      ></div>
     </div>
   </div>
 </template>
@@ -233,10 +240,10 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
           faceInfoRaw.Smile < 20 ? faceInfoRaw.Smile + 20 : faceInfoRaw.Smile
         ) / 20
       ),
-      Math.round(Math.random() * 5),
+      Math.ceil(Math.random() * 5),
       Math.floor(Math.floor(faceInfoRaw.Beauty) / 20),
-      Math.round(Math.random() * 5),
-      Math.round(Math.random() * 5),
+      Math.ceil(Math.random() * 5),
+      Math.ceil(Math.random() * 5),
     ];
     return starAmounts;
   }
@@ -768,12 +775,18 @@ $primary: #0067b6;
       height: 80px;
       margin: 23px 0px;
       list-style: none;
+      .star-img-wrapper {
+        margin-left: 40px;
+      }
       img {
         min-width: 74px;
       }
     }
   }
 
+  .continue-button-wrapper {
+    margin-top: 100px;
+  }
   .continue-button {
     height: 119px;
     width: 480px;
