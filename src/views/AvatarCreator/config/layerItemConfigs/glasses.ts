@@ -11,7 +11,7 @@ const glassesConfig: LayerItemConfig[] = [
     filename: '无眼镜',
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 10,
+    weight: 20,
   },
   {
     genderType: GenderType.UNSET,

@@ -7,7 +7,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -15,7 +15,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -39,7 +39,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -47,7 +47,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -55,7 +55,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -63,7 +63,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -71,7 +71,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 10,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {

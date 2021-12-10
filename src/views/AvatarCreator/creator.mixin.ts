@@ -19,36 +19,34 @@ export default class AvatarCreatorMixin extends Vue {
     config: CreateAvatarDto,
     congratulateAction?: () => any,
     chosenAttr?: any
-  ): Promise<string> {
+  ): Promise<any> {
     const { size, gender, skin } = config;
     const ls: Array<LayerListItem> = JSON.parse(JSON.stringify(layerList));
     ls.sort((a: any, b: any) => a.zIndex - b.zIndex);
     // 1. 获取随机的 layer 组合
-    let randomLayerList = ls
-      .map((l) => {
-        const dirName = l.dir.replace(/\s+/g, '');
-        return {
-          id: l.id,
-          dir: l.dir,
-          layer: getMatchedValueInArr(
-            // 性别过滤
-            l.layers.filter(({ genderType }: any) => {
-              // console.log('genderType :>> ', genderType);
-              return (
-                gender == GenderType.UNSET ||
-                genderType == gender ||
-                genderType == GenderType.UNSET
-              );
-            }),
-            'weight',
-            chosenAttr[dirName],
-            // 调试用
-            l.dir
-          ),
-        };
-      })
-      // 去除不需要显示的
-      .filter(({ layer }) => !layer.empty);
+    let randomLayerList = ls.map((l) => {
+      const dirName = l.dir.replace(/\s+/g, '');
+      const curLayer = getMatchedValueInArr(
+        // 性别过滤
+        l.layers.filter(({ genderType }: any) => {
+          // console.log('genderType :>> ', genderType);
+          return (
+            gender == GenderType.UNSET ||
+            genderType == gender ||
+            genderType == GenderType.UNSET
+          );
+        }),
+        'weight',
+        chosenAttr[dirName],
+        // 调试用
+        l.dir
+      );
+      return {
+        id: l.id,
+        dir: l.dir,
+        layer: curLayer,
+      };
+    });
 
     // console.log('randomLayerList :>> ', randomLayerList);
     // 2. 检查需要删除的
@@ -60,6 +58,15 @@ export default class AvatarCreatorMixin extends Vue {
     randomLayerList = randomLayerList.filter(
       ({ id }: { id: any }) => removeIdList.indexOf(id) < 0
     );
+
+    // 2.2 计算头像总权重，用于判断稀有度
+    let avatarWeight = 0;
+    randomLayerList.forEach((item) => {
+      avatarWeight += item.layer.weight;
+    });
+
+    //2.3 去除不需要显示的
+    randomLayerList = randomLayerList.filter(({ layer }) => !layer.empty);
 
     // 3. 选取一波颜色
     randomLayerList.forEach(({ id, dir, layer }) => {
@@ -156,12 +163,12 @@ export default class AvatarCreatorMixin extends Vue {
     }
 
     if (congratulate) congratulateAction && congratulateAction();
-    const svg =
+    const svgRaw =
       `<svg width="${size}" height="${size}" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
       ${groups.join('\n\n')}
     </svg>`
         .trim()
         .replace(/(\n|\t)/g, '');
-    return svg;
+    return { svgRaw, avatarWeight };
   }
 }

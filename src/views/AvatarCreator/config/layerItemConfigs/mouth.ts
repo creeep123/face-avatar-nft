@@ -62,13 +62,13 @@ const mouthConfig: LayerItemConfig[] = [
     filename: '头像初稿_惊讶_张嘴',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
-    weight: 10,
+    weight: 5,
   },
   {
     filename: '头像初稿_开心呲牙_张嘴',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
-    weight: 10,
+    weight: 5,
     removeLayers: [LAYER_ID.FACIAL_HAIR],
   },
   {
@@ -82,7 +82,7 @@ const mouthConfig: LayerItemConfig[] = [
     filename: '头像初稿_开心笑_张嘴',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MOUTH],
-    weight: 10,
+    weight: 8,
   },
   {
     filename: '头像初稿_微笑_闭嘴',

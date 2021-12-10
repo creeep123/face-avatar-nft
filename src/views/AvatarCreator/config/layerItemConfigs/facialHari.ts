@@ -31,7 +31,7 @@ const facialHairConfig: LayerItemConfig[] = [
     filename: '无胡子',
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 1,
+    weight: 10,
   },
 ];
 export default facialHairConfig;

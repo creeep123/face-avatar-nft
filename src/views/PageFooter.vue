@@ -1,12 +1,12 @@
 <template>
   <footer id="page-footer">
-    <a
+    <!-- <a
       href="http://beian.miit.gov.cn/"
       target="_blank"
       class="__cursor_text"
     >
       {{ beianCode }} &nbsp; &copy;2021 META FACE
-    </a>
+    </a> -->
   </footer>
 </template>
 

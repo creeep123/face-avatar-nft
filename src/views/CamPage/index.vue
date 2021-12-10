@@ -87,6 +87,20 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private showMask = false;
   private progress = 0;
 
+  private privateRegisterEnter() {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const that = this;
+    document.onkeydown = function (e) {
+      // 回车提交表单
+      // 兼容FF和IE和Opera
+      const theEvent: any = window.event || e;
+      const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+      if (code == 13) {
+        that.handleButtonClick();
+      }
+    };
+  }
+
   setLoading(boo: boolean) {
     this.loading = boo;
   }
@@ -97,7 +111,9 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     this.$refs.webCam.takePhoto();
   }
 
-  mounted() {}
+  mounted() {
+    this.privateRegisterEnter();
+  }
 
   exportIgnoreMiddleware(el: HTMLElement) {
     if (el && el.getAttribute("class")) {
@@ -323,7 +339,7 @@ $primary: #0067b6;
   }
 }
 
-@media screen and(min-width: 1080px) {
+@media screen and(min-width: 1079px) {
   #cam-previewer {
     width: 100%;
     max-width: 100%;

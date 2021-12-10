@@ -26,7 +26,7 @@ const eyesConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     filename: '头像初稿_男-闭眼',
     avaiableColorGroups: avaiableColors[LAYER_ID.EYES],
-    weight: 10,
+    weight: 1,
     removeLayers: [LAYER_ID.EYELID],
   },
   {
@@ -45,7 +45,7 @@ const eyesConfig: LayerItemConfig[] = [
     genderType: GenderType.FEMALE,
     filename: '头像初稿_女-闭眼',
     avaiableColorGroups: avaiableColors[LAYER_ID.EYES],
-    weight: 10,
+    weight: 1,
     removeLayers: [LAYER_ID.EYELID],
   },
   {

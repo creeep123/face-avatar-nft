@@ -295,10 +295,10 @@ body {
   .camera-box {
     // position: relative;
     .videoBorder {
-      // z-index: 999;
+      z-index: 999;
       position: absolute;
-      height: 850px;
-      width: 850px;
+      height: 860px;
+      width: 860px;
       background-image: url("./assets/头像框@1x.png");
     }
     #inputVideo {
@@ -308,7 +308,7 @@ body {
       transform: rotateY(180deg) scale(2);
       -webkit-transform: rotateY(180deg) scale(2); /* Safari 和 Chrome */
       -moz-transform: rotateY(180deg) scale(2);
-      clip-path: inset(25% 25% 25% 25%);
+      clip-path: inset(26.2% 26.2% 26.2% 26.2%);
     }
     .camera-shutter {
       opacity: 0;

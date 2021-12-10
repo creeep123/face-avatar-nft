@@ -1,123 +1,122 @@
 <template>
-  <div
+  <!-- <div
     id="avatar-creator"
     :class="{ exporting }"
-  >
-    <div
-      :style="{
+  > -->
+  <div id="avatar-creator">
+    <div :class="`background ${rarity}`">
+      <div
+        :style="{
         width: `100%`,
         height: `${height}px`,
         display: 'flex',
         justifyContent: 'center',
       }"
-      id="avatar-preview-outter-wrapper"
-    >
-      <div :style="{
+        id="avatar-preview-outter-wrapper"
+      >
+        <!-- <div :style="{
           overflow: 'hidden',
           width: `${width}px`,
           height: exporting ? 0 : `${height}px`,
           '--bg': backgroundColor,
+        }"> -->
+        <div :style="{
+          width: `${width}px`,
+          height: exporting ? 0 : `${height}px`,
         }">
-        <div
-          id="avatar-preview"
-          :class="{ exporting }"
-          :style="{
+          <div
+            id="avatar-preview"
+            :class="{ exporting }"
+            :style="{
             width: `${width}px`,
             height: `${height}px`,
             backgroundColor,
             borderRadius,
             '--bg': backgroundColor,
           }"
-        >
-          <ExportLoading
-            :ammount="
+          >
+            <ExportLoading
+              :ammount="
               Object.prototype.toString.call(ammount) === '[object String]'
                 ? parseInt(ammount)
                 : ammount
             "
-            :progress="progress"
-            v-if="showMask"
-            :style="{
+              :progress="progress"
+              v-if="showMask"
+              :style="{
               width: `${width}px`,
               height: `${height}px`,
             }"
-          />
-          <div
-            style="width: 100%;height: 100%;position: relative;z-index:2"
-            v-html="svgRaw"
-          ></div>
+            />
+            <div
+              class="avatar-svg"
+              style="width: 100%;height: 100%;position: relative;"
+              v-html="svgRaw"
+            ></div>
+          </div>
+          <img
+            src="./assets/头像框@1x.png"
+            class="avatar-border"
+          >
         </div>
       </div>
-    </div>
 
-    <br />
-    <!-- 二维码 -->
-    <div
-      :style="{
-        width: `${qrWidth}px`,
-        height: `${qrHeight}px`,
+      <br />
+
+      <!-- 二维码 -->
+      <div
+        class="qrcode-wrapper"
+        :style="{
         display: 'flex',
         justifyContent: 'center',
       }"
-      id="qrcode-preview-outter-wrapper"
-    >
-      <!-- <div :style="{
-          overflow: 'hidden',
-          width: `${qrWidth}px`,
-          height: exporting ? 0 : `${qrHeight}px`,
-          '--bg': backgroundColor,
-        }"> -->
-      <!-- <div
-          id="avatar-preview"
-          :class="{ exporting }"
-          :style="{
-            width: `${qrWidth}px`,
-            height: `${qrHeight}px`,
-            backgroundColor,
-            borderRadius,
-            '--bg': backgroundColor,
-          }"
-        > -->
-      <ExportLoading
-        :ammount="
+      >
+        <ExportLoading
+          :ammount="
               Object.prototype.toString.call(ammount) === '[object String]'
                 ? parseInt(ammount)
                 : ammount
             "
-        :progress="progress"
-        v-if="showMask"
-        :style="{
+          :progress="progress"
+          v-if="showMask"
+          :style="{
               width: `${qrWidth}px`,
               height: `${qrHeight}px`,
             }"
-      />
-      <!-- <div style="width: 100%;height: 100%;position: relative;z-index:2"> -->
-      <img
-        :style="`max-width: ${qrWidth}px;`"
-        :src="'data:image/jpg;base64,'+this.qrCodeBase64"
-      >
-      <!-- </div> -->
-      <!-- </div> -->
-      <!-- </div> -->
-    </div>
+        />
+        <img
+          :style="`max-width: ${qrWidth}px;`"
+          :src="'data:image/jpg;base64,'+this.qrCodeBase64"
+        >
+      </div>
 
-    <div
-      class="btns"
-      style="margin-top: 40px;"
-    >
-      <!-- 重拍一张 -->
-      <button
-        id="refresh-btn"
-        :disabled="exporting ? 'disabled' : false"
-        @click="() => jumpToCamPage()"
-        class="__cursor_rect"
+      <div
+        class="tips"
+        :style="{
+        display: 'flex',
+        justifyContent: 'center',
+      }"
       >
-        <i class="ri-refresh-line"></i>
-        <span>我要重拍</span>
-      </button>
+        <p>请使用推推扫描二维码</p>
+      </div>
 
-      <!-- 随机按钮 -->
-      <!-- <button
+      <div
+        class="btns"
+        style="margin-top: 40px;"
+      >
+        <!-- 重拍一张 -->
+        <!-- <button
+          id="refresh-btn"
+          :disabled="exporting ? 'disabled' : false"
+          @click="() => jumpToCamPage()"
+          class="__cursor_rect"
+        >
+          <i class="ri-refresh-line"></i>
+          <span>我要重拍</span>
+        </button> -->
+
+        <!-- 随机按钮 -->
+        <!-- <button
         id="refresh-btn"
         :disabled="exporting ? 'disabled' : false"
         @click="() => createAvatarAndPush()"
@@ -127,8 +126,8 @@
         <span>{{ $t("random-avatar") }}</span>
       </button> -->
 
-      <!-- 下载按钮 -->
-      <!-- <button
+        <!-- 下载按钮 -->
+        <!-- <button
         class="__cursor_rect"
         id="download-btn"
         :disabled="exporting ? 'disabled' : false"
@@ -140,8 +139,8 @@
         </span>
       </button> -->
 
-      <!-- 下一步按钮 -->
-      <!-- <button
+        <!-- 下一步按钮 -->
+        <!-- <button
         class="__cursor_rect"
         id="download-btn"
         :disabled="exporting ? 'disabled' : false"
@@ -152,13 +151,14 @@
           {{ $t("next-step") }}
         </span>
       </button> -->
-    </div>
+      </div>
 
-    <!-- <img
+      <!-- <img
       :style="`max-width: ${qrWidth}px;`"
       :src="this.testImage"
-    /> -->
-    <!-- <h1>{{this.testImage}}</h1> -->
+      /> -->
+      <!-- <h1>{{this.testImage}}</h1> -->
+    </div>
   </div>
 </template>
 
@@ -191,8 +191,8 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   // private height = 205;
   // private width = 280;
   // private height = 280;
-  private width = 560;
-  private height = 560; //大屏幕版本
+  private width = 540;
+  private height = 540; //大屏幕版本
   // private qrWidth = 140;
   // private qrHeight = 140;
   private qrWidth = 280;
@@ -217,8 +217,11 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     { label: "SVG", value: "svg" },
     { label: "PNG", value: "png" },
   ];
+  private rarity = "";
 
   async mounted() {
+    // 注册回车事件
+    this.privateRegisterEnter();
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
@@ -230,6 +233,20 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     this.$router.push({
       name: "CamPage",
     });
+  }
+
+  private privateRegisterEnter() {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const that = this;
+    document.onkeydown = function (e) {
+      // 回车提交表单
+      // 兼容FF和IE和Opera
+      const theEvent: any = window.event || e;
+      const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+      if (code == 13) {
+        that.jumpToCamPage();
+      }
+    };
   }
 
   async createAvatarAndPush() {
@@ -250,7 +267,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // const randomGender = genders[randomIndex];
     const curGender =
       this.$store.state.GENDER == 0 ? GenderType.MALE : GenderType.FEMALE;
-    const svgRaw = await this.createOne(
+    const { svgRaw, avatarWeight } = await this.createOne(
       {
         size: this.width,
         renderer: RenderType.SVG,
@@ -265,8 +282,17 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
           },
       this.$store.state.chosenAttr
     );
-
     this.svgRaw = svgRaw;
+    // 通过组件总权重值计算稀有度
+    console.log("avatarWeight :>> ", avatarWeight);
+    if (avatarWeight < 215) {
+      this.rarity = "legendary";
+    } else if (avatarWeight > 260) {
+      this.rarity = "rare";
+    } else {
+      this.rarity = "epic";
+    }
+    console.log("11111acasia11");
 
     if (!disableConfetti) {
       // 获取背景颜色
@@ -669,10 +695,8 @@ $primary: #0067b6;
   }
 }
 #qrcode-preview-outter-wrapper {
-  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
-  &:hover {
-    transform: scale(1.02);
-  }
+  display: flex;
+  justify-content: center;
 }
 
 .resource-info {
@@ -777,8 +801,10 @@ $primary: #0067b6;
 }
 
 //适配大屏幕
-@media screen and(min-width: 1080px) {
+@media screen and(min-width: 1079px) {
   #avatar-creator {
+    margin: 0;
+    padding: 0;
     width: 100%;
     max-width: 100%;
     height: 100%;
@@ -786,10 +812,50 @@ $primary: #0067b6;
     // flex-direction: row;
     justify-content: start;
     align-items: center;
-    background-image: url("assets/bg.png");
   }
+  .background {
+    margin-top: -50;
+    padding: 0;
+    position: absolute;
+    z-index: 996;
+    height: 100vh;
+    width: 100vw;
+  }
+  .epic {
+    background-image: url("assets/结束页史诗@1x.png");
+  }
+  .legendary {
+    background-image: url("assets/结束页传说@1x.png");
+  }
+  .rare {
+    background-image: url("assets/结束页稀有@1x.png");
+  }
+  .avatar-border {
+    transform: translate(-10px, -545px) scale(1.1);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    height: 558px;
+    width: 558px;
+    z-index: 999;
+    border: 0px transparent;
+    // background-image: url("./assets/头像框@1x.png");
+  }
+  // .avatar-svg {
+  //   position: absolute;
+  //   z-index: 995;
+  // }
   #avatar-preview-outter-wrapper {
-    margin-top: 14.5vh;
+    margin-top: 370px;
+  }
+  .qrcode-wrapper {
+    margin-top: 28vh;
+  }
+  .tips {
+    margin-top: 2vh;
+    color: white;
   }
 }
 

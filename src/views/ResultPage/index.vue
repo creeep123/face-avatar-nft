@@ -10,7 +10,7 @@
         display: 'flex',
         justifyContent: 'space-between',
       }"
-      id="avatar-preview-outter-wrapper"
+      id="color-face-outter-wrapper"
     >
       <div class="main-attributes">
         <div class="main-attribute-item">
@@ -36,13 +36,12 @@
       </div>
 
       <div :style="{
-          overflow: 'hidden',
           width: `${width}px`,
           height: exporting ? 0 : `${height}px`,
           '--bg': backgroundColor,
         }">
         <!-- <div
-          id="avatar-preview"
+          id="color-face"
           :class="{ exporting }"
           :style="{
             width: `${width}px`,
@@ -53,13 +52,11 @@
           }"
         > -->
         <div
-          id="avatar-preview"
+          id="color-face"
           :class="{ exporting }"
           :style="{
             width: `${width}px`,
             height: `${height}px`,
-            backgroundColor,
-            '--bg': backgroundColor,
           }"
         >
           <ExportLoading
@@ -75,23 +72,17 @@
               height: `${height}px`,
             }"
           />
-          <!-- <div
-            style="width: 100%;height: 100%;position: relative;z-index:2"
-            v-html="svgRaw"
-          ></div> -->
-          <!-- <div style="width: 100%;height: 100%;position: relative;z-index:2">
+          <div
+            class="color-face-border-wrapper"
+            style="position: relative;"
+          >
             <img
-              style=";transform:translate(-360px,-190px) scale(0.3)"
-              :src="'data:image/jpg;base64,'+$store.PIXEL64"
-              class=""
-            >
-          </div> -->
-
-          <div style="width: 100%;height: 100%;position: relative;z-index:2">
-            <img
-              :style="`width:${width}px`"
               :src="'data:image/jpg;base64,'+this.$store.state.PIXEL64"
               class="color-face-img"
+            >
+            <img
+              src="./assets/头像框@1x.png"
+              class="color-face-border"
             >
           </div>
         </div>
@@ -126,7 +117,7 @@
           ><img src="./assets/红心@1x.png"></span>
           <span
             v-for="(_,index) in new Array(5-starMount).fill(0)"
-            :key="index"
+            :key="`-${index}`"
             class="star-img-wrapper"
           ><img src="./assets/空心@1x.png"></span>
         </li>
@@ -225,7 +216,23 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     }
   }
 
+  private privateRegisterEnter() {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const that = this;
+    document.onkeydown = function (e) {
+      // 回车提交表单
+      // 兼容FF和IE和Opera
+      const theEvent: any = window.event || e;
+      const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+      if (code == 13) {
+        that.jumpToAvatarPage();
+      }
+    };
+  }
+
   mounted() {
+    // 注册回车事件
+    this.privateRegisterEnter();
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
@@ -270,7 +277,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     this.borderRadius = "0";
     this.$nextTick(async () => {
       const dom: HTMLElement = document.querySelector(
-        "#avatar-preview"
+        "#color-face"
       ) as HTMLElement;
       const canvas = await html2canvas(dom, {
         logging: false,
@@ -586,9 +593,9 @@ $primary: #0067b6;
   }
 }
 
-#avatar-preview {
+#color-face {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 
   &::before {
     content: "";
@@ -605,10 +612,10 @@ $primary: #0067b6;
     box-shadow: none;
   }
 }
-#colorful-face.exporting #avatar-preview::after {
+#colorful-face.exporting #color-face::after {
   visibility: hidden !important;
 }
-#avatar-preview-outter-wrapper {
+#color-face-outter-wrapper {
   // transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
   // &:hover {
   //   transform: scale(1.02);
@@ -618,6 +625,9 @@ $primary: #0067b6;
 }
 
 .color-face-img {
+  position: absolute;
+  width: 505px;
+  z-index: 2;
   // border: 8px solid #3b3b3b;
 }
 
@@ -723,7 +733,7 @@ $primary: #0067b6;
 }
 
 //适配大屏幕
-@media screen and(min-width: 1080px) {
+@media screen and(min-width: 1079px) {
   #colorful-face {
     width: 100%;
     max-width: 100%;
@@ -734,8 +744,28 @@ $primary: #0067b6;
     align-items: center;
     background-image: url("assets/背景@1x.png");
   }
-  #avatar-preview-outter-wrapper {
+  #color-face-outter-wrapper {
     margin-top: 14.5vh;
+  }
+  .color-face-border-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+  }
+  .color-face-border {
+    // position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    height: 558px;
+    width: 558px;
+    z-index: 999;
+    border: 0px transparent;
+    // background-image: url("./assets/头像框@1x.png");
   }
 
   .main-attributes {
@@ -818,7 +848,7 @@ $primary: #0067b6;
       color: grey !important;
     }
 
-    #avatar-preview::after {
+    #color-face::after {
       box-shadow: 0px 15px 24px var(--bg);
       opacity: 0.3;
     }
@@ -849,7 +879,7 @@ body.darkmode:not(.darkmode-off) {
       color: grey !important;
     }
 
-    #avatar-preview::after {
+    #color-face::after {
       box-shadow: 0px 15px 24px var(--bg);
       opacity: 0.3;
     }

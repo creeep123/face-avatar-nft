@@ -97,7 +97,7 @@ const earRingConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 60,
+    weight: 30,
   },
 ];
 export default earRingConfig;

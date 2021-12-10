@@ -11,7 +11,7 @@ const eyelidConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 50,
+    weight: 20,
   },
 ];
 export default eyelidConfig;

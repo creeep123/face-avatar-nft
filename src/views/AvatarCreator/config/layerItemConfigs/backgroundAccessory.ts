@@ -89,7 +89,7 @@ const backgroundAccessoryConfig: LayerItemConfig[] = [
   {
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 50,
+    weight: 30,
   },
 ];
 export default backgroundAccessoryConfig;

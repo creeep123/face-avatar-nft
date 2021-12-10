@@ -6,7 +6,7 @@ const hatConfig: LayerItemConfig[] = [
     filename: '无帽子',
     genderType: GenderType.UNSET,
     empty: true,
-    weight: 10,
+    weight: 20,
   },
   {
     filename: '头像初稿_戴帽子-10',

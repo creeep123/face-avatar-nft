@@ -195,7 +195,7 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
   }
 
   //帽子
-  switch (faceAttributeInfos.Hat.Style) {
+  switch (faceAttributeInfos.Hat.Style.Type) {
     case 0:
       attributes.Hat = ['无帽子'];
       break;
