@@ -309,8 +309,19 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     }
   }
 
-  private async pushAvatarImageReturnQrCode(image: string) {
-    return $api.pushAvatar({ image });
+  private async pushAvatarImageReturnQrCode({ image, rarity }: any) {
+    switch (rarity) {
+      case "legendary":
+        rarity = "Legendary";
+        break;
+      case "rare":
+        rarity = "Rare";
+        break;
+      case "epic":
+        rarity = "Epic";
+        break;
+    }
+    return $api.pushAvatar({ image, rarity });
   }
 
   async captureAndPush() {
@@ -328,7 +339,11 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
       });
       const image = canvas.toDataURL();
       this.testImage = image;
-      const res: any = await this.pushAvatarImageReturnQrCode(image);
+      const rarity = this.rarity;
+      const res: any = await this.pushAvatarImageReturnQrCode({
+        image,
+        rarity,
+      });
       if (res.status == "already have this pic") {
         await this.createAvatarAndPush();
       } else {
