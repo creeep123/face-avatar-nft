@@ -39,6 +39,7 @@ export function getMatchedValueInArr(
     'Hand',
     'HeadWear',
     'Ear Ring',
+    'Mask',
   ];
   const isSpecialCondition = () => {
     return dir == 'Hat' && curKeyWords.indexOf('无帽子') !== -1;

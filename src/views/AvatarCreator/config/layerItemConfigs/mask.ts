@@ -3,6 +3,7 @@ import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const maskConfig: LayerItemConfig[] = [
   {
+    filename: '无口罩',
     empty: true,
     genderType: GenderType.UNSET,
     weight: 30,
@@ -19,7 +20,7 @@ const maskConfig: LayerItemConfig[] = [
     filename: '头像初稿_男女-脸部装饰-创可贴_无口罩',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MASK],
-    weight: 5,
+    weight: 2,
   },
 ];
 
