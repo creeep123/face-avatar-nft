@@ -78,6 +78,7 @@
       }"
       >
         <img
+          class="animate__animated animate__pulse"
           :style="`max-width: ${qrWidth}px;`"
           :src="'data:image/jpg;base64,'+this.qrCodeBase64"
         >
@@ -223,7 +224,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     this.createAvatarAndPush();
     setTimeout(() => {
       this.avatarLoading = false;
-    }, 2000);
+    }, 3000);
     // this.captureAndPush();
   }
 
@@ -290,7 +291,6 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     } else {
       this.rarity = "epic";
     }
-    console.log("11111acasia11");
 
     if (!disableConfetti) {
       // 获取背景颜色

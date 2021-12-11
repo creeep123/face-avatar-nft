@@ -22,6 +22,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import 'animate.css';
 export default {
   provide () {
     return {
@@ -61,6 +62,10 @@ export default {
 
 <style lang="scss">
 @import url("./assets/global/global.scss");
+.animate__animated.animate__pulse {
+  --animate-duration: 2s;
+  --animate-delay: 3s;
+}
 body,
 html {
   width: 100%;

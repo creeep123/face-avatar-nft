@@ -14,13 +14,13 @@
       .cls-2,
       .cls-3,
       .cls-4 {
-        stroke: #000;
+        stroke: #303030;
         stroke-width: 4px;
       }
       .cls-1,
       .cls-2,
       .cls-3 {
-        stroke: #000;
+        stroke: #303030;
         stroke-linecap: round;
       }
       .cls-1,

@@ -34,7 +34,7 @@
 
     <div class="camera-shoot">
       <button
-        :class="shutButtonClass"
+        :class="`${shutButtonClass} animate__animated animate__pulse`"
         type="button"
         @click="this.handleButtonClick"
       >

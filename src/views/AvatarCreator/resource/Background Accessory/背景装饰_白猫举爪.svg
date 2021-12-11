@@ -13,24 +13,24 @@
       .cls-2,
       .cls-3,
       .cls-4 {
-        stroke: #000;
+        stroke: #303030;
         stroke-width: 4px;
       }
       .cls-1,
       .cls-2,
       .cls-3 {
-        stroke: #000;
+        stroke: #303030;
         stroke-linecap: round;
       }
       .cls-1,
       .cls-2,
       .cls-4 {
-        stroke: #000;
+        stroke: #303030;
         stroke-miterlimit: 10;
       }
       .cls-2,
       .cls-3 {
-        stroke: #000;
+        stroke: #303030;
         fill: none;
       }
       .cls-3 {
@@ -38,7 +38,7 @@
         stroke-linejoin: round;
       }
       .cls-4 {
-        stroke: #000;
+        stroke: #303030;
         fill: #f9ccd3;
       }
     </style>

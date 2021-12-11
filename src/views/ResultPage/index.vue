@@ -114,7 +114,10 @@
             v-for="(_,index) in new Array(starMount).fill(0)"
             :key="index"
             class="star-img-wrapper"
-          ><img src="./assets/红心@1x.png"></span>
+          ><img
+              class="animate__animated animate__rubberBand"
+              src="./assets/红心@1x.png"
+            ></span>
           <span
             v-for="(_,index) in new Array(5-starMount).fill(0)"
             :key="`-${index}`"
@@ -126,7 +129,7 @@
 
     <div class="continue-button-wrapper">
       <div
-        :class="continueButtonClass"
+        :class="`${continueButtonClass} animate__animated animate__pulse`"
         @click="jumpToAvatarPage"
       ></div>
     </div>
@@ -266,12 +269,12 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
 
   private jumpToAvatarPage = _.throttle(() => {
     // this.continueButtonClass = "continue-button-pressed";
-    setTimeout(() => {
-      this.$router.push({
-        name: "AvatarCreator",
-      });
-      // this.continueButtonClass = "continue-button";
-    }, 200);
+    // setTimeout(() => {
+    this.$router.push({
+      name: "AvatarCreator",
+    });
+    // this.continueButtonClass = "continue-button";
+    // }, 100);
   }, 1000);
 
   /**
