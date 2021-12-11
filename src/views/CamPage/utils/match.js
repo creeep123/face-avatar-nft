@@ -18,7 +18,8 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     case 2:
       attributes.Base = ['鹅蛋脸'];
       break;
-    case 3 || 1:
+    case 1:
+    case 3:
       attributes.Base = ['心形脸'];
       break;
     case 4:
@@ -44,10 +45,12 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
       case 0:
         attributes.Bangs.push('光头');
         break;
-      case 1 || 4:
+      case 1:
+      case 4:
         attributes.Bangs.push('短发');
         break;
-      case 2 || 3:
+      case 2:
+      case 3:
         attributes.Bangs.push('中发');
         break;
       // case 3:
@@ -123,7 +126,8 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     // case 1:
     //   attributes.Eyes.push('普通');
     //   break;
-    case 1 || 2:
+    case 1:
+    case 2:
       attributes.Eyes.push('大');
       break;
     default:
@@ -199,7 +203,9 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
     case 0:
       attributes.Hat = ['无帽子'];
       break;
-    case 1 || 2 || 3:
+    case 1:
+    case 2:
+    case 3:
       attributes.Hat = ['戴帽子'];
       break;
     default:
@@ -214,10 +220,13 @@ const matchAttributesFromFaceAttributeInfos = (faceAttributeInfos) => {
 
   //口罩
   switch (faceAttributeInfos.Mask.Type) {
-    case 1 || 3 || 4:
-      attributes.Mask = ['口罩'];
+    case 1:
+    case 4:
+    case 3:
+      attributes.Mask = ['有口罩'];
       break;
-    case 0 || 2:
+    case 0:
+    case 2:
       attributes.Mask = ['无口罩'];
       break;
     default:

@@ -9,7 +9,7 @@ const maskConfig: LayerItemConfig[] = [
   },
   {
     // empty: true,
-    filename: '头像初稿_口罩',
+    filename: '头像初稿_有口罩',
     genderType: GenderType.UNSET,
     avaiableColorGroups: avaiableColors[LAYER_ID.MASK],
     weight: 20,

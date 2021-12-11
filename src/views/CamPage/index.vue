@@ -10,36 +10,17 @@
         display: 'flex',
         justifyContent: 'center',
       }"
-      id="avatar-preview-outter-wrapper"
+      id="cam-preview-outter-wrapper"
     >
+      <div class="count-down">
+        {{countDownTime==4?"":countDownTime}}
+      </div>
       <WebCam
         v-loading="loading"
         ref="webCam"
         @setLoading='setLoading'
       ></WebCam>
     </div>
-
-    <!-- <div
-      class="btns"
-      style="margin-top: 40px;"
-    >
-      <button
-        id="refresh-btn"
-        :disabled="exporting ? 'disabled' : false"
-        class="__cursor_rect"
-      >
-        <span>拍摄</span>
-      </button>
-    </div> -->
-
-    <!-- <div class="camera-shoot hologram interactive btn light chicagoflf">
-      <button
-        class="shoot-button"
-        type="button"
-        @click="this.handleButtonClick"
-      >
-      </button>
-    </div> -->
 
     <!-- <div class="camera-shoot">
       <button
@@ -53,7 +34,7 @@
 
     <div class="camera-shoot">
       <button
-        class="shoot-button"
+        :class="shutButtonClass"
         type="button"
         @click="this.handleButtonClick"
       >
@@ -67,6 +48,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { Mixins } from "vue-property-decorator";
 import AvatarCreatorMixin from "./creator.mixin";
+import _ from "lodash";
 
 @Component({
   components: {
@@ -86,30 +68,56 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
   private ammount = 100;
   private showMask = false;
   private progress = 0;
+  private shutButtonClass = "shoot-button";
+  private countDownTime = 4;
 
-  private privateRegisterEnter() {
+  private async privateRegisterEnter() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
-    document.onkeydown = function (e) {
+    document.onkeydown = async function (e) {
       // 回车提交表单
       // 兼容FF和IE和Opera
       const theEvent: any = window.event || e;
       const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
       if (code == 13) {
-        that.handleButtonClick();
+        await that.handleButtonClick();
       }
     };
+  }
+
+  private async countTime() {
+    // 倒计时 -1s
+    this.countDownTime -= 1;
+    //递归每秒调用countTime方法
+    if (this.countDownTime != 0) {
+      setTimeout(this.countTime, 1000);
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      //@ts-ignore
+      const res = await this.$refs.webCam.takePhoto();
+      if (res == "success") {
+        // 跳转到result页面
+        this.$router.push({
+          name: "ResultPage",
+        });
+      } else {
+        this.countDownTime = 4;
+      }
+    }
   }
 
   setLoading(boo: boolean) {
     this.loading = boo;
   }
 
-  handleButtonClick() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    //@ts-ignore
-    this.$refs.webCam.takePhoto();
-  }
+  handleButtonClick = _.throttle(async () => {
+    // 开始倒计时，3s后调用拍照方法
+    await this.countTime();
+    setTimeout(() => {
+      this.shutButtonClass = "shoot-button";
+    }, 200);
+    this.shutButtonClass = "shoot-button-pressed";
+  }, 3000);
 
   mounted() {
     this.privateRegisterEnter();
@@ -143,6 +151,13 @@ $primary: #0067b6;
     background: transparent;
     background-image: url("./assets/底部button-常态@1x.png");
   }
+  .shoot-button-pressed {
+    height: 119px;
+    width: 480px;
+    border: none;
+    background: transparent;
+    background-image: url("./assets/底部button-按下@1x.png");
+  }
 }
 #cam-previewer {
   position: fixed;
@@ -155,68 +170,11 @@ $primary: #0067b6;
   align-items: stretch;
   justify-content: center;
 
-  /* background-color: #fff; */
-  // background-color: rgba(255, 255, 255, 0.7);
-  // border-radius: 12px;
-  // padding: 50px 30px 20px 30px;
-  // box-shadow: 12px 20px 40px rgba(0, 0, 0, 0.1),
-  //   5px 5px 10px rgba(0, 0, 0, 0.02);
-  // z-index: 9;
-  // backdrop-filter: saturate(180%) blur(12px);
-
-  // max-width: 360px;
-
   .btns {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
   }
-  // button {
-  //   border: none;
-  //   height: 40px;
-  //   border-radius: 7px;
-  //   cursor: pointer;
-  //   &:focus,
-  //   &:active {
-  //     outline: none;
-  //   }
-
-  //   &:active {
-  //     box-shadow: 0px 0px 2px rgba($primary, 0.5);
-  //   }
-
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: center;
-  //   align-items: center;
-
-  //   i {
-  //     margin-right: 10px;
-  //   }
-
-  //   transition: all 0.3s ease;
-
-  //   &#refresh-btn {
-  //     background-color: $primary;
-  //     color: #fff;
-  //     width: calc(50% - 5px);
-
-  //     &:hover {
-  //       background-color: #06538d;
-  //     }
-  //   }
-  //   &#download-btn {
-  //     background-color: transparent;
-  //     border: 1px solid $primary;
-  //     color: $primary;
-  //     width: calc(50% - 5px);
-
-  //     &:hover {
-  //       background-color: $primary;
-  //       color: #fff;
-  //     }
-  //   }
-  // }
   input {
     background-color: #efefef;
     border-radius: 7px;
@@ -270,7 +228,7 @@ $primary: #0067b6;
 #cam-previewer.exporting #avatar-preview::after {
   visibility: hidden !important;
 }
-#avatar-preview-outter-wrapper {
+#cam-preview-outter-wrapper {
   transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s;
 }
 
@@ -350,7 +308,19 @@ $primary: #0067b6;
     align-items: center;
     background-image: url("assets/背景@1x.png");
   }
-  #avatar-preview-outter-wrapper {
+  .count-down {
+    z-index: 999;
+    position: absolute;
+    height: 860px;
+    width: 860px;
+    // background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: white;
+  }
+  #cam-preview-outter-wrapper {
     margin-top: 312px;
   }
 }

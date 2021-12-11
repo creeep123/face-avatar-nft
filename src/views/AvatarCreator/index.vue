@@ -4,6 +4,12 @@
     :class="{ exporting }"
   > -->
   <div id="avatar-creator">
+    <div class="loading-wrapper">
+      <Loading
+        v-if="avatarLoading"
+        bgColor="yellow"
+      ></Loading>
+    </div>
     <div :class="`background ${rarity}`">
       <div
         :style="{
@@ -71,19 +77,6 @@
         justifyContent: 'center',
       }"
       >
-        <ExportLoading
-          :ammount="
-              Object.prototype.toString.call(ammount) === '[object String]'
-                ? parseInt(ammount)
-                : ammount
-            "
-          :progress="progress"
-          v-if="showMask"
-          :style="{
-              width: `${qrWidth}px`,
-              height: `${qrHeight}px`,
-            }"
-        />
         <img
           :style="`max-width: ${qrWidth}px;`"
           :src="'data:image/jpg;base64,'+this.qrCodeBase64"
@@ -167,7 +160,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { Mixins } from "vue-property-decorator";
 import html2canvas from "html2canvas";
-
+import _ from "lodash";
 import JSZip from "jszip";
 
 // @ts-ignore
@@ -180,6 +173,7 @@ import $api from "../../service";
 @Component({
   components: {
     ExportLoading: () => import("@/components/ExportLoading.vue"),
+    Loading: () => import("@/components/Loading.vue"),
   },
   mixins: [],
   computed: {
@@ -218,6 +212,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     { label: "PNG", value: "png" },
   ];
   private rarity = "";
+  private avatarLoading = true;
 
   async mounted() {
     // 注册回车事件
@@ -225,15 +220,18 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     // attributesChosen 按照不同 layer 分为了 15 个 layer
     // 每个 layer 数组用 dir 命名，其中存放的是根据拍摄人脸信息提取的关键词
     // 在选取素材时，每一层筛选出文件名中包含数组中【所有关键词】的文件
-    await this.createAvatarAndPush();
+    this.createAvatarAndPush();
+    setTimeout(() => {
+      this.avatarLoading = false;
+    }, 2000);
     // this.captureAndPush();
   }
 
-  private jumpToCamPage() {
+  private jumpToCamPage = _.throttle(() => {
     this.$router.push({
       name: "CamPage",
     });
-  }
+  }, 3000);
 
   private privateRegisterEnter() {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -827,6 +825,12 @@ $primary: #0067b6;
     // flex-direction: row;
     justify-content: start;
     align-items: center;
+  }
+  .loading-wrapper {
+    position: absolute;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
   }
   .background {
     margin-top: -50;

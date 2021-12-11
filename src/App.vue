@@ -1,7 +1,10 @@
 <template>
   <main id="app">
     <!-- <PageHeader /> -->
-    <Loading v-if="LOADING" />
+    <Loading
+      v-if="LOADING"
+      bgColor="red"
+    />
     <router-view
       v-if="!LOADING"
       @multiple-start="multipleExporting = true"

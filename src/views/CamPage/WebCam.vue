@@ -145,7 +145,7 @@ export default {
           .catch(error => {
             this.isLoading = false;
             console.log('error :>> ', error);
-            alert("May the browser didn't support or there is some errors.");
+            // alert("May the browser didn't support or there is some errors.");
           });
       })
     },
@@ -169,27 +169,30 @@ export default {
         const image = this.getCurCanvasImg()
         //人脸信息存入 store
         this.$store.commit('showLoading')
-        const res1 = await this.getFaceInfo(image)
-        const faceDetailInfo = res1.data.FaceDetailInfos[0].FaceDetailAttributesInfo
-        const attributesChosen =
-          matchAttributesFromFaceAttributeInfos(faceDetailInfo);
-        this.$store.commit('changeFaceInfoRaw', faceDetailInfo)
-        this.$store.commit('changeChosenAttrs', attributesChosen)
-        this.$store.commit('changeAge', faceDetailInfo.Age)
-        this.$store.commit('changeBeauty', faceDetailInfo.Beauty)
-        this.$store.commit('changeGender', faceDetailInfo.Gender.Type)
-        this.$store.commit('changeSkin', faceDetailInfo.Skin.Type)
-        this.$store.commit('changePixel64', res1.data.FaceDetailInfos[0].pixel_b64)
-        this.$store.commit('hideLoading')
-        setTimeout(() => {
-          this.isShotPhoto = false;
-        }, FLASH_TIMEOUT);
-        // 跳转到result页面
-        this.$router.push({
-          name: 'ResultPage',
-        })
+        try {
+          const res1 = await this.getFaceInfo(image)
+          const faceDetailInfo = res1.data.FaceDetailInfos[0].FaceDetailAttributesInfo
+          const attributesChosen =
+            matchAttributesFromFaceAttributeInfos(faceDetailInfo);
+          this.$store.commit('changeFaceInfoRaw', faceDetailInfo)
+          this.$store.commit('changeChosenAttrs', attributesChosen)
+          this.$store.commit('changeAge', faceDetailInfo.Age)
+          this.$store.commit('changeBeauty', faceDetailInfo.Beauty)
+          this.$store.commit('changeGender', faceDetailInfo.Gender.Type)
+          this.$store.commit('changeSkin', faceDetailInfo.Skin.Type)
+          this.$store.commit('changePixel64', res1.data.FaceDetailInfos[0].pixel_b64)
+          return "success"
+        }
+        catch (e) {
+          return e
+        } finally {
+          this.$store.commit('hideLoading')
+          setTimeout(() => {
+            this.isShotPhoto = false;
+          }, FLASH_TIMEOUT);
+        }
+        // }
       }
-
       this.isPhotoTaken = !this.isPhotoTaken;
     },
 

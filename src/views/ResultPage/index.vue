@@ -126,7 +126,7 @@
 
     <div class="continue-button-wrapper">
       <div
-        class="continue-button"
+        :class="continueButtonClass"
         @click="jumpToAvatarPage"
       ></div>
     </div>
@@ -138,7 +138,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import { Mixins } from "vue-property-decorator";
 import html2canvas from "html2canvas";
-
+import _ from "lodash";
 import JSZip from "jszip";
 
 // @ts-ignore
@@ -183,6 +183,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     { label: "SVG", value: "svg" },
     { label: "PNG", value: "png" },
   ];
+  private continueButtonClass = "continue-button";
 
   getMappedAttribute(attrName: any) {
     const attributesMap: any = {
@@ -216,7 +217,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     }
   }
 
-  private privateRegisterEnter() {
+  private privateRegisterEnter = () => {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     document.onkeydown = function (e) {
@@ -228,7 +229,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
         that.jumpToAvatarPage();
       }
     };
-  }
+  };
 
   mounted() {
     // 注册回车事件
@@ -263,11 +264,15 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     return this.$route.params;
   }
 
-  private jumpToAvatarPage() {
-    this.$router.push({
-      name: "AvatarCreator",
-    });
-  }
+  private jumpToAvatarPage = _.throttle(() => {
+    // this.continueButtonClass = "continue-button-pressed";
+    setTimeout(() => {
+      this.$router.push({
+        name: "AvatarCreator",
+      });
+      // this.continueButtonClass = "continue-button";
+    }, 200);
+  }, 1000);
 
   /**
    * 截取
@@ -821,6 +826,11 @@ $primary: #0067b6;
     height: 119px;
     width: 480px;
     background-image: url("./assets/底部button-常态@1x.png");
+  }
+  .continue-button-pressed {
+    height: 119px;
+    width: 480px;
+    background-image: url("./assets/底部button-按下@1x.png");
   }
 }
 
