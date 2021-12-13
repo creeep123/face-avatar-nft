@@ -3,6 +3,13 @@ import { GenderType, LAYER_ID } from './../../interface/avatar.interface';
 import { LayerItemConfig } from './../../interface/layer.interface';
 const bangsConfig: LayerItemConfig[] = [
   {
+    filename: '光头',
+    empty: true,
+    genderType: GenderType.MALE,
+    weight: 11,
+    removeLayers: [LAYER_ID.HAIR],
+  },
+  {
     filename: '头像初稿_男发_有刘海_中发-9',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
@@ -19,11 +26,11 @@ const bangsConfig: LayerItemConfig[] = [
     removeLayers: [LAYER_ID.HAIR],
   },
   {
-    filename: '头像初稿_男发_无刘海_光头_秃头-13',
+    filename: '头像初稿_男发_无刘海_短发_秃头-13',
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 3,
+    weight: 1,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -31,7 +38,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 3,
+    weight: 11,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
