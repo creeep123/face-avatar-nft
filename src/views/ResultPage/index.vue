@@ -19,7 +19,7 @@
         </div>
         <div class="main-attribute-item">
           <div class="icon-wrapper"><img src="./assets/年龄.png"></div>
-          <div class="attribute-value">{{$store.state.AGE}}</div>
+          <div class="attribute-value">{{$store.state.AGE>=25 ?$store.state.AGE-5:$store.state.AGE}}</div>
         </div>
         <div class="main-attribute-item">
           <div class="icon-wrapper"><img src="./assets/眼镜.png"></div>
