@@ -78,7 +78,7 @@
       }"
       >
         <img
-          class="animate__animated animate__pulse"
+          class=""
           :style="`max-width: ${qrWidth}px;`"
           :src="'data:image/jpg;base64,'+this.qrCodeBase64"
         >
@@ -253,6 +253,7 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
     //生成头像并推送至后端，直到头像不重复
     // while (!this.unique) {
     await this.createAvatar();
+
     await this.captureAndPush();
     // }
   }
@@ -343,12 +344,14 @@ export default class AvatarCreator extends Mixins(AvatarCreatorMixin) {
         image,
         rarity,
       });
+      console.log("new start Date() :>> ", new Date());
       if (res.status == "already have this pic") {
         await this.createAvatarAndPush();
       } else {
         this.qrCodeBase64 = res.qr_code64;
         this.exporting = false;
         this.borderRadius = "12px";
+        console.log("new end Date() :>> ", new Date());
       }
     });
   }
