@@ -38,7 +38,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 11,
+    weight: 18,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
@@ -46,7 +46,7 @@ const bangsConfig: LayerItemConfig[] = [
     genderType: GenderType.MALE,
     avaiableColorGroups: avaiableColors[LAYER_ID.BANGS],
     colorNotSameAs: [LAYER_ID.BACKGROUND, LAYER_ID.BASE],
-    weight: 11,
+    weight: 18,
     removeLayers: [LAYER_ID.HAIR],
   },
   {
